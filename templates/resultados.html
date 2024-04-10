@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Resultados de la Calculadora de Resortes</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/estilo.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="header">
+        <div class="header-content">
+            <div class="header-logo">
+                <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo">
+            </div>
+            <ul class="nav">
+                <li><a href="/resortes/">Inicio</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="cards-container">
+        <div class="card-box" id="pesoCapturado">
+            <img src="https://i.ibb.co/HLSW0Mt/negocio.png" alt="Peso" class="icono">
+            <p>Peso capturado: {{ peso }} kg</p>
+        </div>
+        
+        <div class="card-box" id="alturaCapturada">
+            <img src="https://i.ibb.co/0J5SyL7/altura.png" alt="Altura" class="icono">
+            <p>Altura capturada: {{ altura }} m</p>
+        </div>
+
+        <div style="text-align: center; margin-top: 20px;">
+            <button  id="marcartodos"     type="button" class="btn-marcar1" onclick="marcarTodos(true)">Marcar Todos ✅</button>
+            <button  id="desmarcartodos"     type="button" class="btn-marcar1" onclick="marcarTodos(false)">Desmarcar Todos ❌</button>
+        </div>
+    </div>
+
+    <form action="/resortes/filtrar_resultados" method="post">
+        <fieldset class="checkbox-group">
+            <legend class="checkbox-group-legend">Desmarca los resortes que no tengas en stock</legend>
+
+            <div class="checkbox-container" style="display: flex; flex-wrap: wrap; justify-content: center;">
+                {% for tipo in tipos_unicos %}
+                    <div class="checkbox">
+                        <label class="checkbox-wrapper">
+                            <input type="checkbox" class="checkbox-input" name="resortes_disponibles" value="{{ tipo }}"
+                            {% if tipo in tipos_seleccionados %} checked {% endif %}>
+                            <span class="checkbox-tile">
+                                <span class="checkbox-icon">
+                                    <img src="https://i.ibb.co/zJWfLy3/resorte-de-acero.png" alt="Icono de automotor" class="small-icon">
+                                </span>
+                                <span class="checkbox-label">{{ tipo }}</span>
+                            </span>
+                        </label>
+                    </div>
+                {% endfor %}
+            </div>
+            
+            <input type="hidden" name="peso" value="{{ peso }}">
+            <input type="hidden" name="altura" value="{{ altura }}">
+           
+            
+           
+            <div class="submit-container" style="text-align: center; margin-top: 20px;">
+                
+                <input type="submit" value="Aplicar⏳" class="btn-aplicar">
+               
+            </div>
+        </fieldset>
+        <p>
+            (Nuevas actualizaciónes 👇)
+            <p>
+            <button type="button" class="btn-marcar2" id="btnSinIntercalar">Sin intercalar 🔗</button>
+            <button type="button" class="btn-marcar2" id="btnIntercalar">Intercalar resultados ⛓️</button>
+
+      
+
+    </form>
+ <!-- ... contenido previo ... -->
+ <div id="mensajeExplicativo" class="mensaje-explicativo">
+    <!-- Aquí se mostrará el mensaje explicativo para el elemento actual destacado -->
+  </div>
+  <button id="btnSiguiente" class="btn-siguiente">Siguiente</button>
+    <div class="combinations-container">
+        {% for num_resortes, combinaciones in combinaciones_por_numero.items() %}
+            <h3>{{ num_resortes }} Resorte(s):</h3>
+            <div class="cards">
+                {% for combo in combinaciones %}
+                    <div class="card">
+                        <div class="card-content">
+                            <h4 class="card-header">Combinación {{ loop.index }}</h4>
+                            <div class="card-body">
+                                {% for resorte in combo %}
+                                    <p>{{ resorte.tipo }} - Vueltas: {{ resorte.vueltas }} - Peso: {{ resorte.peso_por_resorte }} kg</p>
+                                {% endfor %}
+                            </div>
+                            <div class="card-actions">
+                                <button  id="copiaresorte"   class="btn-marcar1" onclick="copiarInformacion(this)">Copiar📄</button>
+                                <button  id="imprimirreporte"   class="btn-marcar1" onclick="imprimirInformacion(this)">Imprimir🖨️</button>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endfor %}
+    </div>
+
+
+
+    <div id="overlay" class="overlay"></div>
+    <div id="highlightBox" class="highlight-box"></div>
+
+
+
+
+
+    <script>
+        function marcarTodos(marcar) {
+            const checkboxes = document.querySelectorAll('.checkbox-input');
+            checkboxes.forEach(checkbox => {
+                checkbox.checked = marcar;
+            });
+        }
+
+        document.getElementById('btnSinIntercalar').onclick = function() {
+            filtrarCombinaciones(false);
+        };
+
+        document.getElementById('btnIntercalar').onclick = function() {
+            filtrarCombinaciones(true);
+        };
+
+        function filtrarCombinaciones(intercalar) {
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                const resortes = card.querySelectorAll('.card-body p');
+                const tipos = new Set();
+                resortes.forEach(p => tipos.add(p.textContent.split(' - ')[0]));
+
+                if (intercalar || tipos.size === 1) {
+                    card.style.display = '';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        function copiarInformacion(buttonElement) {
+            var textoACopiar = "";
+            var cardContent = buttonElement.closest('.card').querySelector('.card-body');
+            cardContent.querySelectorAll('p').forEach(function(p) {
+                var texto = p.textContent.split(' - ')[0];
+                textoACopiar += "1 Resorte de " + texto + "\n";
+            });
+            navigator.clipboard.writeText(textoACopiar.trim()).then(function() {
+                alert("Información copiada al portapapeles");
+            }, function(err) {
+                console.error('Error al copiar: ', err);
+            });
+        }
+
+        function imprimirInformacion(buttonElement) {
+            var cardContent = buttonElement.closest('.card').querySelector('.card-body');
+            var resortes = Array.from(cardContent.querySelectorAll('p')).map(p => `resortes=${encodeURIComponent(p.textContent)}`).join('&');
+
+            var peso = document.querySelector('.card-box img[alt="Peso"] + p').textContent.split(': ')[1].trim();
+            var altura = document.querySelector('.card-box img[alt="Altura"] + p').textContent.split(': ')[1].trim();
+
+            var url = `/resortes/imprimir_ticket?peso=${peso}&altura=${altura}&${resortes}`;
+            window.open(url, '_blank');
+        }
+    </script>
+
+    <script>
+        window.onload = function() {
+            if (localStorage.getItem('tourRealizado') === 'true') {
+                return;
+            }
+        
+            const overlay = document.getElementById('overlay');
+            const highlightBox = document.getElementById('highlightBox');
+            const mensajeExplicativo = document.getElementById('mensajeExplicativo');
+            const btnSiguiente = document.getElementById('btnSiguiente');
+        
+            const elementosDestacados = [
+                { elemento: document.getElementById('pesoCapturado'), mensaje: 'Muestra el Peso Capturado del formulario anterior.' },
+                { elemento: document.getElementById('alturaCapturada'), mensaje: 'Muestra la Altura Capturado del formulario anterior' },
+                { elemento: document.getElementById('marcartodos'), mensaje: 'Si quieres calcular resortes, en base a todo el stock marca todo.' },
+                { elemento: document.getElementById('desmarcartodos'), mensaje: 'Si quieres calcular solo con ciertos resortes desmarcalos todos, y selecciona los que requieres.' },
+                { elemento: document.getElementById('btnSinIntercalar'), mensaje: 'Sin intercalar, se itera específicamente a través de cada resorte, generando combinaciones del mismo resorte repetido múltiples veces, lo que aumenta las posibilidades de encontrar combinaciones que satisfagan el peso objetivo.' },
+                { elemento: document.getElementById('btnIntercalar'), mensaje: 'Se introdujo un parámetro intercalar para controlar explícitamente el comportamiento de la función, permitiendo generar combinaciones intercaladas o no intercaladas de resortes.' },
+                { elemento: document.getElementById('copiaresorte'), mensaje: 'Copiar el resultado de tu resorte, para integrarlo en tu listado de herrajes.' },
+                { elemento: document.getElementById('imprimirreporte'), mensaje: 'No olvides imprimir tu recibo de resortes para anexarlo en listado de herrajes.' }
+            ];
+        
+            let indiceActual = 0;
+        
+            function mostrarElementoDestacado() {
+                document.body.classList.add('body-opaco');
+                elementosDestacados.forEach(({ elemento }) => elemento.classList.remove('elemento-destacado'));
+        
+                if (indiceActual < elementosDestacados.length) {
+                    const { elemento, mensaje } = elementosDestacados[indiceActual];
+                    elemento.classList.add('elemento-destacado');
+        
+                    const rect = elemento.getBoundingClientRect();
+        
+                    overlay.style.display = 'block';
+                    highlightBox.style.display = 'block';
+                    highlightBox.style.width = `${rect.width}px`;
+                    highlightBox.style.height = `${rect.height}px`;
+                    highlightBox.style.top = `${window.scrollY + rect.top}px`;
+                    highlightBox.style.left = `${rect.left}px`;
+        
+                    mensajeExplicativo.textContent = mensaje;
+                    mensajeExplicativo.style.display = 'block';
+        
+                    btnSiguiente.style.display = 'block';
+                } else {
+                    finalizarTour();
+                }
+            }
+        
+            function finalizarTour() {
+                document.body.classList.remove('body-opaco');
+                elementosDestacados.forEach(({ elemento }) => elemento.classList.remove('elemento-destacado'));
+        
+                overlay.style.display = 'none';
+                highlightBox.style.display = 'none';
+                mensajeExplicativo.style.display = 'none';
+                btnSiguiente.style.display = 'none';
+        
+                localStorage.setItem('tourRealizado', 'true');
+                indiceActual = 0; // Reinicia el índice para un futuro tour
+            }
+        
+            btnSiguiente.onclick = function() {
+                indiceActual++;
+                if (indiceActual >= elementosDestacados.length) {
+                    indiceActual = 0; // Reinicia el índice para repetir el tour si es necesario
+                    finalizarTour();
+                } else {
+                    mostrarElementoDestacado();
+                }
+            };
+        
+            mostrarElementoDestacado();
+        };
+        
+        
+      </script>
+      
+
+
+
+    
+</body>
+</html>

@@ -1,0 +1,573 @@
+
+/* Establecer una tipografía moderna y colores oscuros */
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background-color: #1c1c1c; /* Color de fondo oscuro */
+    color: #fff; /* Texto en blanco */
+    text-align: center;
+    margin: 0;
+    padding-top: 60px; /* Espacio para el encabezado */
+}
+
+/* Estilos del encabezado al estilo Apple en oscuro */
+.header {
+    background-color: #292929; /* Color de fondo del encabezado */
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    padding: 10px 0;
+}
+
+.header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-logo img {
+    height: 40px;
+}
+
+.nav {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav li {
+    display: inline;
+    margin-left: 20px;
+}
+
+.nav a {
+    color: #ddd; /* Color claro para enlaces */
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Estilos para la calculadora en oscuro */
+.calculadora {
+    background-color: #333; /* Fondo oscuro para la calculadora */
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+}
+
+.calculadora h2 {
+    margin-top: 0;
+    color: #ddd; /* Texto claro para el título */
+}
+
+input[type=text] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #444; /* Borde oscuro para inputs */
+    background-color: #292929; /* Fondo oscuro para inputs */
+    border-radius: 5px;
+    color: #fff; /* Texto en blanco para inputs */
+}
+
+input[type=submit] {
+    width: 100%;
+    padding: 10px;
+    background-color: #007aff; /* Mantener el color del botón */
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+input[type=submit]:hover {
+    background-color: #0056b3; /* Oscurecer el botón al pasar el mouse */
+}
+
+
+
+
+
+/* Estilos para las tablas de resultados */
+.tabla-resultados {
+    width: 90%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    border: 1px solid #ddd;
+}
+
+.tabla-resultados th, .tabla-resultados td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+    color: #ddd;
+}
+
+.tabla-resultados th {
+    background-color: #333;
+}
+
+.tabla-resultados tr:nth-child(even) {
+    background-color: #292929;
+}
+
+.tabla-resultados tr:hover {
+    background-color: #333;
+}
+
+/* Estilos para botones */
+button {
+    padding: 10px 15px;
+    margin: 5px;
+    background-color: #007aff;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Estilos para mensajes de información */
+.info {
+    margin: 10px 0;
+    padding: 10px;
+    background-color: #333;
+    border-left: 3px solid #007aff;
+    color: #ddd;
+}
+
+
+
+
+
+
+
+ /* Estilo para los checkboxes */
+ /* Estilo para los checkboxes */
+ 
+.checkbox-group {
+   
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0px; /* Espacio entre los elementos */
+    text-align: center;
+}
+
+.checkbox {
+    /* Puedes ajustar los márgenes según sea necesario */
+    margin: 5px;
+}
+
+
+.checkbox-group-legend {
+	font-size: 1.5rem;
+	font-weight: 700;
+	color: #e4e4e4;
+	text-align: center;
+	line-height: 1.125;
+	margin-bottom: 1.25rem;
+    text-align: center;
+
+}
+
+.checkbox-input {
+	// Code to hide the input
+	clip: rect(0 0 0 0);
+	clip-path: inset(100%);
+	height: 1px;
+	overflow: hidden;
+	position: absolute;
+	white-space: nowrap;
+	width: 1px;
+
+	&:checked + .checkbox-tile {
+		border-color: #2260ff;
+		box-shadow: 0 5px 10px rgba(#000, 0.1);
+		color: #2260ff;
+		&:before {
+			transform: scale(1);
+			opacity: 1;
+			background-color: #2260ff;
+			border-color: #2260ff;
+		}
+		
+		.checkbox-icon, .checkbox-label {
+			color: #2260ff;
+		}
+	}
+	
+	&:focus + .checkbox-tile {
+		border-color: #2260ff;
+		box-shadow: 0 5px 10px rgba(#000, 0.1), 0 0 0 4px #b5c9fc;
+		&:before {
+			transform: scale(1);
+			opacity: 1;
+		}
+	}
+}
+
+.checkbox-tile {
+    width:  80px; /* Ajustar el ancho de checkbox*/
+    height: 80px; /* Ajustar la altura de checkbox*/
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+
+	border-radius: 0.5rem;
+	border: 2px solid #b5bfd9;
+	background-color: #ffffff00;
+	box-shadow: 0 5px 10px rgba(#000, 0.1);
+	transition: 0.15s ease;
+	cursor: pointer;
+	position: relative;
+
+	&:before {
+		content: "";
+		position: absolute;
+		display: block;
+		width:  1.0rem;
+		height: 1.0rem;
+		border: 2px solid #b5bfd9;
+		background-color: #fff;
+		border-radius: 50%;
+		top: 0.25rem;
+		left: 0.25rem;
+		opacity: 0;
+		transform: scale(0);
+		transition: 0.25s ease;
+		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='192' height='192' fill='%23FFFFFF' viewBox='0 0 256 256'%3E%3Crect width='256' height='256' fill='none'%3E%3C/rect%3E%3Cpolyline points='216 72.005 104 184 48 128.005' fill='none' stroke='%23FFFFFF' stroke-linecap='round' stroke-linejoin='round' stroke-width='32'%3E%3C/polyline%3E%3C/svg%3E");
+		background-size: 12px;
+		background-repeat: no-repeat;
+		background-position: 50% 50%;
+	}
+
+	&:hover {
+		border-color: #2260ff;
+		&:before {
+			transform: scale(1);
+			opacity: 1;
+		}
+	}
+}
+
+.checkbox-icon {
+	transition: .375s ease;
+	color: #d3d3d3;
+	svg {
+		width: 3rem;
+		height: 3rem;
+	}
+}
+
+.checkbox-label {
+    font-size: 15px; /* Reducir el tamaño de la fuente, si es necesario */
+	color: #f1f1f1;
+	transition: .375s ease;
+	text-align: center;
+}
+
+
+.checkbox-icon, .checkbox-icon img {
+    width:  35px; /* Nuevo ancho más pequeño */
+    height: 35px; /* Nueva altura más pequeña */
+}
+
+
+
+
+
+.small-icon {
+    width: 54px; /* Ancho deseado para el icono de resorte */
+    height: 54px; /* Altura deseada para el icono de resorte */
+}
+
+
+
+
+
+
+.checkbox-container {
+    justify-content: center; /* Centra los checkboxes si no ocupan todo el ancho disponible */
+}
+
+.submit-container {
+    display: flex; /* Usa flex para centrar el contenido */
+    justify-content: center; /* Centra el botón horizontalmente */
+    margin-top: 20px; /* Añade espacio arriba del botón para separarlo de los checkboxes */
+    width: 100%; /* Asegura que el contenedor ocupe todo el ancho disponible */
+}
+
+
+
+
+.btn-aplicar {
+    width: auto; /* O un valor fijo, como 200px, si prefieres un ancho específico */
+    max-width: 200px; /* Ajusta esto según el tamaño deseado */
+    padding: 10px 20px; /* Espaciado interno para hacer el botón más grande */
+    margin: auto; /* Centra el botón en el div */
+    background-color: #007aff; /* Color de fondo */
+    color: white; /* Color del texto */
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-aplicar:hover {
+    background-color: #0056b3; /* Cambia el color cuando se pasa el mouse por encima */
+}
+
+
+
+.card-box {
+    display: inline-flex; /* Alineación más estrecha */
+    align-items: center;
+    padding: 10px 20px;
+    margin: 0 10px;
+    background-color: #00000000;
+    border-radius: 8px;
+    max-width: 30%;
+    z-index: 52; /* Asegúrate de que esto esté por encima del overlay */
+
+    
+}
+
+.icono {
+    flex: none;
+    width: 24px;
+    height: auto;
+    margin-right: 5px;
+    z-index: 52; /* Asegúrate de que esto esté por encima del overlay */
+
+}
+
+.card-box p {
+    margin: 0;
+    font-size: 0.9rem;
+    z-index: 52; /* Asegúrate de que esto esté por encima del overlay */
+
+}
+
+
+
+
+ /* cards de resortes */
+ 
+/* Contenedor de Tarjetas */
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 15px; /* Espacio reducido entre tarjetas */
+}
+
+/* Estilo de Tarjetas */
+.card {
+    width: 250px; /* Ancho de tarjeta reducido */
+    background-color: #1c1c1e; /* Fondo de tarjeta oscuro */
+    border: 2px solid #fff; /* Borde blanco */
+    border-radius: 15px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(255, 255, 255, 0.2); /* Sombra ajustada para menor elevación */
+}
+
+.card-content {
+    padding: 15px; /* Padding reducido */
+}
+
+.card-header {
+    font-size: 12px; /* Mantén el tamaño de fuente si ya estaba definido */
+    font-weight: bold;
+    color: #0a84ff; /* o el color que prefieras */
+    margin-top: 1px; /* Reducir el margen superior según necesites */
+    padding-top: 1px; /* Ajustar el padding superior si es necesario */
+    border-bottom: 1px solid #2c2c2e00; /* Opcional: añadir un borde para separar el encabezado del contenido */
+}
+
+
+.card-body p {
+    color: #a2a2a5; /* Texto más claro para contraste */
+    margin: 8px 0; /* Margen ajustado */
+    font-size: 14px; /* Tamaño de fuente reducido para el cuerpo */
+    line-height: 1.4; /* Espaciado de línea ajustado */
+}
+
+/* Ajustes adicionales para botones y enlaces */
+a, button {
+    font-size: 14px; /* Tamaño de fuente reducido para enlaces y botones */
+}
+
+button {
+    padding: 8px 16px; /* Padding ajustado para botones */
+    border-radius: 8px; /* Bordes más redondeados */
+}
+
+button:hover {
+    background-color: #007aff;
+}
+
+
+.btn-marcar {
+    background-color: #f2f2f200;
+    color: #ffffff;
+    padding: 2px 16px;
+    font-size: 12px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    cursor: pointer;
+    margin: 0 2px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-marcar:hover {
+    background-color: #e6e6e609;
+}
+
+
+.btn-marcar1 {
+    background-color: #007eecdc;
+    color: #ffffff;
+    padding: 5px 10px;
+    font-size: 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    position: relative;
+}
+
+.btn-marcar1:hover {
+    background-color: #007eecdc;
+    transform: scale(1.05);
+}
+
+
+
+.btn-marcar2 {
+    background-color: #007eecdc;
+    color: #ffffff;
+    padding: 5px 10px;
+    font-size: 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    position: relative;
+}
+
+.btn-marcar2:hover {
+    background-color: #007eecdc;
+    transform: scale(1.05);
+}
+
+
+
+
+
+
+
+
+
+/* AQUI INICIA LO DEL RECORRIDO  */
+.elemento-destacado {
+    z-index: 52; /* Asegúrate de que esto esté por encima del overlay */
+}
+
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(37, 37, 37, 0.848);
+    z-index: 50; /* Por debajo de los elementos destacados */
+    display: none;
+}
+
+.highlight-box {
+    position: absolute;
+    z-index: 57; /* Por encima del overlay */
+    border: 3px solid #f10606; /* Color rojo brillante para el borde */
+    box-shadow: 0 0 10px #f10606, 0 0 20px #f10606, 0 0 30px #f10606, 0 0 40px #f10606; /* Efecto de neón */
+    display: none; /* Ocultar inicialmente */
+    animation: neon 1.5s ease-in-out infinite; /* Animación para el efecto parpadeante */
+}
+
+/* Animación para efecto neón parpadeante */
+@keyframes neon {
+    0%, 100% {
+        box-shadow: 0 0 10px #f10606, 0 0 20px #f10606, 0 0 30px #f10606, 0 0 40px #f10606;
+        border-color: #f10606;
+    }
+    50% {
+        box-shadow: 0 0 5px #f10606, 0 0 10px #f10606, 0 0 15px #f10606, 0 0 20px #f10606;
+        border-color: #ffcccc;
+    }
+}
+
+
+.btn-highlighted {
+    position: relative;
+    z-index: 53; /* Por encima del overlay y del highlight box */
+}
+
+/* ... estilos previos ... */
+
+.mensaje-explicativo {
+    position: fixed;
+    bottom: 100px; /* Ajusta la posición como sea necesario */
+    left: 50%;
+    transform: translateX(-50%);
+    background: #ff0000;
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    z-index: 1001; /* Asegúrate de que está por encima del overlay */
+    display: none; /* Inicialmente oculto */
+  }
+  
+  .btn-siguiente {
+    position: fixed;
+    bottom: 20px; /* Ajusta la posición como sea necesario */
+    right: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #ff0000;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 1002; /* Asegúrate de que está por encima de mensajeExplicativo */
+    display: none; /* Inicialmente oculto */
+  }
+  
+  .btn-siguiente:hover {
+    background-color: #b30000;
+  }
+  
+ /* AQUI TERMINA LO DEL RECORRIDO  */

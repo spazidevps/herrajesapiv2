@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Formulario de Entrada de Productos</title>
+    <!-- Incluir Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #343a40;
+            /* Fondo oscuro */
+            color: #fff;
+            /* Texto blanco */
+        }
+
+        .card,
+        .navbar {
+            background-color: #212529;
+            /* Mismo color de fondo para tarjetas y barra de navegación */
+        }
+
+        .form-control,
+        .form-control:focus {
+            background-color: #495057;
+            /* Fondo de campos de formulario oscuro */
+            border-color: #6c757d;
+            color: #fff;
+            /* Texto blanco en campos de formulario */
+        }
+
+        label,
+        .navbar .navbar-brand,
+        .navbar .nav-link {
+            color: #fff;
+            /* Texto blanco para etiquetas y enlaces de navegación */
+        }
+
+        .navbar .nav-link:hover {
+            color: #adb5bd;
+            /* Color al pasar el ratón por encima de los enlaces */
+        }
+
+        .imagen-centrada {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .imagen-centrada img {
+            max-width: 200px;
+            /* Ajusta este valor según tus necesidades */
+            height: auto;
+            margin: 0 auto;
+            /* Centra la imagen horizontalmente */
+        }
+
+        .titulo-bienvenida {
+            font-size: 24px;
+            color: #ffffff;
+            /* Ajusta el color según tus preferencias */
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Título e Imagen Centrada -->
+    <div class="container">
+        <div class="row">
+            <div class="col-12 imagen-centrada">
+                <div class="titulo-bienvenida">GENERADOR DE CHICOTES:</div>
+                <img src="../static/img/Logo_GHerrajes.png" alt="Descripción de la Imagen" class="img-fluid">
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="card mt-5">
+            <div class="card-header">
+                <h4>Ingresa la altura del portón:</h4>
+            </div>
+            <div class="card-body">
+                <form method="POST" action="/chicote">
+                    <div class="form-group">
+                        <label for="alto">Alto:</label>
+                        <input type="number" step="0.01" class="form-control" id="alto" name="alto" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">GENERAR</button>
+                </form>
+                <!-- Sección para mostrar el resultado -->
+                {% if longitud_chicote %}
+                <div class="alert alert-success mt-3">
+                    <span id="longitudChicote">Medida: Un par de chicotes de {{ longitud_chicote }} mts</span>
+                    <button class="btn btn-secondary btn-sm" onclick="copiarAlPortapapeles()">Copiar</button>
+                </div>
+                {% endif %}
+
+            </div>
+        </div>
+
+
+</body>
+
+</html>
+
+<!-- Opcional: Incluir jQuery y Bootstrap JS -->
+
+<script>
+    function copiarAlPortapapeles() {
+        var textoCopiar = document.getElementById("longitudChicote").textContent;
+        var textoParaCopiar = textoCopiar.split(":")[1].trim(); // Divide el texto en dos partes usando ":", y trima el resultado para eliminar espacios iniciales.
+
+        // Crea un elemento temporal input
+        var tempInput = document.createElement("input");
+        tempInput.value = textoParaCopiar; // Asigna el texto a copiar
+        document.body.appendChild(tempInput);
+        tempInput.select(); // Selecciona el texto del input
+        document.execCommand("copy"); // Ejecuta el comando de copia
+        document.body.removeChild(tempInput); // Elimina el input temporal del DOM
+
+        alert("Copiado al portapapeles: " + textoParaCopiar); // Opcional: muestra una alerta con el texto copiado
+    }
+</script>
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

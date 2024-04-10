@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calculadora de Resortes</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/estilo.css') }}">
+</head>
+
+
+
+<body>
+
+    <style>
+        .zoom-out {
+            transform: scale(0.7); /* Escala el contenido al 70% de su tamaño original */
+            transform-origin: top left; /* Asegura que el escalado se aplique desde la esquina superior izquierda */
+            width: 142.85%; /* Ajusta el ancho al inverso del escalado para compensar la reducción */
+            height: auto; /* Ajusta la altura automáticamente */
+            overflow: hidden; /* Oculta cualquier contenido fuera del área visible */
+        }
+        </style>
+        
+
+
+
+
+
+    <div class="header">
+        <div class="header-content">
+            <div class="header-logo">
+                <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo">
+            </div>
+            <ul class="nav">
+                <li><a href="/resortes/">Inicio</a></li>
+                <!-- Otros elementos de navegación -->
+                <!-- Otros elementos de navegación -->
+            </ul>
+        </div>
+    </div>
+
+    <div class="calculadora">
+        <h2>Calculadora de Resortes</h2>
+        <form action="/resortes/" method="post">
+            <div>
+                <input type="text" name="peso" placeholder="Peso (kg)">
+            </div>
+         
+            <div>
+                <input type="text" name="altura" placeholder="Altura (m)">
+            </div>
+            <div>
+                <input type="submit" value="Calcular">
+            </div>
+        </form>
+    </div>
+    
+</body>
+
+
+<script>
+    window.onload = function() {
+        if (window.opener) { // Verifica si la ventana tiene una ventana padre (opener)
+            document.body.classList.add("zoom-out"); // Añade una clase para aplicar el "zoom out"
+        }
+    };
+    </script>
+    
+
+
+</html>

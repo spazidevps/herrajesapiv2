@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Resultado de Cálculo de Herrajes</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #343a40;
+            color: #fff;
+        }
+
+        .card,
+        .navbar {
+            background-color: #212529;
+        }
+
+        .form-control,
+        .form-control:focus {
+            background-color: #495057;
+            border-color: #6c757d;
+            color: #fff;
+        }
+
+        label,
+        .navbar .navbar-brand,
+        .navbar .nav-link {
+            color: #fff;
+        }
+
+        .navbar .nav-link:hover {
+            color: #adb5bd;
+        }
+
+        .imagen-centrada {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .imagen-centrada img {
+            max-width: 200px;
+            height: auto;
+            margin: 0 auto;
+        }
+
+        .titulo-bienvenida {
+            font-size: 24px;
+            color: #ffffff;
+            margin-bottom: 15px;
+        }
+
+        @media print {
+            body {
+                background-color: #fff;
+                color: #000;
+            }
+
+            .navbar,
+            #printButton,
+            #pdfButton {
+                display: none;
+            }
+        }
+
+        .botones-laterales {
+            flex-direction: column;
+            align-self: stretch;
+            /* Esto asegura que los botones ocupen todo el espacio vertical disponible */
+            margin-right: 10px;
+            /* Espacio entre los botones y la tarjeta */
+        }
+
+        @media (max-width: 768px) {
+            .botones-laterales {
+                flex-direction: row;
+                justify-content: space-around;
+                width: 100%;
+                margin-bottom: 10px;
+            }
+        }
+
+        /* Estilo específico para el contorno blanco y fondo transparente */
+        .card-detalle-calc {
+            border: 1px solid #ffffff;
+            /* Contorno blanco */
+            background-color: rgba(255, 255, 255, 0.1);
+            /* Fondo transparente */
+            color: #ffffff;
+            /* Asegurándonos de que el texto sea blanco para este card específico */
+        }
+
+        .boton-central {
+            margin: 0 10px;
+            /* Espacio horizontal entre los botones */
+            background-color: #007bff;
+            /* Color azul predeterminado de Bootstrap para btn-primary */
+            border-color: #007bff;
+            color: #fff;
+            /* Color del texto en blanco */
+        }
+
+        /* Cambiar el color al pasar el mouse */
+        .boton-central:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+            color: #fff;
+            /* Mantener el texto en blanco incluso al pasar el mouse */
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="#">
+            <img src="../static/img/Logo_GHerrajes.png" alt="Logo" height="40">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Kit de Herrajes<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/resortes/" target="_blank">Calculadora de Resortes</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card card-detalle-calc">
+                    <div class="card-body d-flex flex-column align-items-center justify-content-center">
+                        <h3 class="card-title">Detalles del Cálculo:</h3>
+                        <p class="card-text">Ancho: {{ ancho }} cm y Alto: {{ alto }} cm</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container text-center my-2">
+        <button type="button" class="btn boton-central" onclick="abrirChicote()">Generar Chicote</button>
+        <button type="button" class="btn boton-central" onclick="abrirRieles()">Generar Rieles</button>
+        <button type="button" class="btn boton-central" onclick="abrirResortes()">Calculadora de Resortes</button>
+        <button id="botonGenerar" type="button" class="btn boton-central">Volver a Generar</button>
+    </div>
+
+    <div class="container">
+        <div class="row justify-content-md-center">
+            <div class="col-md-6">
+                <div class="card mt-2 fondo-oscuro">
+                    <div class="card-header">
+                        <h2>Resultado del Cálculo de Herrajes</h2>
+                    </div>
+                    <div class="card-body">
+                        {% if resultado %}
+                        {% if resultado == "No se encontró una combinación adecuada para los paneles y herrajes." %}
+                        <p>{{ resultado }}</p>
+                        {% else %}
+                        <div class="card-body d-flex flex-column align-items-center justify-content-center">
+                            <h3 class="card-title">Detalles del Panel:</h3>
+                            <label for="tipoPanel">Seleccione el tipo de panel:</label>
+                            <select id="tipoPanel" class="form-control" onchange="actualizarDetallePanel()">
+                                <option value="paneles">Paneles</option>
+                                <option value="paneles_sug">Paneles Sugeridos</option>
+                            </select>
+                            <!-- Div modificado para mostrar los detalles del panel con marco blanco y fondo transparente -->
+                            <div id="detallesPanel" class="mt-5 card card-detalle-calc">
+                                <!-- Contenido dinámico que se insertará aquí -->
+                            </div>
+                        </div>
+                        <h3>Información de Herraje:</h3>
+                        <ul id="listaHerrajes">
+                            {% for item in resultado.herraje.split(", ") %}
+                            <!-- Ajusta según cómo estás pasando la información de herraje -->
+                            <li>{{ item }}</li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
+                        {% else %}
+                        <p>No se han proporcionado datos para el cálculo.</p>
+                        {% endif %}
+                        <input type="text" id="nuevoItem" placeholder="Añade un nuevo ítem aquí" />
+                        <button type="button" class="btn boton-central" onclick="agregarItem()">+ Agregar Item</button>
+                        <button id="printButton" class="btn btn-success" onclick="imprimirContenido()">Imprimir</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+
+<script>
+    function abrirResortes() {
+        window.open('/resortes/', 'Calculadora de Resortes', 'width=800,height=600');
+    }
+
+
+</script>
+
+<!-- INICIA IMPRESION DE DOCUMENTO -->
+<!-- INICIA IMPRESION DE DOCUMENTO -->
+<!-- INICIA IMPRESION DE DOCUMENTO -->
+<!-- INICIA IMPRESION DE DOCUMENTO -->
+
+
+
+
+<style>
+    .form-control,
+    .form-control:focus {
+        background-color: #495057;
+        border-color: #6c757d;
+        color: #fff;
+    }
+
+    label,
+    .navbar .navbar-brand,
+    .navbar .nav-link {
+        color: #fff;
+    }
+
+    .navbar .nav-link:hover {
+        color: #adb5bd;
+    }
+
+    /* Ocultar #areaImpresion en la vista normal de la página */
+    #areaImpresion {
+        display: none;
+    }
+
+    @media print {
+        body * {
+            visibility: hidden;
+        }
+
+        #areaImpresion,
+        #areaImpresion * {
+            visibility: visible;
+        }
+
+        #areaImpresion {
+            position: absolute;
+            left: 0;
+            top: 0;
+            background-color: white;
+            color: black;
+            padding: 20px;
+            box-shadow: none;
+            margin: 0;
+            width: 100%;
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        h3,
+        h4 {
+            color: #000;
+            font-size: 20px;
+            /* Ajusta el tamaño de la fuente de los títulos */
+        }
+
+        p,
+        li,
+        td {
+            font-size: 14px;
+            /* Ajusta el tamaño de la fuente del texto general */
+        }
+
+        ul,
+        li {
+            page-break-inside: avoid;
+        }
+
+
+    }
+</style>
+
+
+
+
+
+<div id="areaImpresion">
+    <table align="center" width="600" border="0" cellpadding="0" cellspacing="0" style="background-color: #ffffff;">
+        <!-- Encabezado -->
+        <tr>
+            <td align="center">
+                <img src="https://www.puertasautomaticasenquintanaroo.com.mx/images/grupo-spazi.svg" width="130"
+                    height="82" alt="logo">
+                <p style="font-size: 12px; color: #888888;">Lista de surtido</p>
+            </td>
+        </tr>
+        <!-- Detalles del Panel -->
+        <tr>
+            <td style="padding: 10px; background-color: #fafafa;">
+                <p style="font-size: 11px;">Detalles de panel: 0 paneles de 46cm y 4 paneles de 53cm</p>
+                <p style="font-size: 11px;">Fecha de Captura y Hora: 14 Feb 2024 las 1:00:00 pm</p>
+            </td>
+        </tr>
+        <!-- Caja de Herrajes -->
+        <tr>
+            <td style="padding: 10px;">
+                <p style="font-size: 14px; font-weight: 500;">Caja de herrajes 9x7 con:</p>
+            </td>
+        </tr>
+        <!-- Información de Herraje con formato específico -->
+        {% for item in resultado.herraje.split(", ") %}
+        <tr>
+            <td>
+                <table width="100%" border="0" cellpadding="0" cellspacing="0"
+                    style="padding: 5px; border-top: 1px solid #eeeeee; border-bottom: 1px solid #eeeeee;">
+                    <tr>
+                        <td align="left" style="padding-left: 20px;">
+                            <img src="https://i.postimg.cc/3xj34MPB/FLECHA.png" alt="Producto" width="130">
+                        </td>
+                        <td style="padding-left: 20px;">
+                            <p style="margin: 0; font-size: 12px; font-weight: 600; color: #333333;">{{ item }}</p>
+                        </td>
+                        <td align="right">
+                            <input type="checkbox" style="margin: 5px; transform: scale(1.2);">
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        {% endfor %}
+        <!-- Pie de página -->
+        <tr>
+            <td align="center" style="padding: 20px;">
+                <p style="font-size: 10px; color: #666666;">
+                    Es responsabilidad del cliente revisar meticulosamente la lista de surtido de herraje al momento de
+                    la entrega del material...
+                    <!-- Continúa tu texto -->
+                </p>
+            </td>
+        </tr>
+    </table>
+</div>
+
+
+
+
+
+
+
+<!-- TERMINA IMPRESION DE DOCUMENTO -->
+<!-- TERMINA IMPRESION DE DOCUMENTO -->
+<!-- TERMINA IMPRESION DE DOCUMENTO -->
+<!-- TERMINA IMPRESION DE DOCUMENTO -->
+
+
+
+
+<script>
+
+    function agregarItem() {
+        // Obtén el valor del elemento de entrada, suponiendo que haya un input con ID 'nuevoItem'
+        var nuevoItem = document.getElementById("nuevoItem").value;
+
+        // Verifica si el valor ingresado es no vacío
+        if (nuevoItem && nuevoItem.trim() !== '') {
+            // Agrega el nuevo ítem a la lista de ítems agregados
+            itemsAgregados.push(nuevoItem);
+
+            // Actualiza la vista para incluir el nuevo ítem
+            actualizarDetallePanel();
+
+            // Opcional: cierra un modal si estás usando uno, indicado por $('#myModal').modal('hide');
+        } else {
+            // Alerta al usuario que el valor ingresado no es válido
+            alert("No se ingresó un ítem válido.");
+        }
+    }
+
+    var itemsAgregados = []; // Lista para almacenar los ítems agregados dinámicamente
+
+    document.addEventListener('DOMContentLoaded', function () {
+        actualizarDetallePanel(); // Inicializa la vista al cargar la página.
+    });
+
+    function obtenerHerrajes() {
+        var seleccion = document.getElementById("tipoPanel").value;
+        return seleccion === "paneles" ? "{{ resultado.herraje }}" : "{{ resultado.herraje_2 }}";
+    }
+
+    function actualizarDetallePanel() {
+        var herrajes = obtenerHerrajes();
+        var panelesInfo = document.getElementById("tipoPanel").value === "paneles" ? "{{ resultado.paneles }}" : "{{ resultado.paneles_sug }}";
+        actualizarVistaNormal(panelesInfo, herrajes);
+    }
+
+    function actualizarVistaNormal(panelesInfo, herrajes) {
+        var detallesPanel = document.getElementById("detallesPanel");
+        var listaHerrajes = document.getElementById("listaHerrajes");
+
+        detallesPanel.innerHTML = panelesInfo;
+        listaHerrajes.innerHTML = ''; // Limpia la lista antes de actualizar
+        herrajes.split(", ").forEach(item => {
+            var li = document.createElement("li");
+            li.textContent = item;
+            listaHerrajes.appendChild(li);
+        });
+
+        // Agrega también los ítems agregados dinámicamente
+        itemsAgregados.forEach((item, index) => {
+            var li = document.createElement("li");
+            li.textContent = item;
+
+            var botonEliminar = document.createElement("button");
+            botonEliminar.textContent = "Eliminar";
+            botonEliminar.onclick = function () { eliminarItem(index); };
+            li.appendChild(botonEliminar);
+
+            listaHerrajes.appendChild(li);
+        });
+    }
+
+    function actualizarVistaImpresion() {
+        var areaImpresion = document.getElementById('areaImpresion');
+        var detallesPanelContenido = document.getElementById("detallesPanel").innerHTML; // Captura el contenido HTML actualizado de detallesPanel
+
+
+        // Obtén la fecha y hora actuales
+        var ahora = new Date();
+        var opcionesFecha = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
+        var fechaHoraActual = ahora.toLocaleDateString("es-MX", opcionesFecha) + " " + ahora.toLocaleTimeString("es-MX");
+
+
+
+        areaImpresion.innerHTML = ''; // Limpia el área de impresión antes de agregar el contenido actualizado
+
+        // Asegúrate de reconstruir el encabezado y el contenido para el área de impresión
+        var encabezadoHtml = `
+        <table class="container" width="600px" align="center" border="0" cellpadding="0" cellspacing="0"  style="font-family: Helvetica Neue, Helvetica, Arial, sans-serif;"
+                    style="background-color: #ffffff;">
+                    <tr>
+                        <td>
+                            <table width="100%" align="center" border="0" cellpadding="0" cellspacing="0"
+                                style="background-color: #ffffff;">
+                                <tr>
+                                    <td>
+                                        <img src="https://www.puertasautomaticasenquintanaroo.com.mx/images/grupo-spazi.svg"
+                                            width="130" height="82" alt="logo" border="0" alt="Apple Logo">
+                                    </td>
+                                    <td align="right">
+                                        <p style="font-size: 20px; color: #888888;">Lista de surtido</p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <table width="100%" border="0" cellpadding="0" cellspacing="0" style="background-color: #fafafa;">
+                                <tr>
+                                    <td>
+                                        <table class="invoice-left" width="50%" align="left" border="0" cellpadding="0" cellspacing="0" style="padding-top: 5px; padding-left: 10px;">
+                                            <tr>
+                                                <td>
+                                                    <p style="margin: 0; font-size: 17px; text-transform: uppercase; color: #666666;">
+                                                        Detalles de panel</p>
+                                                    <p style="margin: 0; font-size: 17px;">${detallesPanelContenido}</p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="border: 1px #ffffff solid">
+                                                    <p style="margin-bottom: 0; font-size: 17px; text-transform: uppercase; color: #666666;">
+                                                        FECHA DE CAPTURA Y HORA</p>
+                                                        <p style="margin-top: 0; font-size: 17px;">${fechaHoraActual}</p> <!-- Aquí se inserta la fecha y hora actuales -->
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <table class="invoice-right" width="50%" align="right" border="0" cellpadding="0" cellspacing="0" style="padding-left: 10px;">
+                                            <!-- Contenido de la derecha si es necesario -->
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+        `;
+        areaImpresion.innerHTML = encabezadoHtml;
+
+
+        // Definición del arreglo de imágenes
+        var imagenes = [
+            "https://i.postimg.cc/Y0YSDW0h/caja.png",
+            "https://i.postimg.cc/3xj34MPB/FLECHA.png",
+            "https://i.postimg.cc/B69BnV12/SOPORTE-INFERIOR.png",
+            "https://i.postimg.cc/xTydjrnG/Soporte-superior.png",
+            "https://i.postimg.cc/Th87M3Jv/BISAGRA-LATERAL-AJUSTABLE.png",
+            "https://i.postimg.cc/ZnGMBDm6/bisagra-intermedia.png",
+            "https://i.postimg.cc/wv2p8zh3/rodaja.png",
+            "https://i.postimg.cc/fbjh86Zb/TAMBOR.png",
+            "https://i.postimg.cc/ZqP4Tprf/Soporte-par-flecha.png",
+            "https://i.postimg.cc/NF8TFGwc/BANDERA-CHICA.png",
+            "https://i.postimg.cc/YqWWP9WC/soporte-horizontal.png",
+            "https://i.postimg.cc/pXDB2dm0/BANDERA-LARGA.png",
+            "https://i.postimg.cc/YqWWP9WC/soporte-horizontal.png",
+            "https://i.postimg.cc/d07kVWWq/SOPORTE-VERTICAL.png",
+            "https://i.postimg.cc/wMgKHyFt/sin-fondo.png",
+            "https://i.postimg.cc/xCdk3GHc/HULE.png",
+            "https://i.postimg.cc/8zMxgDGD/SOPORTE-DE-ALUMINIO.png",
+            "https://i.postimg.cc/wMgKHyFt/sin-fondo.png",
+            "https://i.postimg.cc/zXhj9h2y/PIJA-6-MM.png",
+            "https://i.postimg.cc/N0Sprx5k/TORNILLO-CABEZA-DE-COCHE.png",
+            "https://i.postimg.cc/nc9Rpgrc/TORNILLO-CABEZA-HEXAGONAL.png",
+            "https://i.postimg.cc/mZQFQSP2/remaches.png",
+            "https://i.ibb.co/RycQWVf/tornillo-resorte.png",
+            "https://i.postimg.cc/m2vNbr1t/CHICOTE.png",
+            "https://i.postimg.cc/nr63qhXw/JUEGO-DE-RIELES.png",
+            // Asegúrate de incluir todas las imágenes que necesitas aquí.
+        ];
+
+
+        var seleccion = obtenerHerrajes();
+        var items = seleccion.split(", ").concat(itemsAgregados);
+
+        items.forEach((item, index) => {
+            var imagenUrl = imagenes[index % imagenes.length]; // Cicla las imágenes si hay más ítems que imágenes
+
+            var tr = document.createElement("tr");
+            tr.innerHTML = `
+    <td>
+        <table width="100%" border="0" cellpadding="0" cellspacing="0" style="padding: 5px; border-top: 1px solid #eeeeee; border-bottom: 1px solid #eeeeee;">
+            <tr>
+                <td align="left" style="padding-left: 20px;">
+                    <img src="${imagenUrl}" alt="Producto" width="85">
+                </td>
+                <td style="padding-left: 20px;">
+                    <p style="margin: 0; font-size: 20px; font-weight: 600; color: #333333; font-family: Helvetica Neue, Helvetica, Arial, sans-serif;">${item}</p>
+                </td>
+                <td align="right">
+                    <input type="checkbox" style="margin: 5px; transform: scale(1.2);">
+                </td>
+            </tr>
+        </table>
+    </td>
+    
+    `;
+            areaImpresion.appendChild(tr);
+        });
+
+
+
+        // Pie de página
+        var pieDePaginaHtml = `
+
+
+
+
+
+
+
+  
+  <tr>
+      <td>
+          <table width="100%" border="0" cellpadding="0" cellspacing="0"  style="font-family: Helvetica Neue, Helvetica, Arial, sans-serif;">
+              <tr>
+                  <td align="center">
+                      <p style="margin: 5px; font-size: 17px; color: #666666;">Es responsabilidad del cliente revisar meticulosamente la lista de surtido de herraje al momento de la entrega del material. La empresa proveerá un inventario detallado de los materiales incluidos
+                          <a href="#" style="text-decoration: none; color: #007eff;">en su pedido</a>.
+                      </p>
+
+
+                      <div id="firma" style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; margin-top: 50px;">
+                        <table width="100%" border="0">
+                            <tr>
+                                <td style="text-align: center;">
+                                    <div style="display: flex; justify-content: space-between;">
+                                        <div style="align-items: center; display: flex; flex-direction: column; width: 50%;">
+                                            <div style="border-top: 1px solid #000; width: 80%; margin-bottom: 20px;"></div>
+                                            <p>Nombre y firma de quien entrega</p>
+                                        </div>
+                                        <div style="align-items: center; display: flex; flex-direction: column; width: 50%;">
+                                            <div style="border-top: 1px solid #000; width: 80%; margin-bottom: 20px;"></div>
+                                            <p>Nombre y firma del cliente</p>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    
+                    
+                    
+                    
+
+
+                      <p style="margin: 5px; font-size: 17px; color: #666666;">Una vez entregado el pedido y firmada la lista de surtido de entrega por el cliente, se considerará que la entrega es conforme y completa. La firma del cliente en la nota de entrega constituye una aceptación de que todos los materiales listados han sido recibidos y están en el estado acordado.<a href="#" style="text-decoration: none; color: #007eff;">Grupo Spazi</a>.</p>
+                      <p style="margin: 5px; font-size: 17px; color: #666666;">Grupo Spazi no se hará responsable ni podrá validar reclamaciones de falta de material una vez que el cliente haya firmado la nota de entrega aceptando la recepción completa y conforme de los materiales. Es imperativo que los clientes y trabajadores
+                          <a href="#" style="text-decoration: none; color: #007eff;">revisen detalladamente su lista de surtido antes de firmar cualquier documento de aceptación</a>.
+                      </p>
+                  </td>
+              </tr>
+              <tr>
+                  <td align="center" style="margin-top: -10px;"  style="font-family: Helvetica Neue, Helvetica, Arial, sans-serif;">
+                      <img src="https://www.puertasautomaticasenquintanaroo.com.mx/images/grupo-spazi.svg" width="190" height="30" alt="logo" border="0">
+                  </td>
+              </tr>
+          </table>
+      </td>
+  </tr>
+
+
+
+
+
+
+
+
+
+
+
+  
+  <tr>
+    <td>
+        <table align="center">
+            <tr>
+                <td>
+                    <p style="font-size: 17px; color: #666666;"><a href="#"
+                            style="text-decoration: none; color: #007eff;">Grupo Spazi </a></p>
+                </td>
+                <td>
+                    <p style="font-size: 17px; color: #666666;"><a href="#"
+                            style="text-decoration: none; color: #007eff;">Terminos y condiciones</a></p>
+                </td>
+                <td>
+                    <p style="font-size: 17px; color: #666666;"><a href="#"
+                            style="text-decoration: none; color: #007eff;">Politica de privacidad</a></p>
+                </td>
+            </tr>
+        </table>
+    </td>
+</tr>
+<tr>
+    <td>
+        <table width="100%" border="0" cellpadding="0" cellspacing="0">
+            <tr>
+                <td align="center">
+                    <p style="margin-bottom: 0; font-size: 17px; color: #666666;">
+                        Copyright © 2024 Grupo Spazi
+                        <br> <a href="#"
+                            style="text-decoration: none; color: #007eff;">Todos los derechos reservados</a>
+                    </p>
+                    
+                </td>
+            </tr>
+        </table>
+    </td>
+</tr>
+`;
+        areaImpresion.innerHTML += pieDePaginaHtml; // Asegura agregar el pie de página HTML
+
+
+    }
+
+    function cargarImagenesYImprimir(areaImpresion) {
+        const imagenes = areaImpresion.querySelectorAll('img'); // Asume que quieres imprimir todas las imágenes dentro de un área específica
+        const promesasDeCarga = Array.from(imagenes).map(img => {
+            return new Promise((resolve) => img.onload = resolve);
+        });
+
+        // Espera a que todas las imágenes se carguen
+        Promise.all(promesasDeCarga).then(() => {
+            window.print(); // Imprime solo cuando todas las imágenes estén cargadas
+            // Restablece la visibilidad y cualquier otra limpieza necesaria aquí
+        });
+    }
+
+    function imprimirContenido() {
+        actualizarVistaImpresion(); // Asegúrate de que esta función ya no haga la llamada a window.print().
+
+        document.body.style.visibility = 'hidden';
+        var areaImpresion = document.getElementById('areaImpresion');
+        areaImpresion.style.display = 'block';
+
+        cargarImagenesYImprimir(areaImpresion); // Nueva función que maneja la carga de imágenes y la impresión
+
+        // Restablecer la visibilidad después de un retraso, si es necesario
+        window.setTimeout(function () {
+            document.body.style.visibility = 'visible';
+            areaImpresion.style.display = 'none';
+        }, 9000); // Ajusta este tiempo según sea necesario
+    }
+
+
+    // Modifica la función agregarItem() para que obtenga el valor del input
+    function agregarItem() {
+        var nuevoItem = document.getElementById("nuevoItem").value;
+        if (nuevoItem && nuevoItem.trim() !== '') {
+            itemsAgregados.push(nuevoItem); // Almacena el ítem agregado
+            actualizarDetallePanel(); // Actualiza la vista con los nuevos ítems
+            $('#myModal').modal('hide'); // Cierra el modal después de agregar el ítem
+        } else {
+            alert("No se ingresó un ítem válido.");
+        }
+    }
+
+
+    // Esta función ahora maneja correctamente la eliminación de un ítem agregado
+    function eliminarItem(index) {
+        itemsAgregados.splice(index, 1); // Elimina el ítem en el índice especificado
+        actualizarDetallePanel(); // Actualiza la vista para reflejar la lista modificada
+    }
+
+
+
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+    document.getElementById('botonGenerar').addEventListener('click', function () {
+        window.location.href = '/generar';
+    });
+</script>
+
+
+
+
+
+<script>
+    function abrirChicote() {
+        // Abrir una nueva ventana y cargar la URL
+        window.open('/chicote', 'Chicote', 'width=800,height=600,resizable=yes,scrollbars=yes');
+    }
+</script>
+
+<script>
+    function abrirRieles() {
+        // Abrir una nueva ventana y cargar la URL
+        window.open('/rieles', 'Rieles', 'width=800,height=600,resizable=yes,scrollbars=yes');
+    }
+</script>
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+</body>
+
+</html>

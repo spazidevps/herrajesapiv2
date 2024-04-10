@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .ticket-container {
+            border: 2px solid black; /* Añade un contorno negro alrededor del ticket */
+            padding: 10px; /* Añade un poco de espacio alrededor del contenido dentro del contorno */
+            margin-bottom: 20px; /* Añade espacio debajo del ticket antes de la línea punteada */
+            font-family: Helvetica Neue, Helvetica, Arial, sans-serif; /* Cambia la tipografía */
+        }
+
+        .linea-punteada {
+            border-top: 2px dashed black; /* Crea una línea punteada */
+            margin-bottom: 20px; /* Añade espacio debajo de la línea punteada */
+        }
+    </style>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/ticket.css') }}">
+    <script src="{{ url_for('static', filename='js/ticket.js') }}"></script>
+    <title>Impresión de Ticket de Resortes</title>
+</head>
+<body>
+    <!-- Primer ticket -->
+    <div class="ticket-container">
+        <div class="row perforated first">
+            <img class="logo" src="https://www.puertasautomaticasenquintanaroo.com.mx/images/grupo-spazi.svg" />
+            <div class="right">
+                <div class="label">CALCULADORA DE RESORTES</div>
+            </div>
+        </div>
+      
+        <div class="row normRow">
+            <div>
+                <div class="label">DATOS SOLICITADOS PARA RESORTE</div>
+                <div>PESO: {{ peso }}</div>
+                <div>ANCHO: {{ ancho }}</div>
+                <div>ALTO: {{ altura }}</div>
+            </div>
+        </div>
+        <div class="row normRow">
+            <div class="label">RESORTES ENTREGADOS Y CÁLCULO RECOMENDADO</div>
+            <table class="resortes-entregados">
+                <thead>
+                    <tr class="city">
+                        <th>RESORTE</th>
+                        <th>****</th>
+                        <th>****</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for resorte in resortes %}
+                    <tr>
+                        <td>{{ resorte.tipo }}</td>
+                        <td>{{ resorte.vueltas }}</td>
+                        <td> {{ resorte.peso }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- Línea punteada -->
+    <div class="linea-punteada"></div>
+
+    <!-- Segundo ticket (copia) -->
+    <div class="ticket-container">
+        <div class="row perforated first">
+            <img class="logo" src="https://www.puertasautomaticasenquintanaroo.com.mx/images/grupo-spazi.svg" />
+            <div class="right">
+                <div class="label">CALCULADORA DE RESORTES</div>
+            </div>
+        </div>
+       
+        <div class="row normRow">
+            <div>
+                <div class="label">DATOS SOLICITADOS PARA RESORTE</div>
+                <div>PESO: {{ peso }}</div>
+                <div>ANCHO: {{ ancho }}</div>
+                <div>ALTO: {{ altura }}</div>
+            </div>
+        </div>
+        <div class="row normRow">
+            <div class="label">RESORTES ENTREGADOS Y CÁLCULO RECOMENDADO</div>
+            <table class="resortes-entregados">
+                <thead>
+                    <tr class="city">
+                        <th>RESORTE</th>
+                        <th>****</th>
+                        <th>****</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for resorte in resortes %}
+                    <tr>
+                        <td>{{ resorte.tipo }}</td>
+                        <td>{{ resorte.vueltas }}</td>
+                        <td> {{ resorte.peso }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        window.onload = function() {
+          window.print();
+        };
+    </script>
+</body>
+</html>

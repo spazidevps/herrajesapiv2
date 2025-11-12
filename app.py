@@ -1,4 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for
+from c_herrajes import calcular_herrajes
+
 
 app = Flask(__name__)
 
@@ -49,9 +51,22 @@ def g_chicote():
         longitud_chicote = asignar_chicote(altura)
     # Pasa 'longitud_chicote' a la plantilla, será None en GET y tendrá valor en POST
     return render_template('chicote.html', longitud_chicote=longitud_chicote)
+#codigo comentado 10/11/2025 no incluye los rieles
+# from c_herrajes import calcular_herrajes
 
-from c_herrajes import calcular_herrajes
+# @app.route('/calcular', methods=['POST'])
+# def calcular():
+#     # Obtener los valores del formulario
+#     ancho = float(request.form['ancho'])
+#     alto = float(request.form['alto'])
 
+#     # Calcular los herrajes
+#     resultado = calcular_herrajes(ancho, alto)
+
+#     # Enviar el resultado a la plantilla
+#     return render_template('resultado_herrajes.html', ancho=ancho, alto=alto, resultado=resultado)
+
+#------------Aquí inicia el calculo de los herrajes------------------------------------
 @app.route('/calcular', methods=['POST'])
 def calcular():
     # Obtener los valores del formulario
@@ -60,9 +75,50 @@ def calcular():
 
     # Calcular los herrajes
     resultado = calcular_herrajes(ancho, alto)
+    # --------Aquí termina el calclo de los herrajes-------------
 
-    # Enviar el resultado a la plantilla
-    return render_template('resultado_herrajes.html', ancho=ancho, alto=alto, resultado=resultado)
+#------------ CÁLCULO DE RIELES Y CHICOTES ------------------
+    # --------Aquí inicia el calculo de los rieles---------------
+    from g_rieles import calcular_rieles
+
+    texto_paneles = resultado['paneles']  # Ej: "0 paneles de 46cm y 4 paneles de 53cm"
+    cant_46 = 0
+    cant_53 = 0
+
+    for parte in texto_paneles.split(" y "):
+        cantidad = int(parte.split(" ")[0])
+        if "46" in parte:
+            cant_46 = cantidad
+        elif "53" in parte:
+            cant_53 = cantidad
+
+    # Calcular rieles
+    rieles = calcular_rieles(cant_46, cant_53)
+    # --------Aquí termina el calclo de los rieles-------------
+
+
+    # ---------Aquí inicia el calculo del chicote --------------
+    from g_chicote import asignar_chicote
+    chicote_resultado = asignar_chicote(alto)
+
+    if isinstance(chicote_resultado, (float, int)):
+        resultado['chicote'] = f"Un par de chicotes de {chicote_resultado} mts"
+    else:
+        resultado['chicote'] = chicote_resultado
+    # ---------- Aquí termina el calculo de chicotes -----------
+
+    # Enviar todo al HTML
+
+    return render_template(
+        'resultado_herrajes.html',
+        ancho=ancho,
+        alto=alto,
+        resultado=resultado,
+        rieles=rieles,
+        chicote=resultado['chicote']  #  enviamos explícitamente también el chicote
+    )
+#----------Aquí termina el bloque que agrega el cálculo de los rieles y del chicote-------------------
+
 
 if __name__ == '__main__':
     app.run(debug=True)

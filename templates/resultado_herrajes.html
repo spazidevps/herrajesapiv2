@@ -181,11 +181,26 @@
                             </div>
                         </div>
                         <h3>Información de Herraje:</h3>
+
+                    <!--aquí termina el bloque que agrega los rieles -->
                         <ul id="listaHerrajes">
                             {% for item in resultado.herraje.split(", ") %}
                             <!-- Ajusta según cómo estás pasando la información de herraje -->
                             <li>{{ item }}</li>
                             {% endfor %}
+                            <!-- -------------------------------------------------------- -->
+                            <!-- Ajusta según cómo estás pasando la información de rieles -->
+                            {% if resultado.rieles %}
+                            <li>{{ resultado.rieles }}</li>
+                            {% endif %}
+                            <!-- -------------------------------------------------------- -->
+   
+                            {% if resultado.chicote %}
+                            <li>{{ resultado.chicote }}</li>
+                            {% endif %}
+                            <!-- -------------------------------------------------------- -->
+                            
+
                         </ul>
                         {% endif %}
                         {% else %}
@@ -335,6 +350,60 @@
             </td>
         </tr>
         {% endfor %}
+
+        <!-- aqui inicia la sección de impresión para rieles -->
+    {% if resultado.rieles %}
+    <tr>
+        <td style="padding: 10px;">
+            <table width="100%" border="0" cellpadding="0" cellspacing="0"
+                style="padding: 5px; border-top: 2px solid #000; border-bottom: 2px solid #000;">
+                <tr>
+                    <td align="left" style="padding-left: 20px;">
+                        <img src="https://i.postimg.cc/nr63qhXw/JUEGO-DE-RIELES.png" alt="Rieles" width="130">
+                    </td>
+                    <td style="padding-left: 20px;">
+                        <p style="margin: 0; font-size: 14px; font-weight: 700; color: #333333;">
+                            {{ resultado.rieles }}
+                        </p>
+                    </td>
+                    <td align="right">
+                        <input type="checkbox" style="margin: 5px; transform: scale(1.3);">
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    {% endif %}
+
+      <!-- aqui termina la sección de impresión para rieles-->
+
+        <!-- aqui inicia la sección de impresión para chicotes -->
+    {% if resultado.chicote %}
+    <tr>
+        <td>
+            <table width="100%" border="0" cellpadding="0" cellspacing="0"
+                style="padding: 5px; border-top: 1px solid #eeeeee; border-bottom: 1px solid #eeeeee;">
+                <tr>
+                    <td align="left" style="padding-left: 20px;">
+                        <img src="https://i.postimg.cc/m2vNbr1t/CHICOTE.png" alt="Chicote" width="85">          
+
+                    </td>
+                    <td style="padding-left: 20px;">
+                        <p style="margin: 0; font-size: 14px; font-weight: 600; color: #333333;">
+                            {{ resultado.chicote }}
+                        </p>
+                    </td>
+                    <td align="right">
+                        <input type="checkbox" style="margin: 5px; transform: scale(1.3);">
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    {% endif %}
+  <!-- aqui termina la sección de impresión para chicotes-->
+
+
         <!-- Pie de página -->
         <tr>
             <td align="center" style="padding: 20px;">
@@ -410,7 +479,24 @@
             var li = document.createElement("li");
             li.textContent = item;
             listaHerrajes.appendChild(li);
+            
         });
+
+        // Agrega como ítems el resultado de los rieles a la lista
+        {% if resultado.rieles %}
+        var liRiel = document.createElement("li");
+        liRiel.textContent = "{{ resultado.rieles }}";
+        listaHerrajes.appendChild(liRiel);
+        {% endif %}
+
+       // Agrega como ítems el resultado de los chicotes a la lista principal sin necesidad de calcularlos por aparte.
+
+        {% if resultado.chicote %}
+        var liChicote = document.createElement("li");
+        liChicote.textContent = "{{ resultado.chicote }}";
+        listaHerrajes.appendChild(liChicote);
+        {% endif %}
+
 
         // Agrega también los ítems agregados dinámicamente
         itemsAgregados.forEach((item, index) => {
@@ -527,6 +613,14 @@
 
         var seleccion = obtenerHerrajes();
         var items = seleccion.split(", ").concat(itemsAgregados);
+
+        {% if resultado.rieles %}
+        items.push("{{ resultado.rieles }}");
+        {% endif %}
+
+        {% if resultado.chicote %}
+        items.push("{{ resultado.chicote }}");
+        {% endif %}
 
         items.forEach((item, index) => {
             var imagenUrl = imagenes[index % imagenes.length]; // Cicla las imágenes si hay más ítems que imágenes

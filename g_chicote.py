@@ -15,3 +15,5 @@ def asignar_chicote(altura):
         return 4.8
     else:
         return "No disponible para la altura ingresada" 
+    
+        

@@ -2,6 +2,46 @@ from g_rieles import calcular_rieles #se importa la funcion de calculo de Rieles
 from g_chicote import asignar_chicote #se importa la funcion de calculo de chicotes
 
 
+# -------------------------
+# NUEVO: cálculo de peso del portón
+# -------------------------
+
+# Tabla de pesos unitarios por panel según ancho
+# tabla_pesos = [
+#     {'ancho_max': 2.74, '0.46': 13.40, '0.53': 14.62},
+#     {'ancho_max': 3.05, '0.46': 14.91, '0.53': 16.27},
+#     {'ancho_max': 3.66, '0.46': 17.90, '0.53': 19.53},
+#     {'ancho_max': 4.27, '0.46': 20.88, '0.53': 22.78},
+#     {'ancho_max': 4.88, '0.46': 23.86, '0.53': 26.03},
+#     {'ancho_max': 5.48, '0.46': 26.80, '0.53': 29.23},
+#     {'ancho_max': 6.01, '0.46': 29.39, '0.53': 32.06},
+#     {'ancho_max': 7.32, '0.46': 35.80, '0.53': 39.05}
+# ]
+
+# def obtener_peso_unitario(ancho, tipo_panel):
+#     for fila in tabla_pesos:
+#         if ancho <= fila['ancho_max']:
+#             return fila[str(tipo_panel/100)]
+#     return 0
+
+# def calcular_paneles(ancho, alto):
+#     panel_46 = int(ancho // 0.46)
+#     panel_53 = int((ancho - panel_46*0.46) // 0.53)
+#     return panel_46, panel_53
+
+# def calcular_peso_porton(ancho, alto):
+#     panel_46, panel_53 = calcular_paneles(ancho, alto)
+#     peso_46 = panel_46 * obtener_peso_unitario(ancho, 46)
+#     peso_53 = panel_53 * obtener_peso_unitario(ancho, 53)
+#     return {
+#         'paneles_46': panel_46,
+#         'paneles_53': panel_53,
+#         'peso_46': round(peso_46,2),
+#         'peso_53': round(peso_53,2),
+#         'peso_total': round(peso_46 + peso_53,2)
+#     }
+
+
 def calcular_herrajes(ancho, alto):
     rangos = [
        
@@ -2001,6 +2041,12 @@ def calcular_herrajes(ancho, alto):
                 resultado['herraje_2'] = rango['resultado']['herraje_2']
 
             print("Combinación encontrada:", resultado)  # Para depuración
+
+            # ------ Aquí agregamos el cálculo del peso del portón ------
+            # peso_porton = calcular_peso_porton(ancho, alto)
+            # resultado['peso_porton'] = peso_porton
+            # ------------------------------------------------------------
+
             return resultado
 
     print("No se encontró una combinación adecuada.")  # Para depuración

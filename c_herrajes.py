@@ -2050,4 +2050,4 @@ def calcular_herrajes(ancho, alto):
             return resultado
 
     print("No se encontró una combinación adecuada.")  # Para depuración
-    return None  # Podría ser más útil retornar None o lanzar una excepción personalizada
+    return None  # Podría ser más útil retornar None o lanzar una excepción personalizada.

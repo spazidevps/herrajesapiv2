@@ -107,7 +107,7 @@
 #         resultado['chicote'] = chicote_resultado
 #     # ---------- Aquí termina el calculo de chicotes -----------
 
-#     # Enviar todo al HTML
+#     # Enviar todo al  HTML
 
 #     return render_template(
 #         'resultado_herrajes.html',

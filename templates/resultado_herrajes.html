@@ -110,7 +110,7 @@
             background-color: #0056b3;
             border-color: #0056b3;
             color: #fff;
-            /* Mantener el texto en blanco incluso al pasar el mouse */
+            /* Mantener el texto en blanco incluso al pasar el mouse. */
         }
     </style>
 </head>
@@ -136,18 +136,25 @@
         </div>
     </nav>
 
-    <div class="container mt-4">
+    <!-- <div class="container mt-4">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card card-detalle-calc">
                     <div class="card-body d-flex flex-column align-items-center justify-content-center">
                         <h3 class="card-title">Detalles del Cálculo:</h3>
                         <p class="card-text">Ancho: {{ ancho }} cm y Alto: {{ alto }} cm</p>
+                        <p class="card-text">
+                            Peso total del portón: {{ resultado.peso_porton.peso_total }} kg
+                        </p>
+                        <p class="card-text">
+                            Detalle: {{ resultado.peso_porton.peso_46 }} kg de paneles de 46 cm y {{ resultado.peso_porton.peso_53 }} kg de paneles de 53 cm
+                        </p>
+
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 
     <div class="container text-center my-2">
         <button type="button" class="btn boton-central" onclick="abrirChicote()">Generar Chicote</button>

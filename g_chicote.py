@@ -11,7 +11,7 @@ def asignar_chicote(altura):
         return 4.2
     elif 3.8 <= altura <= 4.0:
         return 4.6
-    elif 4.9 <= altura <= 5.32:  # Corregido basado en la suposición de un error tipográfico
+    elif 4.9 <= altura <= 5.32:  # Corregido  basado en la suposición de un error tipográfico
         return 4.8
     else:
         return "No disponible para la altura ingresada" 

@@ -6,7 +6,7 @@ resortes_blueprint = Blueprint('resortes', __name__, template_folder='templates'
 
 
 
-# Datos de los resortes proporcionados
+# Datos de los resortes proporcionados 
 resortes = [
     {'tipo': '9X7', 'vueltas': 5.5, 'peso_por_resorte': 24.4},
     {'tipo': '9X7', 'vueltas': 6, 'peso_por_resorte': 25.7},

@@ -2,6 +2,46 @@ from g_rieles import calcular_rieles #se importa la funcion de calculo de Rieles
 from g_chicote import asignar_chicote #se importa la funcion de calculo de chicotes
 
 
+# -------------------------
+# NUEVO: cálculo de peso del portón
+# -------------------------
+
+# Tabla de pesos unitarios por panel según ancho
+# tabla_pesos = [
+#     {'ancho_max': 2.74, '0.46': 13.40, '0.53': 14.62},
+#     {'ancho_max': 3.05, '0.46': 14.91, '0.53': 16.27},
+#     {'ancho_max': 3.66, '0.46': 17.90, '0.53': 19.53},
+#     {'ancho_max': 4.27, '0.46': 20.88, '0.53': 22.78},
+#     {'ancho_max': 4.88, '0.46': 23.86, '0.53': 26.03},
+#     {'ancho_max': 5.48, '0.46': 26.80, '0.53': 29.23},
+#     {'ancho_max': 6.01, '0.46': 29.39, '0.53': 32.06},
+#     {'ancho_max': 7.32, '0.46': 35.80, '0.53': 39.05}
+# ]
+
+# def obtener_peso_unitario(ancho, tipo_panel):
+#     for fila in tabla_pesos:
+#         if ancho <= fila['ancho_max']:
+#             return fila[str(tipo_panel/100)]
+#     return 0
+
+# def calcular_paneles(ancho, alto):
+#     panel_46 = int(ancho // 0.46)
+#     panel_53 = int((ancho - panel_46*0.46) // 0.53)
+#     return panel_46, panel_53
+
+# def calcular_peso_porton(ancho, alto):
+#     panel_46, panel_53 = calcular_paneles(ancho, alto)
+#     peso_46 = panel_46 * obtener_peso_unitario(ancho, 46)
+#     peso_53 = panel_53 * obtener_peso_unitario(ancho, 53)
+#     return {
+#         'paneles_46': panel_46,
+#         'paneles_53': panel_53,
+#         'peso_46': round(peso_46,2),
+#         'peso_53': round(peso_53,2),
+#         'peso_total': round(peso_46 + peso_53,2)
+#     }
+
+
 def calcular_herrajes(ancho, alto):
     rangos = [
        
@@ -14,7 +54,7 @@ def calcular_herrajes(ancho, alto):
             'resultado': {
                 'paneles': {'46cm': 4, '53cm': 0},
                 'paneles_sug': {'46cm': 4, '53cm': 0},
-                # 'herraje': "Altura Total del Portón = 194.5cm, Tubo de flecha: 1pz 2.29 - 2.94m, Caja de herrajes 9x7 con:,  Soporte inferior: 1 izq y 1 der, Soporte superior: 2pz, Bisagra Spazi Lateral Ajustable: 8pz, Bisagra Spazi Intermedia: 4pz, Rodajas (Ruedas): 12pz, Tambores: 1 izq 1 der de 3.7cm de ancho por 11 cm de radio, Soportes para flechas: 3pz, Bandera Chica: 6pz, Ángulo 1 pulgada X 100cm: 2pz, Bandera Grande: 1 izq + 1 der , Ángulo 1 pulgada X50cm: 2pz, Ángulo 1 1/2: 2pz, Manija Jaladera: 1pz, Hule Inferior: 1pz de 2.74m, Soporte para Hule: 1pz de 2.74m, Empaque Lateral: 1pz de 2.74m, Pija de 6 mm: 70pz, Tornillo cabeza coche: 20pz, Tornillo cabeza  Hexagonal: 8pz, Remaches: 9pz, Tornillos 5cm para resorte: 2pz",
+                # 'herraje': "Altura Total  del Portón = 194.5cm, Tubo de flecha: 1pz 2.29 - 2.94m, Caja de herrajes 9x7 con:,  Soporte inferior: 1 izq y 1 der, Soporte superior: 2pz, Bisagra Spazi Lateral Ajustable: 8pz, Bisagra Spazi Intermedia: 4pz, Rodajas (Ruedas): 12pz, Tambores: 1 izq 1 der de 3.7cm de ancho por 11 cm de radio, Soportes para flechas: 3pz, Bandera Chica: 6pz, Ángulo 1 pulgada X 100cm: 2pz, Bandera Grande: 1 izq + 1 der , Ángulo 1 pulgada X50cm: 2pz, Ángulo 1 1/2: 2pz, Manija Jaladera: 1pz, Hule Inferior: 1pz de 2.74m, Soporte para Hule: 1pz de 2.74m, Empaque Lateral: 1pz de 2.74m, Pija de 6 mm: 70pz, Tornillo cabeza coche: 20pz, Tornillo cabeza  Hexagonal: 8pz, Remaches: 9pz, Tornillos 5cm para resorte: 2pz",
                 # 'herraje_2': "Altura Total del Portón = 187.3cm, Caja de herrajes 9x7 con:, Tubo de flecha: 1pz 2.29 - 2.94m, Soporte inferior: 1 izq y 1 der, Soporte superior: 2pz, Bisagra Spazi Lateral Ajustable: 8pz, Bisagra Spazi Intermedia: 4pz, Rodajas (Ruedas): 12pz, Tambores: 1 izq 1 der de 3.7cm de ancho por 11 cm de radio, Soportes para flechas: 3pz, Bandera Chica: 6pz, Ángulo 1 pulgada X 100cm: 2pz, Bandera Grande: 1 izq + 1 der , Ángulo 1 pulgada X50cm: 2pz, Ángulo 1 1/2: 2pz, Manija Jaladera: 1pz, Hule Inferior: 1pz de 2.74m, Soporte para Hule: 1pz de 2.74m, Empaque Lateral: 1pz de 2.74m, Pija de 6 mm: 70pz, Tornillo cabeza coche: 20pz, Tornillo cabeza  Hexagonal: 8pz, Remaches: 9pz, Tornillos 5cm para resorte: 2pz"
                 'herraje': "Altura Total del Portón = 187cm, Tubo de flecha: 1pz 2.29 - 2.94m, Caja de herrajes 9x7 con:,  Soporte inferior: 1 izq y 1 der, Soporte superior: 2pz, Bisagra Spazi Lateral Ajustable: 6pz, Bisagra Spazi Intermedia: 3pz, Rodajas (Ruedas): 10pz, Tambores: 1 izq 1 der de 3.7cm de ancho por 11 cm de radio, Soportes para flechas: 3pz, Bandera Chica: 4pz,  Bandera Grande: 1 izq + 1 der ,  Manija Jaladera: 1pz, Pija de 6 mm: 70pz, Tornillo cabeza coche: 20pz, Tornillo cabeza  Hexagonal: 8pz, Remaches: 9pz, Tornillos 5cm para resorte: 2pz, Ángulo 1 pulgada X100cm: 2pz,  Ángulo 1 pulgada X50cm: 2pz: 2pz, Ángulo 1 1/2: 2pz, Hule Inferior: 1pz de 2.74m, Soporte para Hule: 1pz de 2.74m, Empaque Lateral: 1pz de 2.74m,",
                 'herraje_2': "Altura Total del Portón = 182cm, Tubo de flecha: 1pz 2.29 - 2.94m, Caja de herrajes 9x7 con:,  Soporte inferior: 1 izq y 1 der, Soporte superior: 2pz, Bisagra Spazi Lateral Ajustable: 6pz, Bisagra Spazi Intermedia: 3pz, Rodajas (Ruedas): 10pz, Tambores: 1 izq 1 der de 3.7cm de ancho por 11 cm de radio, Soportes para flechas: 3pz, Bandera Chica: 4pz,  Bandera Grande: 1 izq + 1 der ,  Manija Jaladera: 1pz, Pija de 6 mm: 70pz, Tornillo cabeza coche: 20pz, Tornillo cabeza  Hexagonal: 8pz, Remaches: 9pz, Tornillos 5cm para resorte: 2pz, Ángulo 1 pulgada X100cm: 2pz,  Ángulo 1 pulgada X50cm: 2pz: 2pz, Ángulo 1 1/2: 2pz, Hule Inferior: 1pz de 2.74m, Soporte para Hule: 1pz de 2.74m, Empaque Lateral: 1pz de 2.74m"
@@ -2001,7 +2041,13 @@ def calcular_herrajes(ancho, alto):
                 resultado['herraje_2'] = rango['resultado']['herraje_2']
 
             print("Combinación encontrada:", resultado)  # Para depuración
+
+            # ------ Aquí agregamos el cálculo del peso del portón ------
+            # peso_porton = calcular_peso_porton(ancho, alto)
+            # resultado['peso_porton'] = peso_porton
+            # ------------------------------------------------------------
+
             return resultado
 
     print("No se encontró una combinación adecuada.")  # Para depuración
-    return None  # Podría ser más útil retornar None o lanzar una excepción personalizada
+    return None  # Podría ser más útil retornar None o lanzar una excepción personalizada.

@@ -6,7 +6,7 @@ def calcular_rieles(cantidad_paneles_46cm, cantidad_paneles_53cm):
     # Calcula la altura total
     altura_total = (cantidad_paneles_46cm * altura_panel_46cm) + (cantidad_paneles_53cm * altura_panel_53cm)
 
-    # Determina el juego de rieles necesario
+    # Determina el juego de rieles  necesario
     if altura_total <= 2.24:
         return "Entregar juego de rieles de 2.14m"
     elif altura_total <= 2.56:

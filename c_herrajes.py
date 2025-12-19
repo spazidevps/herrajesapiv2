@@ -625,7 +625,7 @@ def calcular_herrajes(ancho, alto):
 
         {
         #    falta agregar los datos para  'ancho_max': 3.66, 'alto_max': 2.69, 
-            'ancho_max': 3.66, 'alto_max': 2.69, 
+            'ancho_max': 3.66, 'alto_max': 2.69,  
             'resultado': {
                 'paneles': {'46cm': 0, '53cm': 5},
                 'paneles_sug': {'46cm': 1, '53cm': 4},

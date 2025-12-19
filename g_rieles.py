@@ -14,4 +14,4 @@ def calcular_rieles(cantidad_paneles_46cm, cantidad_paneles_53cm):
     elif altura_total <= 3.08:
         return "Entregar juego de rieles de 3m o vender un juego adicional"
     else:
-        return "La altura total excede el límite máximo para los rieles disponibles"  
+        return "La altura total excede el límite máximo para los rieles disponibles" 

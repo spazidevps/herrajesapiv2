@@ -101,13 +101,68 @@
         </div>
     </div>
 
+
+    <!-- <div class="container mt-4">
+        <div class="row justify-content-center">
+            <div class="col-md-6 text-center">
+
+                <button type="button" id="btn-spazi" class="btn btn-success btn-lg btn-block mb-3" onclick="seleccionarPorton('spazi')">
+                    PORTÓN SPAZI
+                </button>
+
+                <button type="button" id="btn-gener ico" class="btn btn-secondary btn-lg btn-block" onclick="seleccionarPorton('generico')">
+                    BOTÓN GENÉRICO
+                </button>
+
+            </div>
+        </div>
+    </div> -->
+    <div class="container mt-4">
+        <div class="row justify-content-center">
+            <div class="col-md-6 text-center">
+                <p class="mb-3" style="color:#adb5bd;">
+                    Selecciona el tipo de portón que deseas calcular.
+                    <br>
+                    <strong>Portón Spazi</strong> Utiliza el peso automático del sistema.
+                    <br>
+                    <strong>Portón Genérico</strong> Requiere que ingreses el peso manualmente.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-4">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="row">
+
+                    <div class="col-6 text-left">
+                        <button type="button" id="btn-spazi" class="btn btn-success btn-lg" onclick="seleccionarPorton('spazi')">
+                            Portón spazi
+                        </button>
+                    </div>
+
+                    <div class="col-6 text-right">
+                        <button type="button" id="btn-generico" class="btn btn-secondary btn-lg" onclick="seleccionarPorton('generico')">
+                            Portón genérico
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <div class="container">
         <div class="card mt-5">
             <div class="card-header">
-                <h4>Ingresa los siguientes datos en metros (m) :</h4>
+                <h4>Ingresa los siguientes datos en metros (m) y kilogramos (kg):</h4>
             </div>
             <div class="card-body">
                 <form method="POST" action="/calcular">
+                    <input type="hidden" id="tipo_porton" name="tipo_porton" value="spazi">
+
                     <div class="form-group">
                         <label for="ancho">Ancho:</label>
                         <input type="number" step="any" class="form-control" id="ancho" name="ancho" placeholder="Ancho (m)">
@@ -117,15 +172,51 @@
                         <label for="alto">Alto:</label>
                         <input type="number" step="any" class="form-control" id="alto" name="alto" placeholder="Alto (m)">
                     </div>
-                               
+
+                    <div class="form-group" id="grupo-peso" style="display: none;">
+                        <label for="peso">Peso (kg):</label>
+                        <input type="number" step="any" class="form-control" id="peso" name="peso" placeholder="Peso en kg">
+                    </div>
+
                     <button type="submit" class="btn btn-primary">GENERAR</button>
                 </form>
             </div>
         </div>
     </div>
 
-</body>
-</html>
+
+    <script>
+        function seleccionarPorton(tipo) {
+            const grupoPeso = document.getElementById('grupo-peso');
+            const tipoPorton = document.getElementById('tipo_porton');
+            const btnSpazi = document.getElementById('btn-spazi');
+            const btnGenerico = document.getElementById('btn-generico');
+
+            tipoPorton.value = tipo;
+
+            if (tipo === 'generico') {
+                grupoPeso.style.display = 'block';
+
+                btnGenerico.classList.add('btn-success');
+                btnGenerico.classList.remove('btn-secondary');
+
+                btnSpazi.classList.add('btn-secondary');
+                btnSpazi.classList.remove('btn-success');
+            } else {
+                grupoPeso.style.display = 'none';
+                document.getElementById('peso').value = '';
+
+                btnSpazi.classList.add('btn-success');
+                btnSpazi.classList.remove('btn-secondary');
+
+                btnGenerico.classList.add('btn-secondary');
+                btnGenerico.classList.remove('btn-success');
+            }
+        }
+    </script>
+
+<!-- </body>
+</html> -->
 
     <!-- Opcional: Incluir jQuery y Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

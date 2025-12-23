@@ -64,6 +64,149 @@
             /* Ajusta el color según tus preferencias */
             margin-bottom: 15px;
         }
+
+/*bloque de Código CCS para la imagen del portón*/
+/* 
+        .guia-porton {
+            position: relative;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .guia-porton img {
+            max-width: 70%;
+            border-radius: 6px;
+        }
+
+         Etiqueta ANCHO 
+        .label-ancho {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #ffffff;
+            color: #212529;
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+        }
+
+         Etiqueta ALTO 
+        .label-alto {
+            position: absolute;
+            top: 50%;
+            left: 67px;
+            transform: translateY(-50%);
+            background: #ffffff;
+            color: #212529;
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+        }
+
+        /* Texto inferior 
+        .guia-texto {
+            margin-top: 10px;
+            font-size: 13px;
+            color: #adb5bd;
+        } */
+
+        .guia-medidas {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        /* =========================
+        BARRA ANCHO
+        ========================= */
+        .barra-ancho {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 8px;
+            gap: 10px;
+        }
+
+        .barra-ancho span {
+            height: 4px;
+            width: 140px;
+            background-color: #ffffff;
+            border-radius: 2px;
+        }
+
+        .barra-ancho label {
+            background-color: #ffffff;
+            color: #212529;
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        /* =========================
+        CONTENEDOR IMAGEN
+        ========================= */
+        .contenedor-porton {
+            position: relative;
+            display: inline-block;
+        }
+
+        /* =========================
+        BARRA ALTO
+        ========================= */
+        .barra-alto {
+            position: absolute;
+            left: 160px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .barra-alto span {
+            width: 4px;
+            height: 70px;
+            background-color: #ffffff;
+            border-radius: 2px;
+        }
+
+        .barra-alto label {
+            background-color: #ffffff;
+            color: #212529;
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 14px;
+            writing-mode: horizontal-tb;
+        }
+
+        /* =========================
+        IMAGEN
+        ========================= */
+        .contenedor-porton img {
+            max-width: 45%;
+            border-radius: 4px;
+        }
+
+        /* =========================
+        TEXTO INFERIOR
+        ========================= */
+        .texto-ayuda {
+            margin-top: 10px;
+            font-size: 19px;
+            color: #e9ebec;
+        }
+
+
+/*---------------------------------------------------------------------------------------------------------------------------------*/
+
+
     </style>
 </head>
 
@@ -185,6 +328,71 @@
     </div>
 
 
+
+    <!-- -------------------------------------------------codigo agregado para colocar la imagen--------------------------------------------- -->
+    <!-- <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="guia-porton">
+                    
+                    <span class="label-ancho">Ancho</span>
+                    <span class="label-alto">Alto</span>
+
+                    <img 
+                        src="https://grupospazi.mx/wp-content/uploads/2025/12/porton-ascendente-blaco-marco-blanco-2.png"
+                        alt="Guía visual de medidas del portón"
+                        class="img-fluid">
+
+                    <p class="guia-texto">
+                        La imagen muestra el ancho y alto que debes medir para realizar el cálculo correcto.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-9">
+                <div class="guia-medidas">
+
+                    <p class="texto-ayuda">
+                        Esta ilustración te ayuda a identificar correctamente el ancho y alto de un portón.
+                    </p>
+
+                    <!-- Barra superior (ANCHO) -->
+                    <div class="barra-ancho">
+                        <span></span>
+                        <label>Ancho</label>
+                        <span></span>
+                    </div>
+
+                    <div class="contenedor-porton">
+                        <!-- Barra lateral (ALTO) -->
+                        <div class="barra-alto">
+                            <span></span>
+                            <label>Alto</label>
+                            <span></span>
+                        </div>
+
+                        <!-- Imagen -->
+                        <img 
+                            src="https://grupospazi.mx/wp-content/uploads/2025/12/porton-ascendente-blaco-marco-blanco-2.png"
+                            alt="Guía visual del portón">
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <!-- ------------------------------------------------------------------------------------------------------------------------------------------ -->
     <script>
         function seleccionarPorton(tipo) {
             const grupoPeso = document.getElementById('grupo-peso');

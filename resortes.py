@@ -70,15 +70,25 @@ resortes = [
     {'tipo': '14X7', 'vueltas': 8, 'peso_por_resorte': 48.6},
     {'tipo': '14X7', 'vueltas': 8.5, 'peso_por_resorte': 51},
    
-    {'tipo': '14X8', 'vueltas': 5.5, 'peso_por_resorte': 39.5},
-    {'tipo': '14X8', 'vueltas': 6, 'peso_por_resorte': 41.5},
-    {'tipo': '14X8', 'vueltas': 6.5, 'peso_por_resorte': 43.6},
-    {'tipo': '14X8', 'vueltas': 7, 'peso_por_resorte': 45.8},
-    {'tipo': '14X8', 'vueltas': 7.5, 'peso_por_resorte': 48.1},
-    {'tipo': '14X8', 'vueltas': 8, 'peso_por_resorte': 50.5},
-    {'tipo': '14X8', 'vueltas': 8.5, 'peso_por_resorte': 53},
-    {'tipo': '14X8', 'vueltas': 9, 'peso_por_resorte': 55.7},
-    {'tipo': '14X8', 'vueltas': 9.5, 'peso_por_resorte': 58.4},
+    # {'tipo': '14X8', 'vueltas': 5.5, 'peso_por_resorte': 39.5},
+    # {'tipo': '14X8', 'vueltas': 6, 'peso_por_resorte': 41.5},
+    # {'tipo': '14X8', 'vueltas': 6.5, 'peso_por_resorte': 43.6},
+    # {'tipo': '14X8', 'vueltas': 7, 'peso_por_resorte': 45.8},
+    # {'tipo': '14X8', 'vueltas': 7.5, 'peso_por_resorte': 48.1},
+    # {'tipo': '14X8', 'vueltas': 8, 'peso_por_resorte': 50.5},
+    # {'tipo': '14X8', 'vueltas': 8.5, 'peso_por_resorte': 53},
+    # {'tipo': '14X8', 'vueltas': 9, 'peso_por_resorte': 55.7},
+    # {'tipo': '14X8', 'vueltas': 9.5, 'peso_por_resorte': 58.4},
+
+    {'tipo': '14X8', 'vueltas': 5.5, 'peso_por_resorte': 44.3},
+    {'tipo': '14X8', 'vueltas': 6, 'peso_por_resorte': 46.5},
+    {'tipo': '14X8', 'vueltas': 6.5, 'peso_por_resorte': 48.8},
+    {'tipo': '14X8', 'vueltas': 7, 'peso_por_resorte': 51.3},
+    {'tipo': '14X8', 'vueltas': 7.5, 'peso_por_resorte': 53.8},
+    {'tipo': '14X8', 'vueltas': 8, 'peso_por_resorte': 56.5},
+    {'tipo': '14X8', 'vueltas': 8.5, 'peso_por_resorte': 59.3},
+    {'tipo': '14X8', 'vueltas': 9, 'peso_por_resorte': 62.3},
+    {'tipo': '14X8', 'vueltas': 9.5, 'peso_por_resorte': 65.4},
    
     {'tipo': '16X7', 'vueltas': 5.5, 'peso_por_resorte': 43.5},
     {'tipo': '16X7', 'vueltas': 6, 'peso_por_resorte': 45.7},
@@ -152,96 +162,157 @@ resortes = [
     {'tipo': '24X8', 'vueltas': 9, 'peso_por_resorte': 106.8},
     {'tipo': '24X8', 'vueltas': 9.5, 'peso_por_resorte': 112.2},
    
+    {'tipo': '28X7', 'vueltas': 5.5, 'peso_por_resorte': 76.2},
+    {'tipo': '28X7', 'vueltas': 6, 'peso_por_resorte': 80.0},
+    {'tipo': '28X7', 'vueltas': 6.5, 'peso_por_resorte': 84.0},
+    {'tipo': '28X7', 'vueltas': 7, 'peso_por_resorte': 88.2},
+    {'tipo': '28X7', 'vueltas': 7.5, 'peso_por_resorte': 92.6},
+    {'tipo': '28X7', 'vueltas': 8, 'peso_por_resorte': 97.2},
+    {'tipo': '28X7', 'vueltas': 8.5, 'peso_por_resorte': 102.1},
+
+    {'tipo': '28X8', 'vueltas': 5.5, 'peso_por_resorte': 88.6},
+    {'tipo': '28X8', 'vueltas': 6, 'peso_por_resorte': 93.0},
+    {'tipo': '28X8', 'vueltas': 6.5, 'peso_por_resorte': 97.7},
+    {'tipo': '28X8', 'vueltas': 7, 'peso_por_resorte': 102.5},
+    {'tipo': '28X8', 'vueltas': 7.5, 'peso_por_resorte': 107.7},
+    {'tipo': '28X8', 'vueltas': 8, 'peso_por_resorte': 113.0},
+    {'tipo': '28X8', 'vueltas': 8.5, 'peso_por_resorte': 118.7},
+    {'tipo': '28X8', 'vueltas': 9, 'peso_por_resorte': 124.6},
+    {'tipo': '28X8', 'vueltas': 9.5, 'peso_por_resorte': 130.9},
+
 ]
 
-def calcular_vueltas(altura):
-    PIE = 30.5  # cm
-    return altura / PIE
+# CÁLCULO DE VUELTAS
+# ======================================================
+# def calcular_vueltas(altura_cm):
+#     PIE = 30.5
+#     return altura_cm / PIE
 
-def encontrar_combinaciones(peso_objetivo, vueltas, resortes, num_resortes, intercalar=True):
-    combinaciones_validas = []
-    
-    if intercalar:
-        # Generar combinaciones intercaladas
-        for combo in itertools.product(resortes, repeat=num_resortes):
-            if all(abs(resorte['vueltas'] - vueltas) <= 0.5 for resorte in combo):
-                peso_combinado = sum(resorte['peso_por_resorte'] for resorte in combo)
-                if abs(peso_combinado - peso_objetivo) <= 4:
-                    combinaciones_validas.append(combo)
+def calcular_vueltas(altura_cm):
+    """
+    Calcula las vueltas reales del portón considerando
+    el cambio de sistema arriba de 3.00 m
+    """
+
+    if altura_cm <= 300:
+        vueltas_reales = altura_cm / 30.5
     else:
-        # Generar combinaciones sin intercalar
-        for resorte in resortes:
-            if abs(resorte['vueltas'] - vueltas) <= 0.5:
-                for combo in itertools.combinations([resorte] * num_resortes, num_resortes):
-                    peso_combinado = sum(r['peso_por_resorte'] for r in combo)
-                    if abs(peso_combinado - peso_objetivo) <= 4:
-                        combinaciones_validas.append(combo)
+        vueltas_reales = altura_cm / 43
 
-    # Ordenar las combinaciones válidas según su cercanía al peso objetivo
-    combinaciones_validas.sort(key=lambda combo: abs(sum(resorte['peso_por_resorte'] for resorte in combo) - peso_objetivo))
-    
-    return combinaciones_validas
+    # Precarga obligatoria
+    vueltas_reales += 0.5
 
+    # Normalización mecánica:
+    # 0.00 – 0.24 → .0
+    # 0.25 – 0.74 → .5
+    # 0.75 – 0.99 → siguiente entero
+    entero = int(vueltas_reales)
+    decimal = vueltas_reales - entero
+
+    if decimal < 0.25:
+        vueltas_finales = float(entero)
+    elif decimal < 0.75:
+        vueltas_finales = entero + 0.5
+    else:
+        vueltas_finales = float(entero + 1)
+
+    return round(vueltas_finales, 2)
+
+
+
+def normalizar_vueltas(vueltas):
+    """
+    Regla mecánica correcta:
+    0.00–0.24 → baja
+    0.25–0.74 → .5
+    0.75–0.99 → sube
+    """
+    base = int(vueltas)
+    dec = vueltas - base
+
+    if dec < 0.25:
+        return float(base)
+    elif dec < 0.75:
+        return base + 0.5
+    else:
+        return float(base + 1)
+
+# ============SELECCIÓN AUTOMÁTICA FINAL=======================
+def seleccionar_resorte_automatico(peso_objetivo, vueltas_reales, resortes):
+    """
+    Flujo correcto:
+    1) Vueltas reales + 0.5 precarga
+    2) Normalizar vueltas
+    3) Buscar SOLO en esa vuelta
+    4) Jerarquía:
+       - 2 resortes iguales
+       - 1 resorte
+       - 3 resortes
+    """
+
+    # vueltas_objetivo = normalizar_vueltas(vueltas_reales + 0.5)
+    vueltas_objetivo = normalizar_vueltas(vueltas_reales)
+
+    tolerancia = 4
+
+    resortes_vuelta = [
+        r for r in resortes
+        if r['vueltas'] == vueltas_objetivo
+    ]
+
+    if not resortes_vuelta:
+        return None
+
+    # ==============DOS RESORTES IGUALES====================
+    candidatos = []
+    for r in resortes_vuelta:
+        peso_total = r['peso_por_resorte'] * 2
+        if abs(peso_total - peso_objetivo) <= tolerancia:
+            candidatos.append((abs(peso_total - peso_objetivo), [r, r]))
+
+    if candidatos:
+        return min(candidatos, key=lambda x: x[0])[1]
+
+    # ==============UN SOLO RESORTE=====================
+    for r in resortes_vuelta:
+        if abs(r['peso_por_resorte'] - peso_objetivo) <= tolerancia:
+            return [r]
+
+    # ===================TRES RESORTES==================
+    for combo in itertools.combinations_with_replacement(resortes_vuelta, 3):
+        peso_total = sum(r['peso_por_resorte'] for r in combo)
+        if abs(peso_total - peso_objetivo) <= tolerancia:
+            return list(combo)
+
+    return None
+
+# ================RUTA PRINCIPAL========================
 @resortes_blueprint.route('/', methods=['GET', 'POST'])
 def index():
-    tipos_unicos = {resorte['tipo'] for resorte in resortes}
+    tipos_unicos = {r['tipo'] for r in resortes}
+
     if request.method == 'POST':
-        peso_objetivo = float(request.form['peso'])
-        altura = float(request.form['altura']) * 100
-        vueltas = calcular_vueltas(altura)
+        peso = float(request.form['peso'])
+        altura_m = float(request.form['altura'])
+        altura_cm = altura_m * 100
 
-        combinaciones_por_numero = {}
-        max_num_resortes = 3
+        vueltas_reales = calcular_vueltas(altura_cm)
 
-        for num_resortes in range(1, max_num_resortes + 1):
-            combinaciones = encontrar_combinaciones(peso_objetivo, vueltas, resortes, num_resortes)
-            if combinaciones:
-                combinaciones_por_numero[num_resortes] = combinaciones
+        seleccion = seleccionar_resorte_automatico(
+            peso,
+            vueltas_reales,
+            resortes
+        )
 
-        return render_template('resultados.html', 
-                               combinaciones_por_numero=combinaciones_por_numero,
-                               tipos_unicos=tipos_unicos,
-                               tipos_seleccionados=tipos_unicos,
-                               peso=peso_objetivo,
-                               altura=altura / 100)
-    else:
-        return render_template('resortes.html', tipos_unicos=tipos_unicos)
+        return render_template(
+            'resultados.html',
+            seleccion=seleccion,
+            peso=peso,
+            altura=altura_m,
+            vueltas=round(vueltas_reales, 2)
+        )
 
-@resortes_blueprint.route('/filtrar_resultados', methods=['POST'])
-def filtrar_resultados():
-    peso_objetivo = float(request.form['peso'])
-    altura = float(request.form['altura']) * 100
-    vueltas = calcular_vueltas(altura)
-    tipos_seleccionados = request.form.getlist('resortes_disponibles')
-
-    resortes_filtrados = [resorte for resorte in resortes if resorte['tipo'] in tipos_seleccionados]
-
-    max_num_resortes = 3
-    combinaciones_por_numero = {}
-    for num_resortes in range(1, max_num_resortes + 1):
-        combinaciones = encontrar_combinaciones(peso_objetivo, vueltas, resortes_filtrados, num_resortes)
-        if combinaciones:
-            combinaciones_por_numero[num_resortes] = combinaciones
-
-    tipos_unicos = {resorte['tipo'] for resorte in resortes}
-    return render_template('resultados.html',
-                           combinaciones_por_numero=combinaciones_por_numero,
-                           tipos_unicos=tipos_unicos,
-                           tipos_seleccionados=tipos_seleccionados,
-                           peso=peso_objetivo,
-                           altura=altura / 100)
-
-@resortes_blueprint.route('/imprimir_ticket')
-def imprimir_ticket():
-    peso = request.args.get('peso')
-    altura = request.args.get('altura')
-    resortes_query = request.args.getlist('resortes')
-
-    resortes_seleccionados = [res.split('-') for res in resortes_query]
-    resortes = [{'tipo': tipo.strip(), 'vueltas': vueltas.strip(), 'peso': peso_resorte.strip()} for tipo, vueltas, peso_resorte in resortes_seleccionados]
-
-    return render_template('ticket.html', peso=peso, altura=altura, resortes=resortes)
-
+    return render_template('resortes.html', tipos_unicos=tipos_unicos)
 
 
 

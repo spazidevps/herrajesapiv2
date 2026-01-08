@@ -1,8 +1,11 @@
 from g_rieles import calcular_rieles #se importa la funcion de calculo de Rieles
 from g_chicote import asignar_chicote #se importa la funcion de calculo de chicotes
+from resortes import calcular_vueltas #se importa la funcion de calculo de vueltas
+from resortes import seleccionar_resorte_automatico, resortes
 
 
-def calcular_herrajes(ancho, alto):
+# def calcular_herrajes(ancho, alto):
+def calcular_herrajes(ancho, alto, peso_objetivo, tipo_porton):
     rangos = [
        
 
@@ -1972,6 +1975,10 @@ def calcular_herrajes(ancho, alto):
         },
 
     ]
+    
+    #vueltas = calcular_vueltas(alto * 100) # CODIGO AGREGADO 06/01/2026
+    vueltas = round(calcular_vueltas(alto * 100), 2)
+
 
 
     def encontrar_combinacion(ancho, alto, rangos):
@@ -1992,6 +1999,30 @@ def calcular_herrajes(ancho, alto):
                 'paneles_sug': descripcion_paneles_sug,
                 'herraje': herraje,
             }
+#------------------------------------------------------ CODIGO AGREGADO-------------------------------------
+            resultado['resortes'] = {
+                'descripcion': 'No se encontró una combinación automática de resortes',
+                'cantidad': 0,
+                'peso_total': 0
+            }
+
+            mejor_resorte = seleccionar_resorte_automatico(peso_objetivo, vueltas, resortes)
+
+            if mejor_resorte:
+                resultado['resortes'] = {
+                    'descripcion': " + ".join(
+                        f"{r['tipo']} ({r['vueltas']} vueltas)"
+                        for r in mejor_resorte
+                    ),
+                    'cantidad': len(mejor_resorte),
+                    'peso_total': round(
+                        sum(r['peso_por_resorte'] for r in mejor_resorte), 2
+                    )
+                }
+#------------------------------------------------------ ----------------------------------------------------
+
+
+
             resultado['rieles'] = calcular_rieles(paneles.get('46cm', 0), paneles.get('53cm', 0)) #se agrega la linea para calcular los rieles
 
             resultado['chicote'] = asignar_chicote(alto) #se agrega la linea para calcular los chicotes

@@ -150,8 +150,8 @@
     </div>
 
     <div class="container text-center my-2">
-       <!-- <button type="button" class="btn boton-central" onclick="abrirChicote()">Generar Chicote</button> -->
-       <!-- <button type="button" class="btn boton-central" onclick="abrirRieles()">Generar Rieles</button> -->
+        <!-- <button type="button" class="btn boton-central" onclick="abrirChicote()">Generar Chicote</button> -->
+        <!--  <button type="button" class="btn boton-central" onclick="abrirRieles()">Generar Rieles</button> -->
         <button type="button" class="btn boton-central" onclick="abrirResortes()">Calculadora de Resortes</button>
         <button id="botonGenerar" type="button" class="btn boton-central">Volver a Generar</button>
     </div>
@@ -159,6 +159,10 @@
     <div class="container">
         <div class="row justify-content-md-center">
             <div class="col-md-6">
+<!--------------------------------------------------------------------->
+        <!-- <div class="row justify-content-center">
+            <div class="col-md-10 col-lg-8"> -->
+<!--------------------------------------------------------------------->
                 <div class="card mt-2 fondo-oscuro">
                     <div class="card-header">
                         <h2>Resultado del Cálculo de Herrajes</h2>
@@ -198,8 +202,18 @@
                             {% if resultado.chicote %}
                             <li>{{ resultado.chicote }}</li>
                             {% endif %}
+                             <!-- -------------------------------------------------------- -->
+
+                            <!-- --------------SE AGREGO EL 06/01/2026-------------------- -->
+                            {% if resultado.resortes %}
+                            <li>
+                                <strong>Resortes:</strong><br>
+                                {{ resultado.resortes.descripcion }}<br>
+                                Cantidad: {{ resultado.resortes.cantidad }}<br>
+                                Peso total: {{ resultado.resortes.peso_total }} kg
+                            </li>
+                            {% endif %}
                             <!-- -------------------------------------------------------- -->
-                            
 
                         </ul>
                         {% endif %}
@@ -229,8 +243,6 @@
 <!-- INICIA IMPRESION DE DOCUMENTO -->
 <!-- INICIA IMPRESION DE DOCUMENTO -->
 <!-- INICIA IMPRESION DE DOCUMENTO -->
-
-
 
 
 <style>
@@ -297,8 +309,18 @@
         li {
             page-break-inside: avoid;
         }
+        
+        /*---------codigo agregado 06/01/2025-----------------*/
+        /* #listaHerrajes {
+        width: 100%;
+        margin-top: 15px;
+        padding-left: 20px;
+        }
 
-
+        #listaHerrajes li {
+        list-style-position: inside;
+        } */
+        /*---------------------------------------------------*/
     }
 </style>
 
@@ -403,6 +425,37 @@
     {% endif %}
   <!-- aqui termina la sección de impresión para chicotes-->
 
+  <!-- aqui inicia la sección de impresión para resortes-------------------------CODIGO AGREGADO EL 07/01/2026 -->
+    {% if resultado.resortes %}
+    <tr>
+        <td>
+            <table width="100%" border="0" cellpadding="0" cellspacing="0"
+                style="padding: 5px; border-top: 1px solid #eeeeee; border-bottom: 1px solid #eeeeee;">
+                <tr>
+                    <td align="left" style="padding-left: 20px;">
+                        <img src="https://i.postimg.cc/m2vNbr1t/CHICOTE.png" alt="Resortes" width="90">
+                    </td>
+
+                    <td style="padding-left: 20px;">
+                        <p style="margin: 0; font-size: 14px; font-weight: 600; color: #333333;">
+                            <strong>Resortes:</strong><br>
+                            {{ resultado.resortes.descripcion }}<br>
+                            Cantidad: {{ resultado.resortes.cantidad }}<br>
+                            Peso total: {{ resultado.resortes.peso_total }} kg
+                        </p>
+                    </td>
+
+                    <td align="right">
+                        <input type="checkbox" style="margin: 5px; transform: scale(1.3);">
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    {% endif %}
+    <!-- aqui termina la sección de impresión para resortes -->
+
+
 
         <!-- Pie de página -->
         <tr>
@@ -418,16 +471,10 @@
 </div>
 
 
-
-
-
-
-
 <!-- TERMINA IMPRESION DE DOCUMENTO -->
 <!-- TERMINA IMPRESION DE DOCUMENTO -->
 <!-- TERMINA IMPRESION DE DOCUMENTO -->
 <!-- TERMINA IMPRESION DE DOCUMENTO -->
-
 
 
 
@@ -482,6 +529,19 @@
             
         });
 
+        // Se agrega codigo 06/01/2026, para pintar el resultado de resortes a la lista 
+        {% if resultado.resortes %}
+        var liResortes = document.createElement("li");
+        liResortes.innerHTML = `
+        <strong>Resortes:</strong><br>
+        {{ resultado.resortes.descripcion }}<br>
+        Cantidad: {{ resultado.resortes.cantidad }}<br>
+        Peso total: {{ resultado.resortes.peso_total }} kg
+        `;
+        listaHerrajes.appendChild(liResortes);
+        {% endif %}
+        ////////
+
         // Agrega como ítems el resultado de los rieles a la lista
         {% if resultado.rieles %}
         var liRiel = document.createElement("li");
@@ -519,8 +579,9 @@
 
         // Obtén la fecha y hora actuales
         var ahora = new Date();
-        var opcionesFecha = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
-        var fechaHoraActual = ahora.toLocaleDateString("es-MX", opcionesFecha) + " " + ahora.toLocaleTimeString("es-MX");
+        // var opcionesFecha = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
+        // var fechaHoraActual = ahora.toLocaleDateString("es-MX", opcionesFecha) + " " + ahora.toLocaleTimeString("es-MX");
+        var fechaHoraActual = ahora.toLocaleString("es-MX", { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit'});
 
 
 
@@ -539,7 +600,7 @@
                                         <img src="https://www.puertasautomaticasenquintanaroo.com.mx/images/grupo-spazi.svg"
                                             width="130" height="82" alt="logo" border="0" alt="Apple Logo">
                                     </td>
-                                    <td align="right">
+                                    <td align="left">
                                         <p style="font-size: 20px; color: #888888;">Lista de surtido</p>
                                     </td>
                                 </tr>
@@ -554,16 +615,12 @@
                                         <table class="invoice-left" width="50%" align="left" border="0" cellpadding="0" cellspacing="0" style="padding-top: 5px; padding-left: 10px;">
                                             <tr>
                                                 <td>
-                                                    <p style="margin: 0; font-size: 17px; text-transform: uppercase; color: #666666;">
-                                                        Detalles de panel</p>
-                                                    <p style="margin: 0; font-size: 17px;">${detallesPanelContenido}</p>
+                                                    <p style="margin: 0; font-size: 15px; color: #333333; font-weight: 500; white-space: nowrap;"><strong>DETALLES DE PANEL:</strong> ${detallesPanelContenido}</p>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td style="border: 1px #ffffff solid">
-                                                    <p style="margin-bottom: 0; font-size: 17px; text-transform: uppercase; color: #666666;">
-                                                        FECHA DE CAPTURA Y HORA</p>
-                                                        <p style="margin-top: 0; font-size: 17px;">${fechaHoraActual}</p> <!-- Aquí se inserta la fecha y hora actuales -->
+                                                    <p style=" margin: 0; font-size: 15px; color: #333333; font-weight: 500; white-space: nowrap;"><strong>FECHA DE CAPTURA Y HORA:</strong> ${fechaHoraActual}</p>  <!-- Aquí se inserta la fecha y hora actuales -->
                                                 </td>
                                             </tr>
                                         </table>
@@ -582,32 +639,46 @@
 
         // Definición del arreglo de imágenes
         var imagenes = [
-            "https://i.postimg.cc/Y0YSDW0h/caja.png",
-            "https://i.postimg.cc/3xj34MPB/FLECHA.png",
-            "https://i.postimg.cc/B69BnV12/SOPORTE-INFERIOR.png",
-            "https://i.postimg.cc/xTydjrnG/Soporte-superior.png",
-            "https://i.postimg.cc/Th87M3Jv/BISAGRA-LATERAL-AJUSTABLE.png",
-            "https://i.postimg.cc/ZnGMBDm6/bisagra-intermedia.png",
-            "https://i.postimg.cc/wv2p8zh3/rodaja.png",
-            "https://i.postimg.cc/fbjh86Zb/TAMBOR.png",
-            "https://i.postimg.cc/ZqP4Tprf/Soporte-par-flecha.png",
-            "https://i.postimg.cc/NF8TFGwc/BANDERA-CHICA.png",
-            "https://i.postimg.cc/YqWWP9WC/soporte-horizontal.png",
-            "https://i.postimg.cc/pXDB2dm0/BANDERA-LARGA.png",
-            "https://i.postimg.cc/YqWWP9WC/soporte-horizontal.png",
-            "https://i.postimg.cc/d07kVWWq/SOPORTE-VERTICAL.png",
-            "https://i.postimg.cc/wMgKHyFt/sin-fondo.png",
-            "https://i.postimg.cc/xCdk3GHc/HULE.png",
-            "https://i.postimg.cc/8zMxgDGD/SOPORTE-DE-ALUMINIO.png",
-            "https://i.postimg.cc/wMgKHyFt/sin-fondo.png",
-            "https://i.postimg.cc/zXhj9h2y/PIJA-6-MM.png",
-            "https://i.postimg.cc/N0Sprx5k/TORNILLO-CABEZA-DE-COCHE.png",
-            "https://i.postimg.cc/nc9Rpgrc/TORNILLO-CABEZA-HEXAGONAL.png",
-            "https://i.postimg.cc/mZQFQSP2/remaches.png",
-            "https://i.ibb.co/RycQWVf/tornillo-resorte.png",
-            "https://i.postimg.cc/m2vNbr1t/CHICOTE.png",
-            "https://i.postimg.cc/nr63qhXw/JUEGO-DE-RIELES.png",
-            // Asegúrate de incluir todas las imágenes que necesitas aquí.
+            "https://i.postimg.cc/wMgKHyFt/sin-fondo.png",                     // 1.-sin imagen
+            "https://i.postimg.cc/nrWbMCkD/Tubo_flecha.png",                   // 2.-tubo de flecha
+            "https://i.postimg.cc/Y0YSDW0h/caja.png",                          // 3.-caja de herrajes
+            "https://i.postimg.cc/8ccg1hhM/Soporte_inferior.png",              // 4.-soporte inferior
+            "https://i.postimg.cc/8ccg1hhh/Soporte_superior.png",              // 5.-soporte superior
+            "https://i.postimg.cc/L55FHzzs/Bisagra_lateral_ajustable.png",     // 6.-bisagra lateral ajustable
+            "https://i.postimg.cc/ZnGMBDm6/bisagra-intermedia.png",            // 7.-bisagra spazi intermedia
+            "https://i.postimg.cc/wv2p8zh3/rodaja.png",                        // 8.-rodajas
+            "https://i.postimg.cc/4yyRJzzv/Tambores.png",                      // 9.-tambores 1 izq y 1 der
+            "https://i.postimg.cc/yxxCVFF0/Soporte_para_flecha.png",           // 10.-soporte para flechas
+            "https://i.postimg.cc/NF8TFGwc/BANDERA-CHICA.png",                 // 11.-bandera chica
+            "https://i.postimg.cc/pXDB2dm0/BANDERA-LARGA.png",                 // 12.-bandera grande
+            "https://i.postimg.cc/brrfzQQG/Manija_jaladera.png",               // 13.-manija jaladera
+            "https://i.postimg.cc/zXhj9h2y/PIJA-6-MM.png",                     // 14.-pija de 6 mm
+            "https://i.postimg.cc/N0Sprx5k/TORNILLO-CABEZA-DE-COCHE.png",      // 15.-tornillo cabeza de coche
+            "https://i.postimg.cc/j210CLXf/Tornilo_cabeza_hexagonal.png",     // 16.-tornillo cabeza hexagonal
+            "https://i.postimg.cc/mZQFQSP2/remaches.png",                      // 17.-remaches
+            "https://i.ibb.co/RycQWVf/tornillo-resorte.png",                   // 18.-tornillo 5cm para resorte
+            "https://i.postimg.cc/wMgKHyFt/sin-fondo.png", // agregar imagen   // 19.-angulo 1 pulgada x 100 cm
+            "https://i.postimg.cc/wMgKHyFt/sin-fondo.png", // agregar imagen   // 20.-angulo 1 pulgada x 50 cm
+            "https://i.postimg.cc/tJJGXhhR/Angulo_1_1_2.png",                  // 21.-angulo 1 1/2
+            "https://i.postimg.cc/xCdk3GHc/HULE.png",                          // 22.-hule inferior
+            "https://i.postimg.cc/wMgKHyFt/sin-fondo.png", // agregar imagen   // 23.-soporte para hule
+            "https://i.postimg.cc/wMgKHyFt/sin-fondo.png", // agregar imagen   // 24.-empaque lateral
+            "https://i.postimg.cc/nr63qhXw/JUEGO-DE-RIELES.png",               // 25.-entregar juego de rieles
+            "https://i.postimg.cc/m2vNbr1t/CHICOTE.png",                       // 26.-un par de chicotes
+            "https://i.postimg.cc/vTTwQWWn/Resortes.png",                      // 27.- resortes 18x8
+            // Asegúrate de incluir todas las imágenes que necesitas aquí.     
+
+            // recursos //
+            //"https://i.postimg.cc/YqWWP9WC/soporte-horizontal.png",
+            //"https://i.postimg.cc/YqWWP9WC/soporte-horizontal.png",
+            //"https://i.postimg.cc/d07kVWWq/SOPORTE-VERTICAL.png",
+            //"https://i.postimg.cc/8zMxgDGD/SOPORTE-DE-ALUMINIO.png",
+            //"https://i.ibb.co/RycQWVf/tornillo-resorte.png",
+            //"https://i.postimg.cc/3xj34MPB/FLECHA.png",
+            //"https://i.postimg.cc/xTydjrnG/Soporte-superior.png"
+            //"https://i.postimg.cc/B69BnV12/SOPORTE-INFERIOR.png"
+            //"https://i.postimg.cc/Th87M3Jv/BISAGRA-LATERAL-AJUSTABLE.png"
+            //"https://i.postimg.cc/ZqP4Tprf/Soporte-par-flecha.png"
         ];
 
 
@@ -622,6 +693,16 @@
         items.push("{{ resultado.chicote }}");
         {% endif %}
 
+        //------------codigo agregado el 07/06/2026 para la impresión de los resortes
+        {% if resultado.resortes %}
+        items.push(
+            "Resortes: {{ resultado.resortes.descripcion }} | " +
+            "Cantidad: {{ resultado.resortes.cantidad }} | " +
+            "Peso total: {{ resultado.resortes.peso_total }} kg"
+        );
+        {% endif %}
+
+
         items.forEach((item, index) => {
             var imagenUrl = imagenes[index % imagenes.length]; // Cicla las imágenes si hay más ítems que imágenes
 
@@ -631,7 +712,7 @@
         <table width="100%" border="0" cellpadding="0" cellspacing="0" style="padding: 5px; border-top: 1px solid #eeeeee; border-bottom: 1px solid #eeeeee;">
             <tr>
                 <td align="left" style="padding-left: 20px;">
-                    <img src="${imagenUrl}" alt="Producto" width="85">
+                    <img src="${imagenUrl}" alt="Producto" width="76">
                 </td>
                 <td style="padding-left: 20px;">
                     <p style="margin: 0; font-size: 20px; font-weight: 600; color: #333333; font-family: Helvetica Neue, Helvetica, Arial, sans-serif;">${item}</p>
@@ -664,7 +745,7 @@
           <table width="100%" border="0" cellpadding="0" cellspacing="0"  style="font-family: Helvetica Neue, Helvetica, Arial, sans-serif;">
               <tr>
                   <td align="center">
-                      <p style="margin: 5px; font-size: 17px; color: #666666;">Es responsabilidad del cliente revisar meticulosamente la lista de surtido de herraje al momento de la entrega del material. La empresa proveerá un inventario detallado de los materiales incluidos
+                      <p style="margin: 5px; font-size: 16px; color: #666666;">Es responsabilidad del cliente revisar meticulosamente la lista de surtido de herraje al momento de la entrega del material.  La empresa proveerá un inventario detallado de los materiales incluidos
                           <a href="#" style="text-decoration: none; color: #007eff;">en su pedido</a>.
                       </p>
 
@@ -693,8 +774,8 @@
                     
 
 
-                      <p style="margin: 5px; font-size: 17px; color: #666666;">Una vez entregado el pedido y firmada la lista de surtido de entrega por el cliente, se considerará que la entrega es conforme y completa. La firma del cliente en la nota de entrega constituye una aceptación de que todos los materiales listados han sido recibidos y están en el estado acordado.<a href="#" style="text-decoration: none; color: #007eff;">Grupo Spazi</a>.</p>
-                      <p style="margin: 5px; font-size: 17px; color: #666666;">Grupo Spazi no se hará responsable ni podrá validar reclamaciones de falta de material una vez que el cliente haya firmado la nota de entrega aceptando la recepción completa y conforme de los materiales. Es imperativo que los clientes y trabajadores
+                      <p style="margin: 5px; font-size: 16px; color: #666666;">Una vez entregado el pedido y firmada la lista de surtido de entrega por el cliente, se considerará que la entrega es conforme y completa. La firma del cliente en la nota de entrega constituye una aceptación de que todos los materiales listados han sido recibidos y están en el estado acordado.</p>
+                      <p style="margin: 5px; font-size: 16px; color: #666666;"><a href="#" style="text-decoration: none; color: #007eff;">Grupo Spazi</a> no se hará responsable ni podrá validar reclamaciones de falta de material una vez que el cliente haya firmado la nota de entrega aceptando la recepción completa y conforme de los materiales. Es imperativo que los clientes y trabajadores
                           <a href="#" style="text-decoration: none; color: #007eff;">revisen detalladamente su lista de surtido antes de firmar cualquier documento de aceptación</a>.
                       </p>
                   </td>
@@ -724,15 +805,15 @@
         <table align="center">
             <tr>
                 <td>
-                    <p style="font-size: 17px; color: #666666;"><a href="#"
+                    <p style="font-size: 16px; color: #666666;"><a href="#"
                             style="text-decoration: none; color: #007eff;">Grupo Spazi </a></p>
                 </td>
                 <td>
-                    <p style="font-size: 17px; color: #666666;"><a href="#"
+                    <p style="font-size: 16px; color: #666666;"><a href="#"
                             style="text-decoration: none; color: #007eff;">Terminos y condiciones</a></p>
                 </td>
                 <td>
-                    <p style="font-size: 17px; color: #666666;"><a href="#"
+                    <p style="font-size: 16px; color: #666666;"><a href="#"
                             style="text-decoration: none; color: #007eff;">Politica de privacidad</a></p>
                 </td>
             </tr>
@@ -744,7 +825,7 @@
         <table width="100%" border="0" cellpadding="0" cellspacing="0">
             <tr>
                 <td align="center">
-                    <p style="margin-bottom: 0; font-size: 17px; color: #666666;">
+                    <p style="margin-bottom: 0; font-size: 16px; color: #666666;">
                         Copyright © 2024 Grupo Spazi
                         <br> <a href="#"
                             style="text-decoration: none; color: #007eff;">Todos los derechos reservados</a>
@@ -816,23 +897,6 @@
 
 
 </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

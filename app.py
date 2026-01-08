@@ -51,20 +51,6 @@ def g_chicote():
         longitud_chicote = asignar_chicote(altura)
     # Pasa 'longitud_chicote' a la plantilla, será None en GET y tendrá valor en POST
     return render_template('chicote.html', longitud_chicote=longitud_chicote)
-#codigo comentado 10/11/2025 no incluye los rieles
-# from c_herrajes import calcular_herrajes
-
-# @app.route('/calcular', methods=['POST'])
-# def calcular():
-#     # Obtener los valores del formulario
-#     ancho = float(request.form['ancho'])
-#     alto = float(request.form['alto'])
-
-#     # Calcular los herrajes
-#     resultado = calcular_herrajes(ancho, alto)
-
-#     # Enviar el resultado a la plantilla
-#     return render_template('resultado_herrajes.html', ancho=ancho, alto=alto, resultado=resultado)
 
 #------------Aquí inicia el calculo de los herrajes------------------------------------
 @app.route('/calcular', methods=['POST'])
@@ -73,8 +59,21 @@ def calcular():
     ancho = float(request.form['ancho'])
     alto = float(request.form['alto'])
 
+#------------Agregado 06/01/2026------------------------------------
+    ancho = float(request.form.get('ancho'))
+    alto = float(request.form.get('alto'))
+    tipo_porton = request.form.get('tipo_porton')
+    peso_form = request.form.get('peso')
+#-------------------------------------------------------------------
+    if tipo_porton == 'spazi':
+        peso_objetivo = ancho * alto * 10.5
+    else:
+        peso_objetivo = float(peso_form)
+#------------Agregado 06/01/2026------------------------------------
     # Calcular los herrajes
-    resultado = calcular_herrajes(ancho, alto)
+    #resultado = calcular_herrajes(ancho, alto)
+    resultado = calcular_herrajes(ancho, alto, peso_objetivo, tipo_porton)
+
     # --------Aquí termina el calclo de los herrajes-------------
 
 #------------ CÁLCULO DE RIELES Y CHICOTES ------------------

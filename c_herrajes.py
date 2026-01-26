@@ -2020,6 +2020,26 @@ def calcular_herrajes(ancho, alto, peso_objetivo, tipo_porton):
                     )
                 }
 #------------------------------------------------------ ----------------------------------------------------
+# ----------- NUEVA REGLA DINÁMICA DE SOPORTES PARA FLECHA -----------
+                cantidad_resortes = resultado['resortes']['cantidad']
+                soportes_flecha = cantidad_resortes + 1
+
+                # Reemplazar en el texto del herraje principal
+                resultado['herraje'] = resultado['herraje'].replace(
+                    "Soportes para flechas: 3pz",
+                    f"Soportes para flechas: {soportes_flecha}pz"
+                )
+
+                # Si existe herraje_2 también se actualiza
+                if 'herraje_2' in resultado:
+                    resultado['herraje_2'] = resultado['herraje_2'].replace(
+                        "Soportes para flechas: 3pz",
+                        f"Soportes para flechas: {soportes_flecha}pz"
+                    )
+# --------------------------------------------------------------------
+
+
+#------------------------------------------------------------------------------------------------------------
 
 
 
@@ -2035,3 +2055,4 @@ def calcular_herrajes(ancho, alto, peso_objetivo, tipo_porton):
 
     print("No se encontró una combinación adecuada.")  # Para depuración
     return None  # Podría ser más útil retornar None o lanzar una excepción personalizada
+

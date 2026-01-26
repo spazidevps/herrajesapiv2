@@ -15,6 +15,9 @@ resortes = [
     {'tipo': '9X7', 'vueltas': 7.5, 'peso_por_resorte': 29.7},
     {'tipo': '9X7', 'vueltas': 8, 'peso_por_resorte': 31.2},
     {'tipo': '9X7', 'vueltas': 8.5, 'peso_por_resorte': 32.8},
+    {'tipo': '9X7', 'vueltas': 9, 'peso_por_resorte': 34.4},
+    {'tipo': '9X7', 'vueltas': 9.5, 'peso_por_resorte': 36.1},
+
 
     {'tipo': '9X8', 'vueltas': 5.5, 'peso_por_resorte': 28.4},
     {'tipo': '9X8', 'vueltas': 6, 'peso_por_resorte': 29.8},
@@ -25,6 +28,10 @@ resortes = [
     {'tipo': '9X8', 'vueltas': 8.5, 'peso_por_resorte': 38.1},
     {'tipo': '9X8', 'vueltas': 9, 'peso_por_resorte': 40},
     {'tipo': '9X8', 'vueltas': 9.5, 'peso_por_resorte': 42},
+    {'tipo': '9X8', 'vueltas': 10, 'peso_por_resorte': 44.1},
+    {'tipo': '9X8', 'vueltas': 10.5, 'peso_por_resorte': 46.3},
+
+
 
     {'tipo': '10X7', 'vueltas': 5.5, 'peso_por_resorte': 27.2},
     {'tipo': '10X7', 'vueltas': 6, 'peso_por_resorte': 28.6},
@@ -33,6 +40,10 @@ resortes = [
     {'tipo': '10X7', 'vueltas': 7.5, 'peso_por_resorte': 33.1},
     {'tipo': '10X7', 'vueltas': 8, 'peso_por_resorte': 34.7},
     {'tipo': '10X7', 'vueltas': 8.5, 'peso_por_resorte': 36.5},
+    {'tipo': '10X7', 'vueltas': 9, 'peso_por_resorte': 38.3},
+    {'tipo': '10X7', 'vueltas': 9.5, 'peso_por_resorte': 40.2},
+
+
 
     {'tipo': '10X8', 'vueltas': 5.5, 'peso_por_resorte': 31.6},
     {'tipo': '10X8', 'vueltas': 6, 'peso_por_resorte': 33.2},
@@ -43,6 +54,10 @@ resortes = [
     {'tipo': '10X8', 'vueltas': 8.5, 'peso_por_resorte': 42.4},
     {'tipo': '10X8', 'vueltas': 9, 'peso_por_resorte': 44.5},
     {'tipo': '10X8', 'vueltas': 9.5, 'peso_por_resorte': 46.7},
+    {'tipo': '10X8', 'vueltas': 10, 'peso_por_resorte': 49.1},
+    {'tipo': '10X8', 'vueltas': 10.5, 'peso_por_resorte': 51.5},
+
+
 
     {'tipo': '12X7', 'vueltas': 5.5, 'peso_por_resorte': 32.7},
     {'tipo': '12X7', 'vueltas': 6, 'peso_por_resorte': 34.3},
@@ -51,6 +66,10 @@ resortes = [
     {'tipo': '12X7', 'vueltas': 7.5, 'peso_por_resorte': 39.7},
     {'tipo': '12X7', 'vueltas': 8, 'peso_por_resorte': 41.7},
     {'tipo': '12X7', 'vueltas': 8.5, 'peso_por_resorte': 43.8},
+    {'tipo': '12X7', 'vueltas': 9, 'peso_por_resorte': 45.9},
+    {'tipo': '12X7', 'vueltas': 9.5, 'peso_por_resorte': 48.2},
+
+
  
     {'tipo': '12X8', 'vueltas': 5.5, 'peso_por_resorte': 38},
     {'tipo': '12X8', 'vueltas': 6, 'peso_por_resorte': 39.9},
@@ -61,6 +80,10 @@ resortes = [
     {'tipo': '12X8', 'vueltas': 8.5, 'peso_por_resorte': 50.9},
     {'tipo': '12X8', 'vueltas': 9, 'peso_por_resorte': 53.4},
     {'tipo': '12X8', 'vueltas': 9.5, 'peso_por_resorte': 56.1},
+    {'tipo': '12X8', 'vueltas': 10, 'peso_por_resorte': 58.9},
+    {'tipo': '12X8', 'vueltas': 10.5, 'peso_por_resorte': 61.8},
+
+
 
     {'tipo': '14X7', 'vueltas': 5.5, 'peso_por_resorte': 38.1},
     {'tipo': '14X7', 'vueltas': 6, 'peso_por_resorte': 40},
@@ -69,6 +92,11 @@ resortes = [
     {'tipo': '14X7', 'vueltas': 7.5, 'peso_por_resorte': 46.3},
     {'tipo': '14X7', 'vueltas': 8, 'peso_por_resorte': 48.6},
     {'tipo': '14X7', 'vueltas': 8.5, 'peso_por_resorte': 51},
+    {'tipo': '14X7', 'vueltas': 9, 'peso_por_resorte': 53.6},
+    {'tipo': '14X7', 'vueltas': 9.5, 'peso_por_resorte': 56.3},
+
+
+
    
     # {'tipo': '14X8', 'vueltas': 5.5, 'peso_por_resorte': 39.5},
     # {'tipo': '14X8', 'vueltas': 6, 'peso_por_resorte': 41.5},
@@ -89,6 +117,10 @@ resortes = [
     {'tipo': '14X8', 'vueltas': 8.5, 'peso_por_resorte': 59.3},
     {'tipo': '14X8', 'vueltas': 9, 'peso_por_resorte': 62.3},
     {'tipo': '14X8', 'vueltas': 9.5, 'peso_por_resorte': 65.4},
+    {'tipo': '14X8', 'vueltas': 10, 'peso_por_resorte': 68.7},
+    {'tipo': '14X8', 'vueltas': 10.5, 'peso_por_resorte': 72.1},
+
+
    
     {'tipo': '16X7', 'vueltas': 5.5, 'peso_por_resorte': 43.5},
     {'tipo': '16X7', 'vueltas': 6, 'peso_por_resorte': 45.7},
@@ -97,6 +129,10 @@ resortes = [
     {'tipo': '16X7', 'vueltas': 7.5, 'peso_por_resorte': 52.9},
     {'tipo': '16X7', 'vueltas': 8, 'peso_por_resorte': 55.6},
     {'tipo': '16X7', 'vueltas': 8.5, 'peso_por_resorte': 58.3},
+    {'tipo': '16X7', 'vueltas': 9, 'peso_por_resorte': 61.3},
+    {'tipo': '16X7', 'vueltas': 9.5, 'peso_por_resorte': 64.3},
+
+
    
     {'tipo': '16X8', 'vueltas': 5.5, 'peso_por_resorte': 50.6},
     {'tipo': '16X8', 'vueltas': 6, 'peso_por_resorte': 53.1},
@@ -107,6 +143,10 @@ resortes = [
     {'tipo': '16X8', 'vueltas': 8.5, 'peso_por_resorte': 67.8},
     {'tipo': '16X8', 'vueltas': 9, 'peso_por_resorte': 71.2},
     {'tipo': '16X8', 'vueltas': 9.5, 'peso_por_resorte': 74.8},
+    {'tipo': '16X8', 'vueltas': 10, 'peso_por_resorte': 78.5},
+    {'tipo': '16X8', 'vueltas': 10.5, 'peso_por_resorte': 82.4},
+
+
  
     {'tipo': '18X7', 'vueltas': 5.5, 'peso_por_resorte': 48.9},
     {'tipo': '18X7', 'vueltas': 6, 'peso_por_resorte': 51.3},
@@ -115,6 +155,11 @@ resortes = [
     {'tipo': '18X7', 'vueltas': 7.5, 'peso_por_resorte': 59.4},
     {'tipo': '18X7', 'vueltas': 8, 'peso_por_resorte': 62.4},
     {'tipo': '18X7', 'vueltas': 8.5, 'peso_por_resorte': 65.5},
+    {'tipo': '18X7', 'vueltas': 9, 'peso_por_resorte': 68.8},
+    {'tipo': '18X7', 'vueltas': 9.5, 'peso_por_resorte': 72.2},
+
+
+
 
     {'tipo': '18X8', 'vueltas': 5.5, 'peso_por_resorte': 56.8},
     {'tipo': '18X8', 'vueltas': 6, 'peso_por_resorte': 59.7},
@@ -125,6 +170,10 @@ resortes = [
     {'tipo': '18X8', 'vueltas': 8.5, 'peso_por_resorte': 76.2},
     {'tipo': '18X8', 'vueltas': 9, 'peso_por_resorte': 80},
     {'tipo': '18X8', 'vueltas': 9.5, 'peso_por_resorte': 84},
+    {'tipo': '18X8', 'vueltas': 10, 'peso_por_resorte': 88.2},
+    {'tipo': '18X8', 'vueltas': 10.5, 'peso_por_resorte': 92.6},
+
+
    
     {'tipo': '20X7', 'vueltas': 5.5, 'peso_por_resorte': 53.6},
     {'tipo': '20X7', 'vueltas': 6, 'peso_por_resorte': 56.3},
@@ -133,6 +182,10 @@ resortes = [
     {'tipo': '20X7', 'vueltas': 7.5, 'peso_por_resorte': 65.2},
     {'tipo': '20X7', 'vueltas': 8, 'peso_por_resorte': 68.4},
     {'tipo': '20X7', 'vueltas': 8.5, 'peso_por_resorte': 71.8},
+    {'tipo': '20X7', 'vueltas': 9, 'peso_por_resorte': 75.4},
+    {'tipo': '20X7', 'vueltas': 9.5, 'peso_por_resorte': 79.2},
+
+
    
     {'tipo': '20X8', 'vueltas': 5.5, 'peso_por_resorte': 62.3},
     {'tipo': '20X8', 'vueltas': 6, 'peso_por_resorte': 65.4},
@@ -143,6 +196,10 @@ resortes = [
     {'tipo': '20X8', 'vueltas': 8.5, 'peso_por_resorte': 83.5},
     {'tipo': '20X8', 'vueltas': 9, 'peso_por_resorte': 87.7},
     {'tipo': '20X8', 'vueltas': 9.5, 'peso_por_resorte': 92.1},
+    {'tipo': '20X8', 'vueltas': 10, 'peso_por_resorte': 96.7},
+    {'tipo': '20X8', 'vueltas': 10.5, 'peso_por_resorte': 101.5},
+
+
 
     {'tipo': '24X7', 'vueltas': 5.5, 'peso_por_resorte': 65.3},
     {'tipo': '24X7', 'vueltas': 6, 'peso_por_resorte': 68.6},
@@ -151,6 +208,10 @@ resortes = [
     {'tipo': '24X7', 'vueltas': 7.5, 'peso_por_resorte': 79.4},
     {'tipo': '24X7', 'vueltas': 8, 'peso_por_resorte': 83.3},
     {'tipo': '24X7', 'vueltas': 8.5, 'peso_por_resorte': 87.5},
+    {'tipo': '24X7', 'vueltas': 9, 'peso_por_resorte': 91.9},
+    {'tipo': '24X7', 'vueltas': 9.5, 'peso_por_resorte': 96.5},
+
+
    
     {'tipo': '24X8', 'vueltas': 5.5, 'peso_por_resorte': 75.9},
     {'tipo': '24X8', 'vueltas': 6, 'peso_por_resorte': 79.7},
@@ -161,6 +222,10 @@ resortes = [
     {'tipo': '24X8', 'vueltas': 8.5, 'peso_por_resorte': 101.7},
     {'tipo': '24X8', 'vueltas': 9, 'peso_por_resorte': 106.8},
     {'tipo': '24X8', 'vueltas': 9.5, 'peso_por_resorte': 112.2},
+    {'tipo': '24X8', 'vueltas': 10, 'peso_por_resorte': 117.8},
+    {'tipo': '24X8', 'vueltas': 10.5, 'peso_por_resorte': 123.7},
+
+
    
     {'tipo': '28X7', 'vueltas': 5.5, 'peso_por_resorte': 76.2},
     {'tipo': '28X7', 'vueltas': 6, 'peso_por_resorte': 80.0},
@@ -169,6 +234,10 @@ resortes = [
     {'tipo': '28X7', 'vueltas': 7.5, 'peso_por_resorte': 92.6},
     {'tipo': '28X7', 'vueltas': 8, 'peso_por_resorte': 97.2},
     {'tipo': '28X7', 'vueltas': 8.5, 'peso_por_resorte': 102.1},
+    {'tipo': '28X7', 'vueltas': 9, 'peso_por_resorte': 107.2},
+    {'tipo': '28X7', 'vueltas': 9.5, 'peso_por_resorte': 112.6},
+
+
 
     {'tipo': '28X8', 'vueltas': 5.5, 'peso_por_resorte': 88.6},
     {'tipo': '28X8', 'vueltas': 6, 'peso_por_resorte': 93.0},
@@ -179,6 +248,8 @@ resortes = [
     {'tipo': '28X8', 'vueltas': 8.5, 'peso_por_resorte': 118.7},
     {'tipo': '28X8', 'vueltas': 9, 'peso_por_resorte': 124.6},
     {'tipo': '28X8', 'vueltas': 9.5, 'peso_por_resorte': 130.9},
+    {'tipo': '28X8', 'vueltas': 10, 'peso_por_resorte': 137.4},
+    {'tipo': '28X8', 'vueltas': 10.5, 'peso_por_resorte': 144.3},
 
 ]
 

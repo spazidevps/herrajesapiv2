@@ -507,8 +507,11 @@ def index():
 
         # Agrupar por número de resortes
         combinaciones_por_numero = defaultdict(list)
+        # for c in combinaciones:
+        #     combinaciones_por_numero[c["cantidad"]].append(c["resortes"])
         for c in combinaciones:
-            combinaciones_por_numero[c["cantidad"]].append(c["resortes"])
+            combinaciones_por_numero[c["cantidad"]].append(c)
+
 
         return render_template(
             'resultados.html',
@@ -548,8 +551,10 @@ def filtrar_resultados():
 
     from collections import defaultdict
     combinaciones_por_numero = defaultdict(list)
+    # for c in combinaciones:
+    #     combinaciones_por_numero[c["cantidad"]].append(c["resortes"])
     for c in combinaciones:
-        combinaciones_por_numero[c["cantidad"]].append(c["resortes"])
+        combinaciones_por_numero[c["cantidad"]].append(c)
 
     tipos_unicos = sorted({r['tipo'] for r in resortes})
 

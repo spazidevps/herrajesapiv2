@@ -115,6 +115,21 @@
     </style>
 </head>
 
+<!-- <script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const destino = document.getElementById("resorteElegido");
+
+    document.addEventListener("change", function (e) {
+        if (e.target.name === "resorteSeleccionado") {
+            destino.textContent = e.target.value;
+        }
+    });
+
+});
+</script> -->
+
+
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark">
         <a class="navbar-brand" href="#">
@@ -186,6 +201,9 @@
                         </div>
                         <h3>Información de Herraje:</h3>
 
+
+
+
                     <!--aquí termina el bloque que agrega los rieles -->
                         <ul id="listaHerrajes">
                             {% for item in resultado.herraje.split(", ") %}
@@ -205,17 +223,77 @@
                              <!-- -------------------------------------------------------- -->
 
                             <!-- --------------SE AGREGO EL 06/01/2026-------------------- -->
-                            {% if resultado.resortes %}
+                            <!-- {% if resultado.resortes %}
                             <li>
                                 <strong>Resortes:</strong><br>
                                 {{ resultado.resortes.descripcion }}<br>
                                 Cantidad: {{ resultado.resortes.cantidad }}<br>
                                 Peso total: {{ resultado.resortes.peso_total }} kg
                             </li>
-                            {% endif %}
+                            {% endif %} -->
+
+
                             <!-- -------------------------------------------------------- -->
 
                         </ul>
+
+                                                {% if resultado.opciones_resortes %}
+                        <h4 class="mt-4">Opciones de Resortes Recomendados</h4>
+                        <table class="table table-dark table-bordered mt-2">
+                            <!-- <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Configuración</th>
+                                    <th>Cantidad</th>
+                                    <th>Peso que soportan</th>
+                                    <th>Diferencia vs Peso Portón</th>
+                                </tr>
+                            </thead> -->
+                            <thead> <!--se agrega la opción de selección-->
+                                <tr>
+                                    <th>Elegir</th>
+                                    <th>#</th>
+                                    <th>Configuración</th>
+                                    <th>No. de vueltas</th>
+                                    <th>Cantidad de resortes</th>
+                                    <th>Peso que soportan</th>
+                                    <!-- <th>Diferencia vs Peso Portón</th> esta columna se debe quitar de la tabla -->
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                {% for opcion in resultado.opciones_resortes %}
+                                <!-- <tr>
+                                    <td>{{ loop.index }}</td>
+                                    <td> -->
+                                <tr>
+                                    <td>
+                                        <!-- <input type="radio" name="resorteSeleccionado"
+                                            value="Opción {{ loop.index }}: {% for r in opcion.resortes %}{{ r.tipo }} ({{ r.vueltas }}v){% if not loop.last %} + {% endif %}{% endfor %} | Cant: {{ opcion.cantidad }} | Soporta: {{ opcion.peso_total }}kg">
+                                     -->
+                                        <input type="radio" name="resorteSeleccionado" data-cantidad="{{ opcion.cantidad }}"
+                                            value="Opción {{ loop.index }}: {% for r in opcion.resortes %}{{ r.tipo }}{% if not loop.last %} + {% endif %}{% endfor %} | Cant: {{ opcion.cantidad }} | Soporta: {{ opcion.peso_total }}kg">
+
+                                    </td>
+                                    <td>{{ loop.index }}</td>
+                                    <td>
+                                    <!-- --------------------------- ---------------------- ------------------------ -->
+
+                                        {% for r in opcion.resortes %}
+                                            <!-- {{ r.tipo }} ({{ r.vueltas }} vueltas){% if not loop.last %} + {% endif %} -->
+                                            {{ r.tipo }}{% if not loop.last %} + {% endif %}
+                                        {% endfor %}
+                                    </td>
+                                    <td>{{ opcion.resortes[0].vueltas }} vueltas</td>
+                                    <!-- <td> {% for r in opcion.resortes %} {{ r.vueltas }} vueltas{% if not loop.last %} + {% endif %} {% endfor %} </td> se comenta linea muestra las vueltas x resorte-->
+                                    <td>{{ opcion.cantidad }}</td>
+                                    <td>{{ opcion.peso_total }} kg</td>
+                                    <!-- <td>{{ opcion.diferencia }} kg</td>   se comenta esta columana debido a que no es necesario mostrar la diferencia -->
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                        {% endif %}
                         {% endif %}
                         {% else %}
                         <p>No se han proporcionado datos para el cálculo.</p>
@@ -426,7 +504,7 @@
   <!-- aqui termina la sección de impresión para chicotes-->
 
   <!-- aqui inicia la sección de impresión para resortes-------------------------CODIGO AGREGADO EL 07/01/2026 -->
-    {% if resultado.resortes %}
+    <!-- {% if resultado.resortes %}
     <tr>
         <td>
             <table width="100%" border="0" cellpadding="0" cellspacing="0"
@@ -452,7 +530,10 @@
             </table>
         </td>
     </tr>
-    {% endif %}
+    {% endif %} -->
+
+
+
     <!-- aqui termina la sección de impresión para resortes -->
 
 
@@ -500,6 +581,7 @@
     }
 
     var itemsAgregados = []; // Lista para almacenar los ítems agregados dinámicamente
+    var resorteElegido = null; // 
 
     document.addEventListener('DOMContentLoaded', function () {
         actualizarDetallePanel(); // Inicializa la vista al cargar la página.
@@ -529,18 +611,6 @@
             
         });
 
-        // Se agrega codigo 06/01/2026, para pintar el resultado de resortes a la lista 
-        {% if resultado.resortes %}
-        var liResortes = document.createElement("li");
-        liResortes.innerHTML = `
-        <strong>Resortes:</strong><br>
-        {{ resultado.resortes.descripcion }}<br>
-        Cantidad: {{ resultado.resortes.cantidad }}<br>
-        Peso total: {{ resultado.resortes.peso_total }} kg
-        `;
-        listaHerrajes.appendChild(liResortes);
-        {% endif %}
-        ////////
 
         // Agrega como ítems el resultado de los rieles a la lista
         {% if resultado.rieles %}
@@ -570,8 +640,40 @@
 
             listaHerrajes.appendChild(li);
         });
+
+                // ------------------------------------------------------------------------
+        // Eliminar cualquier resorte previo
+        var existentes = document.querySelectorAll(".resorte-item");
+        existentes.forEach(e => e.remove());
+
+        // Agregar el nuevo resorte seleccionado
+        if (resorteElegido) {
+            var liResorte = document.createElement("li");
+            liResorte.textContent = resorteElegido;
+            liResorte.classList.add("resorte-item"); // 👈 marca especial
+            listaHerrajes.appendChild(liResorte);
+        }
+
+        // ------------------------------------------------------------------------
+
+    }
+    function actualizarSoportesFlecha(nuevaCantidad) {
+
+        let lista = document.getElementById("listaHerrajes");
+        let items = lista.querySelectorAll("li");
+
+        items.forEach(function(item) {
+            if (item.textContent.includes("Soportes para flechas")) {
+                item.textContent = "Soportes para flechas: " + nuevaCantidad + "pz";
+            }
+        });
     }
 
+
+    //--------------------------------------------------------------------------
+    // var lista = document.getElementById("listaHerrajesImpresion");
+    // lista.innerHTML = ""; // 🔥 LIMPIAR antes de volver a generar
+    //--------------------------------------------------------------------------
     function actualizarVistaImpresion() {
         var areaImpresion = document.getElementById('areaImpresion');
         var detallesPanelContenido = document.getElementById("detallesPanel").innerHTML; // Captura el contenido HTML actualizado de detallesPanel
@@ -682,8 +784,16 @@
         ];
 
 
-        var seleccion = obtenerHerrajes();
-        var items = seleccion.split(", ").concat(itemsAgregados);
+        // var seleccion = obtenerHerrajes();
+        // var items = seleccion.split(", ").concat(itemsAgregados);
+        var listaVisible = document.querySelectorAll("#listaHerrajes li");
+        var items = [];
+
+        listaVisible.forEach(function(li) {
+            items.push(li.textContent);
+        });
+
+
 
         {% if resultado.rieles %}
         items.push("{{ resultado.rieles }}");
@@ -693,14 +803,12 @@
         items.push("{{ resultado.chicote }}");
         {% endif %}
 
-        //------------codigo agregado el 07/06/2026 para la impresión de los resortes
-        {% if resultado.resortes %}
-        items.push(
-            "Resortes: {{ resultado.resortes.descripcion }} | " +
-            "Cantidad: {{ resultado.resortes.cantidad }} | " +
-            "Peso total: {{ resultado.resortes.peso_total }} kg"
-        );
-        {% endif %}
+
+        if (resorteElegido) {
+        items.push("RESORTES SELECCIONADOS:");
+        items.push(resorteElegido);
+        }
+
 
 
         items.forEach((item, index) => {
@@ -892,7 +1000,26 @@
     }
 
 
+    //-----------------------------
+    // document.addEventListener('change', function(e) {
+    //     if (e.target.name === 'resorteSeleccionado') {
+    //         resorteElegido = e.target.value;
+    //         actualizarDetallePanel(); // refresca la lista
+    //     }
+    // });
 
+    document.addEventListener('change', function(e) {
+        if (e.target.name === 'resorteSeleccionado') {
+
+            resorteElegido = e.target.value;
+
+            let cantidadResortes = parseInt(e.target.dataset.cantidad);
+            let soportes = cantidadResortes + 1;
+
+            actualizarDetallePanel();
+            actualizarSoportesFlecha(soportes);
+        }
+    });
 
 
 

@@ -56,8 +56,8 @@ def g_chicote():
 @app.route('/calcular', methods=['POST'])
 def calcular():
     # Obtener los valores del formulario
-    ancho = float(request.form['ancho'])
-    alto = float(request.form['alto'])
+    # ancho = float(request.form['ancho'])
+    # alto = float(request.form['alto'])
 
 #------------Agregado 06/01/2026------------------------------------
     ancho = float(request.form.get('ancho'))
@@ -108,14 +108,24 @@ def calcular():
 
     # Enviar todo al HTML
 
+    # return render_template(
+    #     'resultado_herrajes.html',
+    #     ancho=ancho,
+    #     alto=alto,
+    #     resultado=resultado,
+    #     rieles=rieles,
+    #     chicote=resultado['chicote']  #  enviamos explícitamente también el chicote
+    # )
     return render_template(
-        'resultado_herrajes.html',
-        ancho=ancho,
-        alto=alto,
-        resultado=resultado,
-        rieles=rieles,
-        chicote=resultado['chicote']  #  enviamos explícitamente también el chicote
+    'resultado_herrajes.html',
+    ancho=ancho,
+    alto=alto,
+    resultado=resultado,
+    rieles=rieles,
+    chicote=resultado['chicote'],
+    opciones_resortes=resultado.get('opciones_resortes', [])
     )
+
 #----------Aquí termina el bloque que agrega el cálculo de los rieles y del chicote-------------------
 
 

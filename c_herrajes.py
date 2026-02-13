@@ -1,7 +1,10 @@
 from g_rieles import calcular_rieles #se importa la funcion de calculo de Rieles
 from g_chicote import asignar_chicote #se importa la funcion de calculo de chicotes
-from resortes import calcular_vueltas #se importa la funcion de calculo de vueltas
-from resortes import seleccionar_resorte_automatico, resortes
+# from resortes import calcular_vueltas #se importa la funcion de calculo de vueltas
+# from resortes import seleccionar_resorte_automatico, resortes
+from resortes import calcular_vueltas
+from resortes import seleccionar_top_resortes, resortes
+
 
 
 # def calcular_herrajes(ancho, alto):
@@ -1999,44 +2002,75 @@ def calcular_herrajes(ancho, alto, peso_objetivo, tipo_porton):
                 'paneles_sug': descripcion_paneles_sug,
                 'herraje': herraje,
             }
-#------------------------------------------------------ CODIGO AGREGADO-------------------------------------
-            resultado['resortes'] = {
-                'descripcion': 'No se encontró una combinación automática de resortes',
-                'cantidad': 0,
-                'peso_total': 0
-            }
+# #------------------------------------------------------ CODIGO AGREGADO-------------------------------------
+#             resultado['resortes'] = {
+#                 'descripcion': 'No se encontró una combinación automática de resortes',
+#                 'cantidad': 0,
+#                 'peso_total': 0
+#             }
 
-            mejor_resorte = seleccionar_resorte_automatico(peso_objetivo, vueltas, resortes)
+#             mejor_resorte = seleccionar_resorte_automatico(peso_objetivo, vueltas, resortes)
 
-            if mejor_resorte:
-                resultado['resortes'] = {
-                    'descripcion': " + ".join(
-                        f"{r['tipo']} ({r['vueltas']} vueltas)"
-                        for r in mejor_resorte
-                    ),
-                    'cantidad': len(mejor_resorte),
-                    'peso_total': round(
-                        sum(r['peso_por_resorte'] for r in mejor_resorte), 2
-                    )
-                }
-#------------------------------------------------------ ----------------------------------------------------
-# ----------- NUEVA REGLA DINÁMICA DE SOPORTES PARA FLECHA -----------
-                cantidad_resortes = resultado['resortes']['cantidad']
-                soportes_flecha = cantidad_resortes + 1
+#             if mejor_resorte:
+#                 resultado['resortes'] = {
+#                     'descripcion': " + ".join(
+#                         f"{r['tipo']} ({r['vueltas']} vueltas)"
+#                         for r in mejor_resorte
+#                     ),
+#                     'cantidad': len(mejor_resorte),
+#                     'peso_total': round(
+#                         sum(r['peso_por_resorte'] for r in mejor_resorte), 2
+#                     )
+#                 }
+# #------------------------------------------------------ ----------------------------------------------------
+# # ----------- NUEVA REGLA DINÁMICA DE SOPORTES PARA FLECHA -----------
+#                 cantidad_resortes = resultado['resortes']['cantidad']
+#                 soportes_flecha = cantidad_resortes + 1
 
-                # Reemplazar en el texto del herraje principal
-                resultado['herraje'] = resultado['herraje'].replace(
-                    "Soportes para flechas: 3pz",
-                    f"Soportes para flechas: {soportes_flecha}pz"
-                )
+#                 # Reemplazar en el texto del herraje principal
+#                 resultado['herraje'] = resultado['herraje'].replace(
+#                     "Soportes para flechas: 3pz",
+#                     f"Soportes para flechas: {soportes_flecha}pz"
+#                 )
 
-                # Si existe herraje_2 también se actualiza
-                if 'herraje_2' in resultado:
-                    resultado['herraje_2'] = resultado['herraje_2'].replace(
-                        "Soportes para flechas: 3pz",
-                        f"Soportes para flechas: {soportes_flecha}pz"
-                    )
-# --------------------------------------------------------------------
+#                 # Si existe herraje_2 también se actualiza
+#                 if 'herraje_2' in resultado:
+#                     resultado['herraje_2'] = resultado['herraje_2'].replace(
+#                         "Soportes para flechas: 3pz",
+#                         f"Soportes para flechas: {soportes_flecha}pz"
+#                     )
+# # --------------------------------------------------------------------
+
+            opciones_resortes = seleccionar_top_resortes(
+                peso_objetivo,
+                vueltas,
+                resortes,
+                limite=4
+            )
+            
+
+            resultado['opciones_resortes'] = opciones_resortes
+
+            # # Si hay al menos una opción, usamos la primera (mejor) para calcular soportes
+            # if opciones_resortes:
+            #     mejor_opcion = opciones_resortes[0]
+            #     cantidad_resortes = mejor_opcion['cantidad']
+            #     soportes_flecha = cantidad_resortes + 1
+
+            #     resultado['herraje'] = resultado['herraje'].replace(
+            #         "Soportes para flechas: 3pz",
+            #         f"Soportes para flechas: {soportes_flecha}pz"
+            #     )
+
+            #     if 'herraje_2' in resultado:
+            #         resultado['herraje_2'] = resultado['herraje_2'].replace(
+            #             "Soportes para flechas: 3pz",
+            #             f"Soportes para flechas: {soportes_flecha}pz"
+            #         )
+            # else:
+            #     resultado['opciones_resortes'] = []
+
+
 
 
 #------------------------------------------------------------------------------------------------------------

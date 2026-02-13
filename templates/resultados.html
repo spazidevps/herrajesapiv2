@@ -91,9 +91,10 @@
                         <div class="card-content">
                             <h4 class="card-header">Combinación {{ loop.index }}</h4>
                             <div class="card-body">
-                                {% for resorte in combo %}
+                                {% for resorte in combo.resortes %}
                                     <p>{{ resorte.tipo }} - Vueltas: {{ resorte.vueltas }} - Peso: {{ resorte.peso_por_resorte }} kg</p>
                                 {% endfor %}
+                                    <p style="font-weight: bold; color: #9b9fa3;"> Peso total = {{ combo.peso_total }} kg</p>
                             </div>
                             <div class="card-actions">
                                 <button  id="copiaresorte"   class="btn-marcar1" onclick="copiarInformacion(this)">Copiar📄</button>

@@ -308,7 +308,91 @@ def normalizar_vueltas(vueltas):
     else:
         return float(base + 1)
 
-# ============SELECCIÓN AUTOMÁTICA FINAL=======================
+#-----------------------------------------04/02/2026-------------------------------
+def encontrar_combinaciones_resortes(peso_objetivo, vueltas_objetivo, resortes, tolerancia=4):
+    """
+    Devuelve TODAS las combinaciones posibles dentro de la tolerancia.
+    Incluye combinaciones de 1, 2 y 3 resortes.
+    """
+
+    resultados = []
+
+    resortes_vuelta = [r for r in resortes if r['vueltas'] == vueltas_objetivo]
+
+    if not resortes_vuelta:
+        return resultados
+
+    # 1 resorte
+    for r in resortes_vuelta:
+        peso_total = r['peso_por_resorte']
+        diferencia = abs(peso_total - peso_objetivo)
+        if diferencia <= tolerancia:
+            resultados.append({
+                "resortes": [r],
+                "cantidad": 1,
+                "peso_total": round(peso_total, 2),
+                "diferencia": round(diferencia, 2)
+            })
+    #-----------------------------------------------------------------------------
+    # # 2 resortes
+    # for r in resortes_vuelta:
+    #     peso_total = r['peso_por_resorte'] * 2
+    #     diferencia = abs(peso_total - peso_objetivo)
+    #     if diferencia <= tolerancia:
+    #         resultados.append({
+    #             "resortes": [r, r],
+    #             "cantidad": 2,
+    #             "peso_total": round(peso_total, 2),
+    #             "diferencia": round(diferencia, 2)
+    #         })
+    #-----------------------------------------------------------------------------
+    # 2 resortes (permitir iguales y diferentes)
+    for r1, r2 in itertools.combinations_with_replacement(resortes_vuelta, 2):
+        peso_total = r1['peso_por_resorte'] + r2['peso_por_resorte']
+        diferencia = abs(peso_total - peso_objetivo)
+
+        if diferencia <= tolerancia:
+            resultados.append({
+                "resortes": [r1, r2],
+                "cantidad": 2,
+                "peso_total": round(peso_total, 2),
+                "diferencia": round(diferencia, 2)
+            })
+
+
+    # 3 resortes
+    for combo in itertools.combinations_with_replacement(resortes_vuelta, 3):
+        peso_total = sum(r['peso_por_resorte'] for r in combo)
+        diferencia = abs(peso_total - peso_objetivo)
+        if diferencia <= tolerancia:
+            resultados.append({
+                "resortes": list(combo),
+                "cantidad": 3,
+                "peso_total": round(peso_total, 2),
+                "diferencia": round(diferencia, 2)
+            })
+
+    # ordenar por mejor ajuste
+    resultados.sort(key=lambda x: x["diferencia"])
+    # resultados.sort(key=lambda x: (x["diferencia"], x["cantidad"])) # Ordena por menor cantidad de resortes y menor diferencia
+
+
+    return resultados
+#----------------------------------------------------------------------------
+def seleccionar_top_resortes(peso_objetivo, vueltas_reales, resortes, limite=3):
+    vueltas_objetivo = normalizar_vueltas(vueltas_reales)
+
+    combinaciones = encontrar_combinaciones_resortes(
+        peso_objetivo,
+        vueltas_objetivo,
+        resortes
+    )
+
+    return combinaciones[:limite]
+
+#------------------------- aqui termina 04/02/2026------------------------------------------
+
+# ============SELECCIÓN AUTOMÁTICA FINAL======================
 def seleccionar_resorte_automatico(peso_objetivo, vueltas_reales, resortes):
     """
     Flujo correcto:
@@ -335,11 +419,24 @@ def seleccionar_resorte_automatico(peso_objetivo, vueltas_reales, resortes):
         return None
 
     # ==============DOS RESORTES IGUALES====================
+    #--------------Código comentado, solo permite resortes iguales-----------
+    # candidatos = []
+    # for r in resortes_vuelta:
+    #     peso_total = r['peso_por_resorte'] * 2
+    #     if abs(peso_total - peso_objetivo) <= tolerancia:
+    #         candidatos.append((abs(peso_total - peso_objetivo), [r, r]))
+
+    # if candidatos:
+    #     return min(candidatos, key=lambda x: x[0])[1]
+    #------------------------------------------------------------------------
     candidatos = []
-    for r in resortes_vuelta:
-        peso_total = r['peso_por_resorte'] * 2
-        if abs(peso_total - peso_objetivo) <= tolerancia:
-            candidatos.append((abs(peso_total - peso_objetivo), [r, r]))
+
+    for r1, r2 in itertools.combinations_with_replacement(resortes_vuelta, 2):
+        peso_total = r1['peso_por_resorte'] + r2['peso_por_resorte']
+        diferencia = abs(peso_total - peso_objetivo)
+
+        if diferencia <= tolerancia:
+            candidatos.append((diferencia, [r1, r2]))
 
     if candidatos:
         return min(candidatos, key=lambda x: x[0])[1]
@@ -358,9 +455,40 @@ def seleccionar_resorte_automatico(peso_objetivo, vueltas_reales, resortes):
     return None
 
 # ================RUTA PRINCIPAL========================
+# @resortes_blueprint.route('/', methods=['GET', 'POST'])
+# def index():
+#     tipos_unicos = {r['tipo'] for r in resortes}
+
+#     if request.method == 'POST':
+#         peso = float(request.form['peso'])
+#         altura_m = float(request.form['altura'])
+#         altura_cm = altura_m * 100
+
+#         vueltas_reales = calcular_vueltas(altura_cm)
+
+#         seleccion = seleccionar_resorte_automatico(
+#             peso,
+#             vueltas_reales,
+#             resortes
+#         )
+
+#         return render_template(
+#             'resultados.html',
+#             seleccion=seleccion,
+#             peso=peso,
+#             altura=altura_m,
+#             vueltas=round(vueltas_reales, 2)
+#         )
+
+#     return render_template('resortes.html', tipos_unicos=tipos_unicos)
+
+
+#codigo agregado para que funcione la calculadora de herrajes de manera indepoendiente. 
+from collections import defaultdict
+
 @resortes_blueprint.route('/', methods=['GET', 'POST'])
 def index():
-    tipos_unicos = {r['tipo'] for r in resortes}
+    tipos_unicos = sorted({r['tipo'] for r in resortes})
 
     if request.method == 'POST':
         peso = float(request.form['peso'])
@@ -369,22 +497,69 @@ def index():
 
         vueltas_reales = calcular_vueltas(altura_cm)
 
-        seleccion = seleccionar_resorte_automatico(
+        #  AQUÍ USAMOS MODO "CALCULADORA MANUAL" (TODAS LAS OPCIONES)
+        combinaciones = encontrar_combinaciones_resortes(
             peso,
-            vueltas_reales,
+            # normalizar_vueltas(vueltas_reales), #se comenta debido a que ya se estan normalizando las bueltas en la linea 483
+            vueltas_reales,  # uso directo en las vueltas
             resortes
         )
 
+        # Agrupar por número de resortes
+        combinaciones_por_numero = defaultdict(list)
+        for c in combinaciones:
+            combinaciones_por_numero[c["cantidad"]].append(c["resortes"])
+
         return render_template(
             'resultados.html',
-            seleccion=seleccion,
             peso=peso,
             altura=altura_m,
-            vueltas=round(vueltas_reales, 2)
+            vueltas=round(vueltas_reales, 2),
+            combinaciones_por_numero=combinaciones_por_numero,
+            tipos_unicos=tipos_unicos,
+            tipos_seleccionados=tipos_unicos
         )
 
     return render_template('resortes.html', tipos_unicos=tipos_unicos)
 
+#-------------------------
+@resortes_blueprint.route('/filtrar_resultados', methods=['POST'])
+def filtrar_resultados():
+    peso = float(request.form['peso'])
+    altura_m = float(request.form['altura'])
+    altura_cm = altura_m * 100
 
+    tipos_seleccionados = request.form.getlist('resortes_disponibles')
 
+    vueltas_reales = calcular_vueltas(altura_cm)
+    vueltas_objetivo = normalizar_vueltas(vueltas_reales)
+
+    # Filtrar resortes según stock disponible
+    resortes_filtrados = [
+        r for r in resortes
+        if r['tipo'] in tipos_seleccionados and r['vueltas'] == vueltas_objetivo
+    ]
+
+    combinaciones = encontrar_combinaciones_resortes(
+        peso,
+        vueltas_objetivo,
+        resortes_filtrados
+    )
+
+    from collections import defaultdict
+    combinaciones_por_numero = defaultdict(list)
+    for c in combinaciones:
+        combinaciones_por_numero[c["cantidad"]].append(c["resortes"])
+
+    tipos_unicos = sorted({r['tipo'] for r in resortes})
+
+    return render_template(
+        'resultados.html',
+        peso=peso,
+        altura=altura_m,
+        vueltas=round(vueltas_reales, 2),
+        combinaciones_por_numero=combinaciones_por_numero,
+        tipos_unicos=tipos_unicos,
+        tipos_seleccionados=tipos_seleccionados
+    )
 

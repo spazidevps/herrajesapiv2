@@ -120,6 +120,7 @@ def calcular():
     'resultado_herrajes.html',
     ancho=ancho,
     alto=alto,
+    peso_confirmacion=peso_objetivo,  # 👈 este es el peso real usado
     resultado=resultado,
     rieles=rieles,
     chicote=resultado['chicote'],

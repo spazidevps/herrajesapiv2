@@ -586,11 +586,27 @@
                 return false;
             }
 
+            // // Detectar centímetros
+            // if(ancho > 20 || alto > 20){
+            //     alert("Las medidas parecen estar en centímetros. Ingresa el ancho y alto en metros (ejemplo: 3.20).");
+            //     return false;
+            // }
             // Detectar centímetros
-            if(ancho > 20 || alto > 20){
-                alert("Las medidas parecen estar en centímetros. Ingresa el ancho y alto en metros (ejemplo: 3.20).");
+            let errores = [];
+
+            if(ancho > 20){
+                errores.push("El ancho parece estar en centímetros. Ingresa el valor en metros (ejemplo: 3.20).");
+            }
+
+            if(alto > 20){
+                errores.push("El alto parece estar en centímetros. Ingresa el valor en metros (ejemplo: 2.50).");
+            }
+
+            if(errores.length > 0){
+                alert(errores.join("\n"));
                 return false;
             }
+
 
             // Validar límites máximos
             if(ancho > 7.32){

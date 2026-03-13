@@ -308,6 +308,27 @@ def normalizar_vueltas(vueltas):
     else:
         return float(base + 1)
 
+#-----------------------------------------13/03/2026 prioridad de combinación-------------------------------------
+def prioridad_combinacion(c):
+    """
+    Define jerarquía de combinaciones:
+    1 = dos resortes iguales
+    2 = dos resortes diferentes
+    3 = cualquier otra combinación
+    """
+
+    if c["cantidad"] == 2:
+        r1 = c["resortes"][0]["tipo"]
+        r2 = c["resortes"][1]["tipo"]
+
+        if r1 == r2:
+            return 1
+        else:
+            return 2
+
+    return 3
+
+
 #-----------------------------------------04/02/2026-------------------------------
 def encontrar_combinaciones_resortes(peso_objetivo, vueltas_objetivo, resortes, tolerancia=4):
     """
@@ -372,8 +393,10 @@ def encontrar_combinaciones_resortes(peso_objetivo, vueltas_objetivo, resortes, 
                 "diferencia": round(diferencia, 2)
             })
 
+    #13/03/2026 ordena por jerarquia 2 resortes iguales y luego peso
+    resultados.sort(key=lambda x: (prioridad_combinacion(x), x["diferencia"]))
     # ordenar por mejor ajuste
-    resultados.sort(key=lambda x: x["diferencia"])
+    # resultados.sort(key=lambda x: x["diferencia"]) #cometada el 13/03/2026
     # resultados.sort(key=lambda x: (x["diferencia"], x["cantidad"])) # Ordena por menor cantidad de resortes y menor diferencia
 
 

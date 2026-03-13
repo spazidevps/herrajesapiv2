@@ -1014,7 +1014,14 @@ document.addEventListener("DOMContentLoaded", function () {
             resorteElegido = e.target.value;
 
             let cantidadResortes = parseInt(e.target.dataset.cantidad);
-            let soportes = cantidadResortes + 1;
+            // let soportes = cantidadResortes + 1; // se cambia la logica despues de 2 resortes aumentan las pz
+            let soportes;
+
+            if (cantidadResortes <= 2) {
+                soportes = 3;
+            } else {
+                soportes = cantidadResortes + 1;
+            }
 
             actualizarDetallePanel();
             actualizarSoportesFlecha(soportes);

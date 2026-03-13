@@ -439,11 +439,11 @@
         <div class="card mt-5">
             <div class="card-header">
                 <h4>Ingresa los siguientes datos en metros (m) y kilogramos (kg):</h4>
-                <h5>Esta calculadora funciona para un ancho máximo de 7.5 metros, un alto máximo de 2.7 metros y un peso máximo de 250 kilogramos</h5>
+                <h5>Esta calculadora funciona para un ancho máximo de 7.32 metros, un alto máximo de 2.7 metros y un peso máximo de 250 kilogramos</h5>
 
             </div>
             <div class="card-body">
-                <form method="POST" action="/calcular">
+                <form method="POST" action="/calcular" onsubmit="return validarFormulario()"> <!-- onsubmit= "validarFormulario()" se cambio por el que esta actualmente -->
                     <input type="hidden" id="tipo_porton" name="tipo_porton" value="spazi">
 
                     <div class="form-group">
@@ -572,6 +572,53 @@
                 btnGenerico.classList.remove('btn-success');
             }
         }
+
+        function validarFormulario(){  // funcion agregada 12/03/2026 para mandar alertas de unidades maximas permitidas
+
+            let ancho = parseFloat(document.getElementById("ancho").value);
+            let alto = parseFloat(document.getElementById("alto").value);
+            let peso = parseFloat(document.getElementById("peso").value);
+            let tipoPorton = document.getElementById("tipo_porton").value;
+
+            // Validar campos vacíos
+            if(isNaN(ancho) || isNaN(alto)){
+                alert("Debes ingresar el ancho y el alto del portón.");
+                return false;
+            }
+
+            // Detectar centímetros
+            if(ancho > 20 || alto > 20){
+                alert("Las medidas parecen estar en centímetros. Ingresa el ancho y alto en metros (ejemplo: 3.20).");
+                return false;
+            }
+
+            // Validar límites máximos
+            if(ancho > 7.32){
+                alert("El ancho máximo permitido es 7.32 metros.");
+                return false;
+            }
+
+            if(alto > 3.22){
+                alert("El alto máximo permitido es 3.22 metros.");
+                return false;
+            }
+
+            // Validar peso solo si es portón genérico
+            if(tipoPorton === "generico"){
+                if(isNaN(peso)){
+                    alert("Debes ingresar el peso del portón.");
+                    return false;
+                }
+
+                if(peso > 250){
+                    alert("El peso máximo permitido es 250 kg.");
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
     </script>
 
 <!-- </body>

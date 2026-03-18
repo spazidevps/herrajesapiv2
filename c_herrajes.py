@@ -2096,6 +2096,11 @@ def calcular_herrajes(ancho, alto, peso_objetivo, tipo_porton):
             paneles = rango['resultado']['paneles']
             paneles_sug = rango['resultado'].get('paneles_sug', {})  # Uso de .get() para evitar KeyError
             herraje = rango['resultado']['herraje']
+
+            if tipo_porton and tipo_porton.lower() == "generico":
+                herraje = herraje.replace("Bisagra Spazi Lateral Ajustable", "Bisagra plana lateral")
+                herraje = herraje.replace("Bisagra Spazi Intermedia", "Bisagra plana intermedia")
+
             descripcion_paneles = " y ".join([f"{cantidad} paneles de {medida}" for medida, cantidad in paneles.items()])
             descripcion_paneles_sug = " y ".join([f"{cantidad} paneles de {medida}" for medida, cantidad in paneles_sug.items()]) if paneles_sug else "No disponible"
 
@@ -2147,7 +2152,8 @@ def calcular_herrajes(ancho, alto, peso_objetivo, tipo_porton):
                 peso_objetivo,
                 vueltas,
                 resortes,
-                limite=4
+                limite=4,
+                ancho=ancho #se agrega la comparativa del ancho ingresado
             )
             
 
@@ -2191,5 +2197,4 @@ def calcular_herrajes(ancho, alto, peso_objetivo, tipo_porton):
 
     print("No se encontró una combinación adecuada.")  # Para depuración
     return None  # Podría ser más útil retornar None o lanzar una excepción personalizada
-
 

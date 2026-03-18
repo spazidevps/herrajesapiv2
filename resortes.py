@@ -8,92 +8,92 @@ resortes_blueprint = Blueprint('resortes', __name__, template_folder='templates'
 
 # Datos de los resortes proporcionados
 resortes = [
-    {'tipo': '9X7', 'vueltas': 5.5, 'peso_por_resorte': 24.4},
-    {'tipo': '9X7', 'vueltas': 6, 'peso_por_resorte': 25.7},
-    {'tipo': '9X7', 'vueltas': 6.5, 'peso_por_resorte': 26.9},
-    {'tipo': '9X7', 'vueltas': 7, 'peso_por_resorte': 28.3},
-    {'tipo': '9X7', 'vueltas': 7.5, 'peso_por_resorte': 29.7},
-    {'tipo': '9X7', 'vueltas': 8, 'peso_por_resorte': 31.2},
-    {'tipo': '9X7', 'vueltas': 8.5, 'peso_por_resorte': 32.8},
-    {'tipo': '9X7', 'vueltas': 9, 'peso_por_resorte': 34.4},
-    {'tipo': '9X7', 'vueltas': 9.5, 'peso_por_resorte': 36.1},
+    {'tipo': '9X7', 'vueltas': 5.5, 'peso_por_resorte': 24.4, 'longitud': 0.80}, #se agrega la longitud de los resortes en metros.
+    {'tipo': '9X7', 'vueltas': 6, 'peso_por_resorte': 25.7, 'longitud': 0.80},
+    {'tipo': '9X7', 'vueltas': 6.5, 'peso_por_resorte': 26.9, 'longitud': 0.80},
+    {'tipo': '9X7', 'vueltas': 7, 'peso_por_resorte': 28.3, 'longitud': 0.80},
+    {'tipo': '9X7', 'vueltas': 7.5, 'peso_por_resorte': 29.7, 'longitud': 0.80},
+    {'tipo': '9X7', 'vueltas': 8, 'peso_por_resorte': 31.2, 'longitud': 0.80},
+    {'tipo': '9X7', 'vueltas': 8.5, 'peso_por_resorte': 32.8, 'longitud': 0.80},
+    {'tipo': '9X7', 'vueltas': 9, 'peso_por_resorte': 34.4, 'longitud': 0.80},
+    {'tipo': '9X7', 'vueltas': 9.5, 'peso_por_resorte': 36.1, 'longitud': 0.80},
 
 
-    {'tipo': '9X8', 'vueltas': 5.5, 'peso_por_resorte': 28.4},
-    {'tipo': '9X8', 'vueltas': 6, 'peso_por_resorte': 29.8},
-    {'tipo': '9X8', 'vueltas': 6.5, 'peso_por_resorte': 31.3},
-    {'tipo': '9X8', 'vueltas': 7, 'peso_por_resorte': 32.9},
-    {'tipo': '9X8', 'vueltas': 7.5, 'peso_por_resorte': 34.5},
-    {'tipo': '9X8', 'vueltas': 8, 'peso_por_resorte': 36.3},
-    {'tipo': '9X8', 'vueltas': 8.5, 'peso_por_resorte': 38.1},
-    {'tipo': '9X8', 'vueltas': 9, 'peso_por_resorte': 40},
-    {'tipo': '9X8', 'vueltas': 9.5, 'peso_por_resorte': 42},
-    {'tipo': '9X8', 'vueltas': 10, 'peso_por_resorte': 44.1},
-    {'tipo': '9X8', 'vueltas': 10.5, 'peso_por_resorte': 46.3},
-
-
-
-    {'tipo': '10X7', 'vueltas': 5.5, 'peso_por_resorte': 27.2},
-    {'tipo': '10X7', 'vueltas': 6, 'peso_por_resorte': 28.6},
-    {'tipo': '10X7', 'vueltas': 6.5, 'peso_por_resorte': 30},
-    {'tipo': '10X7', 'vueltas': 7, 'peso_por_resorte': 31.5},
-    {'tipo': '10X7', 'vueltas': 7.5, 'peso_por_resorte': 33.1},
-    {'tipo': '10X7', 'vueltas': 8, 'peso_por_resorte': 34.7},
-    {'tipo': '10X7', 'vueltas': 8.5, 'peso_por_resorte': 36.5},
-    {'tipo': '10X7', 'vueltas': 9, 'peso_por_resorte': 38.3},
-    {'tipo': '10X7', 'vueltas': 9.5, 'peso_por_resorte': 40.2},
+    {'tipo': '9X8', 'vueltas': 5.5, 'peso_por_resorte': 28.4, 'longitud': 0.64},
+    {'tipo': '9X8', 'vueltas': 6, 'peso_por_resorte': 29.8, 'longitud': 0.64},
+    {'tipo': '9X8', 'vueltas': 6.5, 'peso_por_resorte': 31.3, 'longitud': 0.64},
+    {'tipo': '9X8', 'vueltas': 7, 'peso_por_resorte': 32.9, 'longitud': 0.64},
+    {'tipo': '9X8', 'vueltas': 7.5, 'peso_por_resorte': 34.5, 'longitud': 0.64},
+    {'tipo': '9X8', 'vueltas': 8, 'peso_por_resorte': 36.3, 'longitud': 0.64},
+    {'tipo': '9X8', 'vueltas': 8.5, 'peso_por_resorte': 38.1, 'longitud': 0.64},
+    {'tipo': '9X8', 'vueltas': 9, 'peso_por_resorte': 40, 'longitud': 0.64},
+    {'tipo': '9X8', 'vueltas': 9.5, 'peso_por_resorte': 42, 'longitud': 0.64},
+    {'tipo': '9X8', 'vueltas': 10, 'peso_por_resorte': 44.1, 'longitud': 0.64},
+    {'tipo': '9X8', 'vueltas': 10.5, 'peso_por_resorte': 46.3, 'longitud': 0.64},
 
 
 
-    {'tipo': '10X8', 'vueltas': 5.5, 'peso_por_resorte': 31.6},
-    {'tipo': '10X8', 'vueltas': 6, 'peso_por_resorte': 33.2},
-    {'tipo': '10X8', 'vueltas': 6.5, 'peso_por_resorte': 34.9},
-    {'tipo': '10X8', 'vueltas': 7, 'peso_por_resorte': 36.6},
-    {'tipo': '10X8', 'vueltas': 7.5, 'peso_por_resorte': 38.4},
-    {'tipo': '10X8', 'vueltas': 8, 'peso_por_resorte': 40.4},
-    {'tipo': '10X8', 'vueltas': 8.5, 'peso_por_resorte': 42.4},
-    {'tipo': '10X8', 'vueltas': 9, 'peso_por_resorte': 44.5},
-    {'tipo': '10X8', 'vueltas': 9.5, 'peso_por_resorte': 46.7},
-    {'tipo': '10X8', 'vueltas': 10, 'peso_por_resorte': 49.1},
-    {'tipo': '10X8', 'vueltas': 10.5, 'peso_por_resorte': 51.5},
+    {'tipo': '10X7', 'vueltas': 5.5, 'peso_por_resorte': 27.2, 'longitud': 1.02},
+    {'tipo': '10X7', 'vueltas': 6, 'peso_por_resorte': 28.6, 'longitud': 1.02},
+    {'tipo': '10X7', 'vueltas': 6.5, 'peso_por_resorte': 30, 'longitud': 1.02},
+    {'tipo': '10X7', 'vueltas': 7, 'peso_por_resorte': 31.5, 'longitud': 1.02},
+    {'tipo': '10X7', 'vueltas': 7.5, 'peso_por_resorte': 33.1, 'longitud': 1.02},
+    {'tipo': '10X7', 'vueltas': 8, 'peso_por_resorte': 34.7, 'longitud': 1.02},
+    {'tipo': '10X7', 'vueltas': 8.5, 'peso_por_resorte': 36.5, 'longitud': 1.02},
+    {'tipo': '10X7', 'vueltas': 9, 'peso_por_resorte': 38.3, 'longitud': 1.02},
+    {'tipo': '10X7', 'vueltas': 9.5, 'peso_por_resorte': 40.2, 'longitud': 1.02},
 
 
 
-    {'tipo': '12X7', 'vueltas': 5.5, 'peso_por_resorte': 32.7},
-    {'tipo': '12X7', 'vueltas': 6, 'peso_por_resorte': 34.3},
-    {'tipo': '12X7', 'vueltas': 6.5, 'peso_por_resorte': 36},
-    {'tipo': '12X7', 'vueltas': 7, 'peso_por_resorte': 37.8},
-    {'tipo': '12X7', 'vueltas': 7.5, 'peso_por_resorte': 39.7},
-    {'tipo': '12X7', 'vueltas': 8, 'peso_por_resorte': 41.7},
-    {'tipo': '12X7', 'vueltas': 8.5, 'peso_por_resorte': 43.8},
-    {'tipo': '12X7', 'vueltas': 9, 'peso_por_resorte': 45.9},
-    {'tipo': '12X7', 'vueltas': 9.5, 'peso_por_resorte': 48.2},
+    {'tipo': '10X8', 'vueltas': 5.5, 'peso_por_resorte': 31.6, 'longitud': 0.74},
+    {'tipo': '10X8', 'vueltas': 6, 'peso_por_resorte': 33.2, 'longitud': 0.74},
+    {'tipo': '10X8', 'vueltas': 6.5, 'peso_por_resorte': 34.9, 'longitud': 0.74},
+    {'tipo': '10X8', 'vueltas': 7, 'peso_por_resorte': 36.6, 'longitud': 0.74},
+    {'tipo': '10X8', 'vueltas': 7.5, 'peso_por_resorte': 38.4, 'longitud': 0.74},
+    {'tipo': '10X8', 'vueltas': 8, 'peso_por_resorte': 40.4, 'longitud': 0.74},
+    {'tipo': '10X8', 'vueltas': 8.5, 'peso_por_resorte': 42.4, 'longitud': 0.74},
+    {'tipo': '10X8', 'vueltas': 9, 'peso_por_resorte': 44.5, 'longitud': 0.74},
+    {'tipo': '10X8', 'vueltas': 9.5, 'peso_por_resorte': 46.7, 'longitud': 0.74},
+    {'tipo': '10X8', 'vueltas': 10, 'peso_por_resorte': 49.1, 'longitud': 0.74},
+    {'tipo': '10X8', 'vueltas': 10.5, 'peso_por_resorte': 51.5, 'longitud': 0.74},
+
+
+
+    {'tipo': '12X7', 'vueltas': 5.5, 'peso_por_resorte': 32.7, 'longitud': 0.69},
+    {'tipo': '12X7', 'vueltas': 6, 'peso_por_resorte': 34.3, 'longitud': 0.69},
+    {'tipo': '12X7', 'vueltas': 6.5, 'peso_por_resorte': 36, 'longitud': 0.69},
+    {'tipo': '12X7', 'vueltas': 7, 'peso_por_resorte': 37.8, 'longitud': 0.69},
+    {'tipo': '12X7', 'vueltas': 7.5, 'peso_por_resorte': 39.7, 'longitud': 0.69},
+    {'tipo': '12X7', 'vueltas': 8, 'peso_por_resorte': 41.7, 'longitud': 0.69},
+    {'tipo': '12X7', 'vueltas': 8.5, 'peso_por_resorte': 43.8, 'longitud': 0.69},
+    {'tipo': '12X7', 'vueltas': 9, 'peso_por_resorte': 45.9, 'longitud': 0.69},
+    {'tipo': '12X7', 'vueltas': 9.5, 'peso_por_resorte': 48.2, 'longitud': 0.69},
 
 
  
-    {'tipo': '12X8', 'vueltas': 5.5, 'peso_por_resorte': 38},
-    {'tipo': '12X8', 'vueltas': 6, 'peso_por_resorte': 39.9},
-    {'tipo': '12X8', 'vueltas': 6.5, 'peso_por_resorte': 41.9},
-    {'tipo': '12X8', 'vueltas': 7, 'peso_por_resorte': 43.9},
-    {'tipo': '12X8', 'vueltas': 7.5, 'peso_por_resorte': 46.1},
-    {'tipo': '12X8', 'vueltas': 8, 'peso_por_resorte': 48.4},
-    {'tipo': '12X8', 'vueltas': 8.5, 'peso_por_resorte': 50.9},
-    {'tipo': '12X8', 'vueltas': 9, 'peso_por_resorte': 53.4},
-    {'tipo': '12X8', 'vueltas': 9.5, 'peso_por_resorte': 56.1},
-    {'tipo': '12X8', 'vueltas': 10, 'peso_por_resorte': 58.9},
-    {'tipo': '12X8', 'vueltas': 10.5, 'peso_por_resorte': 61.8},
+    {'tipo': '12X8', 'vueltas': 5.5, 'peso_por_resorte': 38, 'longitud': 0.86},
+    {'tipo': '12X8', 'vueltas': 6, 'peso_por_resorte': 39.9, 'longitud': 0.86},
+    {'tipo': '12X8', 'vueltas': 6.5, 'peso_por_resorte': 41.9, 'longitud': 0.86},
+    {'tipo': '12X8', 'vueltas': 7, 'peso_por_resorte': 43.9, 'longitud': 0.86},
+    {'tipo': '12X8', 'vueltas': 7.5, 'peso_por_resorte': 46.1, 'longitud': 0.86},
+    {'tipo': '12X8', 'vueltas': 8, 'peso_por_resorte': 48.4, 'longitud': 0.86},
+    {'tipo': '12X8', 'vueltas': 8.5, 'peso_por_resorte': 50.9, 'longitud': 0.86},
+    {'tipo': '12X8', 'vueltas': 9, 'peso_por_resorte': 53.4, 'longitud': 0.86},
+    {'tipo': '12X8', 'vueltas': 9.5, 'peso_por_resorte': 56.1, 'longitud': 0.86},
+    {'tipo': '12X8', 'vueltas': 10, 'peso_por_resorte': 58.9, 'longitud': 0.86},
+    {'tipo': '12X8', 'vueltas': 10.5, 'peso_por_resorte': 61.8, 'longitud': 0.86},
 
 
 
-    {'tipo': '14X7', 'vueltas': 5.5, 'peso_por_resorte': 38.1},
-    {'tipo': '14X7', 'vueltas': 6, 'peso_por_resorte': 40},
-    {'tipo': '14X7', 'vueltas': 6.5, 'peso_por_resorte': 42},
-    {'tipo': '14X7', 'vueltas': 7, 'peso_por_resorte': 44.1},
-    {'tipo': '14X7', 'vueltas': 7.5, 'peso_por_resorte': 46.3},
-    {'tipo': '14X7', 'vueltas': 8, 'peso_por_resorte': 48.6},
-    {'tipo': '14X7', 'vueltas': 8.5, 'peso_por_resorte': 51},
-    {'tipo': '14X7', 'vueltas': 9, 'peso_por_resorte': 53.6},
-    {'tipo': '14X7', 'vueltas': 9.5, 'peso_por_resorte': 56.3},
+    {'tipo': '14X7', 'vueltas': 5.5, 'peso_por_resorte': 38.1, 'longitud': 0.60},
+    {'tipo': '14X7', 'vueltas': 6, 'peso_por_resorte': 40, 'longitud': 0.60},
+    {'tipo': '14X7', 'vueltas': 6.5, 'peso_por_resorte': 42, 'longitud': 0.60},
+    {'tipo': '14X7', 'vueltas': 7, 'peso_por_resorte': 44.1, 'longitud': 0.60},
+    {'tipo': '14X7', 'vueltas': 7.5, 'peso_por_resorte': 46.3, 'longitud': 0.60},
+    {'tipo': '14X7', 'vueltas': 8, 'peso_por_resorte': 48.6, 'longitud': 0.60},
+    {'tipo': '14X7', 'vueltas': 8.5, 'peso_por_resorte': 51, 'longitud': 0.60},
+    {'tipo': '14X7', 'vueltas': 9, 'peso_por_resorte': 53.6, 'longitud': 0.60},
+    {'tipo': '14X7', 'vueltas': 9.5, 'peso_por_resorte': 56.3, 'longitud': 0.60},
 
 
 
@@ -108,148 +108,148 @@ resortes = [
     # {'tipo': '14X8', 'vueltas': 9, 'peso_por_resorte': 55.7},
     # {'tipo': '14X8', 'vueltas': 9.5, 'peso_por_resorte': 58.4},
 
-    {'tipo': '14X8', 'vueltas': 5.5, 'peso_por_resorte': 44.3},
-    {'tipo': '14X8', 'vueltas': 6, 'peso_por_resorte': 46.5},
-    {'tipo': '14X8', 'vueltas': 6.5, 'peso_por_resorte': 48.8},
-    {'tipo': '14X8', 'vueltas': 7, 'peso_por_resorte': 51.3},
-    {'tipo': '14X8', 'vueltas': 7.5, 'peso_por_resorte': 53.8},
-    {'tipo': '14X8', 'vueltas': 8, 'peso_por_resorte': 56.5},
-    {'tipo': '14X8', 'vueltas': 8.5, 'peso_por_resorte': 59.3},
-    {'tipo': '14X8', 'vueltas': 9, 'peso_por_resorte': 62.3},
-    {'tipo': '14X8', 'vueltas': 9.5, 'peso_por_resorte': 65.4},
-    {'tipo': '14X8', 'vueltas': 10, 'peso_por_resorte': 68.7},
-    {'tipo': '14X8', 'vueltas': 10.5, 'peso_por_resorte': 72.1},
+    {'tipo': '14X8', 'vueltas': 5.5, 'peso_por_resorte': 44.3, 'longitud': 0.91},
+    {'tipo': '14X8', 'vueltas': 6, 'peso_por_resorte': 46.5, 'longitud': 0.91},
+    {'tipo': '14X8', 'vueltas': 6.5, 'peso_por_resorte': 48.8, 'longitud': 0.91},
+    {'tipo': '14X8', 'vueltas': 7, 'peso_por_resorte': 51.3, 'longitud': 0.91},
+    {'tipo': '14X8', 'vueltas': 7.5, 'peso_por_resorte': 53.8, 'longitud': 0.91},
+    {'tipo': '14X8', 'vueltas': 8, 'peso_por_resorte': 56.5, 'longitud': 0.91},
+    {'tipo': '14X8', 'vueltas': 8.5, 'peso_por_resorte': 59.3, 'longitud': 0.91},
+    {'tipo': '14X8', 'vueltas': 9, 'peso_por_resorte': 62.3, 'longitud': 0.91},
+    {'tipo': '14X8', 'vueltas': 9.5, 'peso_por_resorte': 65.4, 'longitud': 0.91},
+    {'tipo': '14X8', 'vueltas': 10, 'peso_por_resorte': 68.7, 'longitud': 0.91},
+    {'tipo': '14X8', 'vueltas': 10.5, 'peso_por_resorte': 72.1, 'longitud': 0.91},
 
 
    
-    {'tipo': '16X7', 'vueltas': 5.5, 'peso_por_resorte': 43.5},
-    {'tipo': '16X7', 'vueltas': 6, 'peso_por_resorte': 45.7},
-    {'tipo': '16X7', 'vueltas': 6.5, 'peso_por_resorte': 48},
-    {'tipo': '16X7', 'vueltas': 7, 'peso_por_resorte': 50.4},
-    {'tipo': '16X7', 'vueltas': 7.5, 'peso_por_resorte': 52.9},
-    {'tipo': '16X7', 'vueltas': 8, 'peso_por_resorte': 55.6},
-    {'tipo': '16X7', 'vueltas': 8.5, 'peso_por_resorte': 58.3},
-    {'tipo': '16X7', 'vueltas': 9, 'peso_por_resorte': 61.3},
-    {'tipo': '16X7', 'vueltas': 9.5, 'peso_por_resorte': 64.3},
+    {'tipo': '16X7', 'vueltas': 5.5, 'peso_por_resorte': 43.5, 'longitud': 0.78},
+    {'tipo': '16X7', 'vueltas': 6, 'peso_por_resorte': 45.7, 'longitud': 0.78},
+    {'tipo': '16X7', 'vueltas': 6.5, 'peso_por_resorte': 48, 'longitud': 0.78},
+    {'tipo': '16X7', 'vueltas': 7, 'peso_por_resorte': 50.4, 'longitud': 0.78},
+    {'tipo': '16X7', 'vueltas': 7.5, 'peso_por_resorte': 52.9, 'longitud': 0.78},
+    {'tipo': '16X7', 'vueltas': 8, 'peso_por_resorte': 55.6, 'longitud': 0.78},
+    {'tipo': '16X7', 'vueltas': 8.5, 'peso_por_resorte': 58.3, 'longitud': 0.78},
+    {'tipo': '16X7', 'vueltas': 9, 'peso_por_resorte': 61.3, 'longitud': 0.78},
+    {'tipo': '16X7', 'vueltas': 9.5, 'peso_por_resorte': 64.3, 'longitud': 0.78},
 
 
    
-    {'tipo': '16X8', 'vueltas': 5.5, 'peso_por_resorte': 50.6},
-    {'tipo': '16X8', 'vueltas': 6, 'peso_por_resorte': 53.1},
-    {'tipo': '16X8', 'vueltas': 6.5, 'peso_por_resorte': 55.8},
-    {'tipo': '16X8', 'vueltas': 7, 'peso_por_resorte': 58.6},
-    {'tipo': '16X8', 'vueltas': 7.5, 'peso_por_resorte': 61.5},
-    {'tipo': '16X8', 'vueltas': 8, 'peso_por_resorte': 64.6},
-    {'tipo': '16X8', 'vueltas': 8.5, 'peso_por_resorte': 67.8},
-    {'tipo': '16X8', 'vueltas': 9, 'peso_por_resorte': 71.2},
-    {'tipo': '16X8', 'vueltas': 9.5, 'peso_por_resorte': 74.8},
-    {'tipo': '16X8', 'vueltas': 10, 'peso_por_resorte': 78.5},
-    {'tipo': '16X8', 'vueltas': 10.5, 'peso_por_resorte': 82.4},
+    {'tipo': '16X8', 'vueltas': 5.5, 'peso_por_resorte': 50.6, 'longitud': 1.13},
+    {'tipo': '16X8', 'vueltas': 6, 'peso_por_resorte': 53.1, 'longitud': 1.13},
+    {'tipo': '16X8', 'vueltas': 6.5, 'peso_por_resorte': 55.8, 'longitud': 1.13},
+    {'tipo': '16X8', 'vueltas': 7, 'peso_por_resorte': 58.6, 'longitud': 1.13},
+    {'tipo': '16X8', 'vueltas': 7.5, 'peso_por_resorte': 61.5, 'longitud': 1.13},
+    {'tipo': '16X8', 'vueltas': 8, 'peso_por_resorte': 64.6, 'longitud': 1.13},
+    {'tipo': '16X8', 'vueltas': 8.5, 'peso_por_resorte': 67.8, 'longitud': 1.13},
+    {'tipo': '16X8', 'vueltas': 9, 'peso_por_resorte': 71.2, 'longitud': 1.13},
+    {'tipo': '16X8', 'vueltas': 9.5, 'peso_por_resorte': 74.8, 'longitud': 1.13},
+    {'tipo': '16X8', 'vueltas': 10, 'peso_por_resorte': 78.5, 'longitud': 1.13},
+    {'tipo': '16X8', 'vueltas': 10.5, 'peso_por_resorte': 82.4, 'longitud': 1.13},
 
 
  
-    {'tipo': '18X7', 'vueltas': 5.5, 'peso_por_resorte': 48.9},
-    {'tipo': '18X7', 'vueltas': 6, 'peso_por_resorte': 51.3},
-    {'tipo': '18X7', 'vueltas': 6.5, 'peso_por_resorte': 53.9},
-    {'tipo': '18X7', 'vueltas': 7, 'peso_por_resorte': 56.6},
-    {'tipo': '18X7', 'vueltas': 7.5, 'peso_por_resorte': 59.4},
-    {'tipo': '18X7', 'vueltas': 8, 'peso_por_resorte': 62.4},
-    {'tipo': '18X7', 'vueltas': 8.5, 'peso_por_resorte': 65.5},
-    {'tipo': '18X7', 'vueltas': 9, 'peso_por_resorte': 68.8},
-    {'tipo': '18X7', 'vueltas': 9.5, 'peso_por_resorte': 72.2},
+    {'tipo': '18X7', 'vueltas': 5.5, 'peso_por_resorte': 48.9, 'longitud': 0.80},
+    {'tipo': '18X7', 'vueltas': 6, 'peso_por_resorte': 51.3, 'longitud': 0.80},
+    {'tipo': '18X7', 'vueltas': 6.5, 'peso_por_resorte': 53.9, 'longitud': 0.80},
+    {'tipo': '18X7', 'vueltas': 7, 'peso_por_resorte': 56.6, 'longitud': 0.80},
+    {'tipo': '18X7', 'vueltas': 7.5, 'peso_por_resorte': 59.4, 'longitud': 0.80},
+    {'tipo': '18X7', 'vueltas': 8, 'peso_por_resorte': 62.4, 'longitud': 0.80},
+    {'tipo': '18X7', 'vueltas': 8.5, 'peso_por_resorte': 65.5, 'longitud': 0.80},
+    {'tipo': '18X7', 'vueltas': 9, 'peso_por_resorte': 68.8, 'longitud': 0.80},
+    {'tipo': '18X7', 'vueltas': 9.5, 'peso_por_resorte': 72.2, 'longitud': 0.80},
 
 
 
 
-    {'tipo': '18X8', 'vueltas': 5.5, 'peso_por_resorte': 56.8},
-    {'tipo': '18X8', 'vueltas': 6, 'peso_por_resorte': 59.7},
-    {'tipo': '18X8', 'vueltas': 6.5, 'peso_por_resorte': 62.7},
-    {'tipo': '18X8', 'vueltas': 7, 'peso_por_resorte': 65.8},
-    {'tipo': '18X8', 'vueltas': 7.5, 'peso_por_resorte': 69.1},
-    {'tipo': '18X8', 'vueltas': 8, 'peso_por_resorte': 72.5},
-    {'tipo': '18X8', 'vueltas': 8.5, 'peso_por_resorte': 76.2},
-    {'tipo': '18X8', 'vueltas': 9, 'peso_por_resorte': 80},
-    {'tipo': '18X8', 'vueltas': 9.5, 'peso_por_resorte': 84},
-    {'tipo': '18X8', 'vueltas': 10, 'peso_por_resorte': 88.2},
-    {'tipo': '18X8', 'vueltas': 10.5, 'peso_por_resorte': 92.6},
-
-
-   
-    {'tipo': '20X7', 'vueltas': 5.5, 'peso_por_resorte': 53.6},
-    {'tipo': '20X7', 'vueltas': 6, 'peso_por_resorte': 56.3},
-    {'tipo': '20X7', 'vueltas': 6.5, 'peso_por_resorte': 59.1},
-    {'tipo': '20X7', 'vueltas': 7, 'peso_por_resorte': 62.1},
-    {'tipo': '20X7', 'vueltas': 7.5, 'peso_por_resorte': 65.2},
-    {'tipo': '20X7', 'vueltas': 8, 'peso_por_resorte': 68.4},
-    {'tipo': '20X7', 'vueltas': 8.5, 'peso_por_resorte': 71.8},
-    {'tipo': '20X7', 'vueltas': 9, 'peso_por_resorte': 75.4},
-    {'tipo': '20X7', 'vueltas': 9.5, 'peso_por_resorte': 79.2},
+    {'tipo': '18X8', 'vueltas': 5.5, 'peso_por_resorte': 56.8, 'longitud': 1.02},
+    {'tipo': '18X8', 'vueltas': 6, 'peso_por_resorte': 59.7, 'longitud': 1.02},
+    {'tipo': '18X8', 'vueltas': 6.5, 'peso_por_resorte': 62.7, 'longitud': 1.02},
+    {'tipo': '18X8', 'vueltas': 7, 'peso_por_resorte': 65.8, 'longitud': 1.02},
+    {'tipo': '18X8', 'vueltas': 7.5, 'peso_por_resorte': 69.1, 'longitud': 1.02},
+    {'tipo': '18X8', 'vueltas': 8, 'peso_por_resorte': 72.5, 'longitud': 1.02},
+    {'tipo': '18X8', 'vueltas': 8.5, 'peso_por_resorte': 76.2, 'longitud': 1.02},
+    {'tipo': '18X8', 'vueltas': 9, 'peso_por_resorte': 80, 'longitud': 1.02},
+    {'tipo': '18X8', 'vueltas': 9.5, 'peso_por_resorte': 84, 'longitud': 1.02},
+    {'tipo': '18X8', 'vueltas': 10, 'peso_por_resorte': 88.2, 'longitud': 1.02},
+    {'tipo': '18X8', 'vueltas': 10.5, 'peso_por_resorte': 92.6, 'longitud': 1.02},
 
 
    
-    {'tipo': '20X8', 'vueltas': 5.5, 'peso_por_resorte': 62.3},
-    {'tipo': '20X8', 'vueltas': 6, 'peso_por_resorte': 65.4},
-    {'tipo': '20X8', 'vueltas': 6.5, 'peso_por_resorte': 68.7},
-    {'tipo': '20X8', 'vueltas': 7, 'peso_por_resorte': 72.2},
-    {'tipo': '20X8', 'vueltas': 7.5, 'peso_por_resorte': 75.8},
-    {'tipo': '20X8', 'vueltas': 8, 'peso_por_resorte': 79.6},
-    {'tipo': '20X8', 'vueltas': 8.5, 'peso_por_resorte': 83.5},
-    {'tipo': '20X8', 'vueltas': 9, 'peso_por_resorte': 87.7},
-    {'tipo': '20X8', 'vueltas': 9.5, 'peso_por_resorte': 92.1},
-    {'tipo': '20X8', 'vueltas': 10, 'peso_por_resorte': 96.7},
-    {'tipo': '20X8', 'vueltas': 10.5, 'peso_por_resorte': 101.5},
-
-
-
-    {'tipo': '24X7', 'vueltas': 5.5, 'peso_por_resorte': 65.3},
-    {'tipo': '24X7', 'vueltas': 6, 'peso_por_resorte': 68.6},
-    {'tipo': '24X7', 'vueltas': 6.5, 'peso_por_resorte': 72},
-    {'tipo': '24X7', 'vueltas': 7, 'peso_por_resorte': 75.6},
-    {'tipo': '24X7', 'vueltas': 7.5, 'peso_por_resorte': 79.4},
-    {'tipo': '24X7', 'vueltas': 8, 'peso_por_resorte': 83.3},
-    {'tipo': '24X7', 'vueltas': 8.5, 'peso_por_resorte': 87.5},
-    {'tipo': '24X7', 'vueltas': 9, 'peso_por_resorte': 91.9},
-    {'tipo': '24X7', 'vueltas': 9.5, 'peso_por_resorte': 96.5},
+    {'tipo': '20X7', 'vueltas': 5.5, 'peso_por_resorte': 53.6, 'longitud': 0.84},
+    {'tipo': '20X7', 'vueltas': 6, 'peso_por_resorte': 56.3, 'longitud': 0.84},
+    {'tipo': '20X7', 'vueltas': 6.5, 'peso_por_resorte': 59.1, 'longitud': 0.84},
+    {'tipo': '20X7', 'vueltas': 7, 'peso_por_resorte': 62.1, 'longitud': 0.84},
+    {'tipo': '20X7', 'vueltas': 7.5, 'peso_por_resorte': 65.2, 'longitud': 0.84},
+    {'tipo': '20X7', 'vueltas': 8, 'peso_por_resorte': 68.4, 'longitud': 0.84},
+    {'tipo': '20X7', 'vueltas': 8.5, 'peso_por_resorte': 71.8, 'longitud': 0.84},
+    {'tipo': '20X7', 'vueltas': 9, 'peso_por_resorte': 75.4, 'longitud': 0.84},
+    {'tipo': '20X7', 'vueltas': 9.5, 'peso_por_resorte': 79.2, 'longitud': 0.84},
 
 
    
-    {'tipo': '24X8', 'vueltas': 5.5, 'peso_por_resorte': 75.9},
-    {'tipo': '24X8', 'vueltas': 6, 'peso_por_resorte': 79.7},
-    {'tipo': '24X8', 'vueltas': 6.5, 'peso_por_resorte': 83.7},
-    {'tipo': '24X8', 'vueltas': 7, 'peso_por_resorte': 87.9},
-    {'tipo': '24X8', 'vueltas': 7.5, 'peso_por_resorte': 92.3},
-    {'tipo': '24X8', 'vueltas': 8, 'peso_por_resorte': 96.9},
-    {'tipo': '24X8', 'vueltas': 8.5, 'peso_por_resorte': 101.7},
-    {'tipo': '24X8', 'vueltas': 9, 'peso_por_resorte': 106.8},
-    {'tipo': '24X8', 'vueltas': 9.5, 'peso_por_resorte': 112.2},
-    {'tipo': '24X8', 'vueltas': 10, 'peso_por_resorte': 117.8},
-    {'tipo': '24X8', 'vueltas': 10.5, 'peso_por_resorte': 123.7},
+    {'tipo': '20X8', 'vueltas': 5.5, 'peso_por_resorte': 62.3, 'longitud': 0.89},
+    {'tipo': '20X8', 'vueltas': 6, 'peso_por_resorte': 65.4, 'longitud': 0.89},
+    {'tipo': '20X8', 'vueltas': 6.5, 'peso_por_resorte': 68.7, 'longitud': 0.89},
+    {'tipo': '20X8', 'vueltas': 7, 'peso_por_resorte': 72.2, 'longitud': 0.89},
+    {'tipo': '20X8', 'vueltas': 7.5, 'peso_por_resorte': 75.8, 'longitud': 0.89},
+    {'tipo': '20X8', 'vueltas': 8, 'peso_por_resorte': 79.6, 'longitud': 0.89},
+    {'tipo': '20X8', 'vueltas': 8.5, 'peso_por_resorte': 83.5, 'longitud': 0.89},
+    {'tipo': '20X8', 'vueltas': 9, 'peso_por_resorte': 87.7, 'longitud': 0.89},
+    {'tipo': '20X8', 'vueltas': 9.5, 'peso_por_resorte': 92.1, 'longitud': 0.89},
+    {'tipo': '20X8', 'vueltas': 10, 'peso_por_resorte': 96.7, 'longitud': 0.89},
+    {'tipo': '20X8', 'vueltas': 10.5, 'peso_por_resorte': 101.5, 'longitud': 0.89},
+
+
+
+    {'tipo': '24X7', 'vueltas': 5.5, 'peso_por_resorte': 65.3, 'longitud': 0.83},
+    {'tipo': '24X7', 'vueltas': 6, 'peso_por_resorte': 68.6, 'longitud': 0.83},
+    {'tipo': '24X7', 'vueltas': 6.5, 'peso_por_resorte': 72, 'longitud': 0.83},
+    {'tipo': '24X7', 'vueltas': 7, 'peso_por_resorte': 75.6, 'longitud': 0.83},
+    {'tipo': '24X7', 'vueltas': 7.5, 'peso_por_resorte': 79.4, 'longitud': 0.83},
+    {'tipo': '24X7', 'vueltas': 8, 'peso_por_resorte': 83.3, 'longitud': 0.83},
+    {'tipo': '24X7', 'vueltas': 8.5, 'peso_por_resorte': 87.5, 'longitud': 0.83},
+    {'tipo': '24X7', 'vueltas': 9, 'peso_por_resorte': 91.9, 'longitud': 0.83},
+    {'tipo': '24X7', 'vueltas': 9.5, 'peso_por_resorte': 96.5, 'longitud': 0.83},
 
 
    
-    {'tipo': '28X7', 'vueltas': 5.5, 'peso_por_resorte': 76.2},
-    {'tipo': '28X7', 'vueltas': 6, 'peso_por_resorte': 80.0},
-    {'tipo': '28X7', 'vueltas': 6.5, 'peso_por_resorte': 84.0},
-    {'tipo': '28X7', 'vueltas': 7, 'peso_por_resorte': 88.2},
-    {'tipo': '28X7', 'vueltas': 7.5, 'peso_por_resorte': 92.6},
-    {'tipo': '28X7', 'vueltas': 8, 'peso_por_resorte': 97.2},
-    {'tipo': '28X7', 'vueltas': 8.5, 'peso_por_resorte': 102.1},
-    {'tipo': '28X7', 'vueltas': 9, 'peso_por_resorte': 107.2},
-    {'tipo': '28X7', 'vueltas': 9.5, 'peso_por_resorte': 112.6},
+    {'tipo': '24X8', 'vueltas': 5.5, 'peso_por_resorte': 75.9, 'longitud': 1.07},
+    {'tipo': '24X8', 'vueltas': 6, 'peso_por_resorte': 79.7, 'longitud': 1.07},
+    {'tipo': '24X8', 'vueltas': 6.5, 'peso_por_resorte': 83.7, 'longitud': 1.07},
+    {'tipo': '24X8', 'vueltas': 7, 'peso_por_resorte': 87.9, 'longitud': 1.07},
+    {'tipo': '24X8', 'vueltas': 7.5, 'peso_por_resorte': 92.3, 'longitud': 1.07},
+    {'tipo': '24X8', 'vueltas': 8, 'peso_por_resorte': 96.9, 'longitud': 1.07},
+    {'tipo': '24X8', 'vueltas': 8.5, 'peso_por_resorte': 101.7, 'longitud': 1.07},
+    {'tipo': '24X8', 'vueltas': 9, 'peso_por_resorte': 106.8, 'longitud': 1.07},
+    {'tipo': '24X8', 'vueltas': 9.5, 'peso_por_resorte': 112.2, 'longitud': 1.07},
+    {'tipo': '24X8', 'vueltas': 10, 'peso_por_resorte': 117.8, 'longitud': 1.07},
+    {'tipo': '24X8', 'vueltas': 10.5, 'peso_por_resorte': 123.7, 'longitud': 1.07},
+
+
+   
+    {'tipo': '28X7', 'vueltas': 5.5, 'peso_por_resorte': 76.2, 'longitud': 1.19},
+    {'tipo': '28X7', 'vueltas': 6, 'peso_por_resorte': 80.0, 'longitud': 1.19},
+    {'tipo': '28X7', 'vueltas': 6.5, 'peso_por_resorte': 84.0, 'longitud': 1.19},
+    {'tipo': '28X7', 'vueltas': 7, 'peso_por_resorte': 88.2, 'longitud': 1.19},
+    {'tipo': '28X7', 'vueltas': 7.5, 'peso_por_resorte': 92.6, 'longitud': 1.19},
+    {'tipo': '28X7', 'vueltas': 8, 'peso_por_resorte': 97.2, 'longitud': 1.19},
+    {'tipo': '28X7', 'vueltas': 8.5, 'peso_por_resorte': 102.1, 'longitud': 1.19},
+    {'tipo': '28X7', 'vueltas': 9, 'peso_por_resorte': 107.2, 'longitud': 1.19},
+    {'tipo': '28X7', 'vueltas': 9.5, 'peso_por_resorte': 112.6, 'longitud': 1.19},
 
 
 
-    {'tipo': '28X8', 'vueltas': 5.5, 'peso_por_resorte': 88.6},
-    {'tipo': '28X8', 'vueltas': 6, 'peso_por_resorte': 93.0},
-    {'tipo': '28X8', 'vueltas': 6.5, 'peso_por_resorte': 97.7},
-    {'tipo': '28X8', 'vueltas': 7, 'peso_por_resorte': 102.5},
-    {'tipo': '28X8', 'vueltas': 7.5, 'peso_por_resorte': 107.7},
-    {'tipo': '28X8', 'vueltas': 8, 'peso_por_resorte': 113.0},
-    {'tipo': '28X8', 'vueltas': 8.5, 'peso_por_resorte': 118.7},
-    {'tipo': '28X8', 'vueltas': 9, 'peso_por_resorte': 124.6},
-    {'tipo': '28X8', 'vueltas': 9.5, 'peso_por_resorte': 130.9},
-    {'tipo': '28X8', 'vueltas': 10, 'peso_por_resorte': 137.4},
-    {'tipo': '28X8', 'vueltas': 10.5, 'peso_por_resorte': 144.3},
+    {'tipo': '28X8', 'vueltas': 5.5, 'peso_por_resorte': 88.6, 'longitud': 1.55},
+    {'tipo': '28X8', 'vueltas': 6, 'peso_por_resorte': 93.0, 'longitud': 1.55},
+    {'tipo': '28X8', 'vueltas': 6.5, 'peso_por_resorte': 97.7, 'longitud': 1.55},
+    {'tipo': '28X8', 'vueltas': 7, 'peso_por_resorte': 102.5, 'longitud': 1.55},
+    {'tipo': '28X8', 'vueltas': 7.5, 'peso_por_resorte': 107.7, 'longitud': 1.55},
+    {'tipo': '28X8', 'vueltas': 8, 'peso_por_resorte': 113.0, 'longitud': 1.55},
+    {'tipo': '28X8', 'vueltas': 8.5, 'peso_por_resorte': 118.7, 'longitud': 1.55},
+    {'tipo': '28X8', 'vueltas': 9, 'peso_por_resorte': 124.6, 'longitud': 1.55},
+    {'tipo': '28X8', 'vueltas': 9.5, 'peso_por_resorte': 130.9, 'longitud': 1.55},
+    {'tipo': '28X8', 'vueltas': 10, 'peso_por_resorte': 137.4, 'longitud': 1.55},
+    {'tipo': '28X8', 'vueltas': 10.5, 'peso_por_resorte': 144.3, 'longitud': 1.55},
 
 ]
 
@@ -330,7 +330,7 @@ def prioridad_combinacion(c):
 
 
 #-----------------------------------------04/02/2026-------------------------------
-def encontrar_combinaciones_resortes(peso_objetivo, vueltas_objetivo, resortes, tolerancia=4):
+def encontrar_combinaciones_resortes(peso_objetivo, vueltas_objetivo, resortes, tolerancia=4, ancho=None): #se agrega el ancho en las variables de la función.
     """
     Devuelve TODAS las combinaciones posibles dentro de la tolerancia.
     Incluye combinaciones de 1, 2 y 3 resortes.
@@ -347,6 +347,9 @@ def encontrar_combinaciones_resortes(peso_objetivo, vueltas_objetivo, resortes, 
     for r in resortes_vuelta:
         peso_total = r['peso_por_resorte']
         diferencia = abs(peso_total - peso_objetivo)
+        if ancho: #valida la longitud de resortes
+            if r['longitud'] > (ancho - 0.50): #valida la longitud de resortes
+                continue #valida la longitud de resortes
         if diferencia <= tolerancia:
             resultados.append({
                 "resortes": [r],
@@ -371,6 +374,12 @@ def encontrar_combinaciones_resortes(peso_objetivo, vueltas_objetivo, resortes, 
     for r1, r2 in itertools.combinations_with_replacement(resortes_vuelta, 2):
         peso_total = r1['peso_por_resorte'] + r2['peso_por_resorte']
         diferencia = abs(peso_total - peso_objetivo)
+        #para validar la sumatoria de la longitud de los resortes
+        long_total = r1['longitud'] + r2['longitud']
+        if ancho:
+            if long_total > (ancho - 0.50):
+                continue
+        #para validar la sumatoria de la longitud de los resortes
 
         if diferencia <= tolerancia:
             resultados.append({
@@ -385,6 +394,12 @@ def encontrar_combinaciones_resortes(peso_objetivo, vueltas_objetivo, resortes, 
     for combo in itertools.combinations_with_replacement(resortes_vuelta, 3):
         peso_total = sum(r['peso_por_resorte'] for r in combo)
         diferencia = abs(peso_total - peso_objetivo)
+        #para validar la sumatoria de la longitud de los resortes
+        long_total = sum(r['longitud'] for r in combo)
+        if ancho:
+            if long_total > (ancho - 0.50):
+                continue
+        #para validar la sumatoria de la longitud de los resortes
         if diferencia <= tolerancia:
             resultados.append({
                 "resortes": list(combo),
@@ -402,13 +417,14 @@ def encontrar_combinaciones_resortes(peso_objetivo, vueltas_objetivo, resortes, 
 
     return resultados
 #----------------------------------------------------------------------------
-def seleccionar_top_resortes(peso_objetivo, vueltas_reales, resortes, limite=3):
+def seleccionar_top_resortes(peso_objetivo, vueltas_reales, resortes, limite=3, ancho=None): #se agrega el ancho en las variables de la función.
     vueltas_objetivo = normalizar_vueltas(vueltas_reales)
 
     combinaciones = encontrar_combinaciones_resortes(
         peso_objetivo,
         vueltas_objetivo,
-        resortes
+        resortes,
+        ancho=ancho #se agrega el ancho
     )
 
     return combinaciones[:limite]

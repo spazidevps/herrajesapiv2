@@ -41,13 +41,18 @@
         <h2>Bienvenido a la Calculadora de Resortes</h2>
         <h3>Ingresa el peso en Kilogramos</h3>
         <h3>Ingresa la Altura en metros lineales</h3>
-        <form action="/resortes/" method="post">
+        <!-- <form action="/resortes/" method="post"> -->
+        <form action="/resortes/" method="post" onsubmit="return validarResortes()">
             <div>
-                <input type="text" name="peso" placeholder="Peso (kg)">
+                <!-- <input type="text" name="peso" placeholder="Peso (kg)"> -->
+                <input type="text" id="peso" name="peso" placeholder="Peso (kg)"> 
+                <!--<input type="number" step="any" id="peso" name="peso" placeholder="Peso (kg)">-->
             </div>
          
             <div>
-                <input type="text" name="altura" placeholder="Altura (m)">
+                <!-- <input type="text" name="altura" placeholder="Altura (m)"> -->
+                <input type="text" id="altura" name="altura" placeholder="Altura (m)"> 
+                <!--<input type="number" step="any" id="altura" name="altura" placeholder="Altura (m)">-->
             </div>
             <div>
                 <input type="submit" value="Calcular">
@@ -64,7 +69,38 @@
             document.body.classList.add("zoom-out"); // Añade una clase para aplicar el "zoom out"
         }
     };
+
+
+ //función agregada el 13/03/2026
+    function validarResortes(){
+
+        let peso = parseFloat(document.getElementById("peso").value);
+        let altura = parseFloat(document.getElementById("altura").value);
+
+        // Validar campos vacíos
+        if(isNaN(peso) || isNaN(altura)){
+            alert("Debes ingresar el peso y la altura del portón.");
+            return false;
+        }
+
+        let errores = [];
+
+        // Detectar centímetros en altura
+        if(altura > 20){
+            errores.push("La altura parece estar en centímetros. Ingresa el valor en metros (ejemplo: 2.50).");
+        }
+
+        if(errores.length > 0){
+            alert(errores.join("\n"));
+            return false;
+        }
+
+        return true;
+    }
     </script>
+
+
+
     
 
 

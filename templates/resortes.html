@@ -1,46 +1,46 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Calculadora de Resortes</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/estilo.css') }}">
-</head>
+{% extends "base.html" %}
+
+{% block title %}Resortes{% endblock %}
+
+{% block content %}
 
 
 
-<body>
-
-    <style>
-        .zoom-out {
-            transform: scale(0.7); /* Escala el contenido al 70% de su tamaño original */
-            transform-origin: top left; /* Asegura que el escalado se aplique desde la esquina superior izquierda */
-            width: 142.85%; /* Ajusta el ancho al inverso del escalado para compensar la reducción */
-            height: auto; /* Ajusta la altura automáticamente */
-            overflow: hidden; /* Oculta cualquier contenido fuera del área visible */
-        }
-        </style>
-        
-
-
-
-
-
-    <div class="header">
-        <div class="header-content">
-            <div class="header-logo">
-                <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo">
-            </div>
-            <ul class="nav">
-                <li><a href="/resortes/">Inicio</a></li>
-                <!-- Otros elementos de navegación -->
-                <!-- Otros elementos de navegación -->
-            </ul>
-        </div>
+    <!-- 🔵 LOGO PRINCIPAL -->
+    <div style="text-align: center; margin-bottom: 20px;">
+        <img src="{{ url_for('static', filename='img/logo_calculadora_resortes.png') }}" 
+            alt="Calculadora de Resortes" 
+            style="max-width: 500px; width: 100%;">
     </div>
 
+    <!-- 🟡 SUBTÍTULO -->
+    <h3 style="text-align: center; color: #004684; margin-bottom: 20px;">
+        BIENVENIDO A LA CALCULADORA DE RESORTES
+    </h3>
+
+    <!-- 🔷 CARD AZUL -->
     <div class="calculadora">
+
+        <p style="color: #fff; font-size: 18px; margin-bottom: 20px;">
+            Ingresa los datos del portón
+        </p>
+        <p style="color: #fff; font-size: 18px; margin-bottom: 20px;">
+            Ingresa el peso en Kilogramos
+        </p>
+
+        <p style="color: #fff; font-size: 18px; margin-bottom: 20px;">
+            Ingresa la altura en metros lineales
+        </p>
+
+
+
+
+
+
+    <!-- <div class="calculadora">
         <h2>Bienvenido a la Calculadora de Resortes</h2>
         <h3>Ingresa el peso en Kilogramos</h3>
-        <h3>Ingresa la Altura en metros lineales</h3>
+        <h3>Ingresa la Altura en metros lineales</h3> -->
         <!-- <form action="/resortes/" method="post"> -->
         <form action="/resortes/" method="post" onsubmit="return validarResortes()">
             <div>
@@ -58,10 +58,21 @@
                 <input type="submit" value="Calcular">
             </div>
         </form>
-    </div>
-    
-</body>
+    <!-- </div> -->
 
+
+
+
+
+
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
 
 <script>
     window.onload = function() {
@@ -98,10 +109,7 @@
         return true;
     }
     </script>
+{% endblock %}
 
 
 
-    
-
-
-</html>

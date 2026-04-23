@@ -7,25 +7,37 @@
     <!-- Incluir Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
-        body {
+        /* body {
             background-color: #343a40;
             /* Fondo oscuro */
-            color: #fff;
+            /*color: #fff;
             /* Texto blanco */
+        /*} */
+        /* body {
+            background-color: #f4f6f9; /* fondo claro */
+            /*color: #212529; /* texto oscuro */
+           /* font-family: 'Roboto', sans-serif;
+        } */
+
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background: url("../static/img/fondo_spazi.jpg") no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
         }
 
         .card,
         .navbar {
-            background-color: #212529;
+            background-color: #004684; /* 212529 */
             /* Mismo color de fondo para tarjetas y barra de navegación */
         }
 
         .form-control,
         .form-control:focus {
-            background-color: #495057;
+            background-color: #ffffff; /*495057*/
             /* Fondo de campos de formulario oscuro */
-            border-color: #6c757d;
-            color: #fff;
+            border-color: #0854a0; /*6c757d*/
+            color: #000000; /*fff*/
             /* Texto blanco en campos de formulario */
         }
 
@@ -37,7 +49,7 @@
         }
 
         .navbar .nav-link:hover {
-            color: #adb5bd;
+            color: #edeff1;
             /* Color al pasar el ratón por encima de los enlaces */
         }
 
@@ -59,10 +71,12 @@
         }
 
         .titulo-bienvenida {
-            font-size: 24px;
-            color: #ffffff;
+            font-size: 40px;
+            color: #0454bf;  /*ffffff*/
             /* Ajusta el color según tus preferencias */
             margin-bottom: 15px;
+            font-weight: 700;       
+            font-style: italic;
         }
 
 /*bloque de Código CCS para la imagen del portón*/
@@ -119,7 +133,7 @@
         .barra-ancho span {
             flex: 1;
             height: 4px;
-            background-color: #ffffff;
+            background-color: #000000; /*ffffff*/
             border-radius: 2px;
             position: relative; /*---agregado---*/
         }
@@ -131,7 +145,7 @@
             position: absolute;
             width: 4px;
             height: 12px;
-            background: #ffffff;
+            background: #000000; /*ffffff*/
             top: -4px;
         }
         .barra-ancho span::before {
@@ -154,7 +168,7 @@
         .barra-ancho label{
             margin-bottom:6px;
             font-weight:600;
-            background-color: #ffffff;
+            background-color: rgb(224, 222, 222); /*ffffff*/
             color: #212529;
             padding: 3px 10px;
             border-radius: 6px;
@@ -163,7 +177,7 @@
         .linea-ancho{
             width:100%;
             height:4px;
-            background:white;
+            background:rgb(0, 0, 0);  /*white*/
             position:relative;
         }
 
@@ -173,8 +187,8 @@
             content:"";
             position:absolute;
             width:4px;
-            height:14px;
-            background:white;
+            height:14px; 
+            background:rgb(0, 0, 0); /*white*/
             top:-5px;
         }
 
@@ -272,7 +286,7 @@
         .barra-alto label{
             margin-bottom:6px;
             font-weight:600;
-            background-color:#ffffff;
+            background-color:#ffffff; /*ffffff*/
             color:#212529;
             padding:3px 10px;
             border-radius:6px;
@@ -281,7 +295,7 @@
         .linea-alto{
             height:100%;
             width:4px;
-            background:white;
+            background:rgb(0, 0, 0); /*white*/
             position:relative;
         }
 
@@ -292,7 +306,7 @@
             position:absolute;
             height:4px;
             width:14px;
-            background:white;
+            background:rgb(0, 0, 0); /*white*/
             left:-5px;
         }
 
@@ -328,7 +342,7 @@
         } */
         .barra-alto label{
             margin-left:-65px;
-            background:white;
+            background:rgb(224, 222, 222); /*white*/
             color:#212529;
             padding:4px 10px;
             border-radius:6px;
@@ -352,12 +366,71 @@
             margin-top: 10px;
             margin-bottom: 30px;  
             font-size: 19px;
-            color: #e9ebec;
+            color: #141414; /*e9ebec*/
+
+        }
+
+/*HASTA AQUI DEBO DE PARAR  CON EL CTRL + Z*/
+
+        /* .row-custom {
+            margin-left: -150px;
+            margin-right: -150px;
+        }
+
+        .row-custom > div {
+            padding-left: 50px;
+            padding-right: 50px;
+        } */
+
+
+        .row-custom {
+            display: flex;
+            justify-content: center;
+            gap: 80px; /* separación real entre columnas */
+        }
+
+        .col-md-6 {
+            max-width: 520px;
+        }
+
+        
+        
+        .col-md-6 {
+            max-width: 520px;
+        }
+
+        .gap-botones {
+            gap: 15px;
+        }
+
+        .btn-porton {
+            min-width: 180px;   /* ancho controlado */
+            padding: 10px 20px; /* más compacto */
+            font-size: 15px;
+            border-radius: 8px;
         }
 
 
+        /* .col-md-6 {
+            padding-top: 40px; /* ajusta este valor */
+        /*} */
 
-/*---------------------------------------------------------------------------------------------------------------------------------*/
+        .col-md-6:first-child {
+            padding-top: 10px;
+        }
+
+        .col-md-6:last-child {
+            padding-top: 250px;
+        }
+
+        /* 📱 cuando la pantalla es más chica */
+        @media (max-width: 1499px) {
+            .col-md-6:last-child {
+                padding-top: 30px; /*  ajusta segun lo que necesites */
+            }
+        }
+
+/*------------------------------------------------------------hasta aqui ultimo ajuste con colores---------------------------------------------------------------------*/
 
 
     </style>
@@ -388,143 +461,114 @@
     </nav>
 
     <!-- Título e Imagen Centrada -->
-    <div class="container">
-        <div class="row">
-            <div class="col-12 imagen-centrada">
-                <div class="titulo-bienvenida">Bienvenido a:</div>
-                <img src="../static/img/Logo_GHerrajes.png" alt="Descripción de la Imagen" class="img-fluid">
-            </div>
-        </div>
-    </div>
-
-
     <div class="container mt-4">
-        <div class="row justify-content-center">
-            <div class="col-md-6 text-center">
-                <p class="mb-3" style="color:#adb5bd;">
-                    Selecciona el tipo de portón que deseas calcular.
-                    <br>
-                    <strong>Portón Spazi</strong> Utiliza el peso automático del sistema.
-                    <br>
-                    <strong>Portón Genérico</strong> Requiere que ingreses el peso manualmente.
-                </p>
-            </div>
-        </div>
-    </div>
+        <!-- <div class="row align-items-center"> -->
+        <!-- <div class="row align-items-center row-custom"> -->
+        <div class="row align-items-start row-custom">
 
-    <div class="container mt-4">
-        <div class="row justify-content-center">
+            <!-- 🔵 COLUMNA IZQUIERDA -->
             <div class="col-md-6">
-                <div class="row">
 
-                    <div class="col-6 text-left">
-                        <button type="button" id="btn-spazi" class="btn btn-success btn-lg" onclick="seleccionarPorton('spazi')">
-                            Portón spazi
-                        </button>
-                    </div>
-
-                    <div class="col-6 text-right">
-                        <button type="button" id="btn-generico" class="btn btn-secondary btn-lg" onclick="seleccionarPorton('generico')">
-                            Portón genérico
-                        </button>
-                    </div>
-
+                <!-- Bienvenida + Logo -->
+                <div class="text-center mb-4">
+                    <div class="titulo-bienvenida">Bienvenido a:</div>
+                    <img src="../static/img/Logo_calculadora_herrajes.png" class="img-fluid" style="max-width: 220px;">  <!--Logo_GHerrajes.png-->
                 </div>
-            </div>
-        </div>
-    </div>
+
+                <!-- Texto -->
+                <div class="text-center mb-4">
+                    <p style="color:#000000;"> <!--e9ecef-->
+                        Selecciona el tipo de portón que deseas calcular.<br>
+                        <strong>Portón Spazi</strong> Utiliza el peso automático del sistema.<br>
+                        <strong>Portón Genérico</strong> Requiere que ingreses el peso manualmente.
+                    </p>
+                </div>
+
+                <!-- Botones -->
+                <!-- <div class="d-flex justify-content-between mb-4"> -->
+                <div class="d-flex justify-content-center gap-botones mb-4">
+                    <!-- <button type="button" id="btn-spazi" class="btn btn-success btn-lg mr-2"
+                        onclick="seleccionarPorton('spazi')">
+                        Portón Spazi
+                    </button> -->
+
+                    <button type="button" id="btn-spazi"
+                        class="btn btn-success btn-porton"
+                        onclick="seleccionarPorton('spazi')">
+                        Portón Spazi
+                    </button>
+
+                    <!-- <button type="button" id="btn-generico" class="btn btn-secondary btn-lg ml-2"
+                        onclick="seleccionarPorton('generico')">
+                        Portón Genérico
+                    </button> -->
+                    
+
+                    <button type="button" id="btn-generico"
+                        class="btn btn-secondary btn-porton"
+                        onclick="seleccionarPorton('generico')">
+                        Portón Genérico
+                    </button>
 
 
-    <div class="container">
-        <div class="card mt-5">
-            <div class="card-header">
-                <h4>Ingresa los siguientes datos en metros (m) y kilogramos (kg):</h4>
-                <h5>Esta calculadora funciona para un ancho máximo de 7.32 metros, un alto máximo de 2.7 metros y un peso máximo de 250 kilogramos</h5>
+                    
+                </div>
 
-            </div>
-            <div class="card-body">
-                <form method="POST" action="/calcular" onsubmit="return validarFormulario()"> <!-- onsubmit= "validarFormulario()" se cambio por el que esta actualmente -->
-                    <input type="hidden" id="tipo_porton" name="tipo_porton" value="spazi">
-
-                    <div class="form-group">
-                        <label for="ancho">Ancho:</label>
-                        <input type="number" step="any" class="form-control" id="ancho" name="ancho" placeholder="Ancho (m)">
+                <!-- Formulario -->
+                <div class="card">
+                    <div class="card-header text-center">
+                        <h5>Ingresa los datos en metros (m) y kilogramos (kg)</h5>
+                        <h6>Esta calculadora funciona para un ancho máximo de 7.32 metros, un alto máximo de 2.7 metros y un peso máximo de 250 kilogramos</h6>
                     </div>
-                
-                    <div class="form-group">
-                        <label for="alto">Alto:</label>
-                        <input type="number" step="any" class="form-control" id="alto" name="alto" placeholder="Alto (m)">
-                    </div>
 
-                    <div class="form-group" id="grupo-peso" style="display: none;">
-                        <label for="peso">Peso (kg):</label>
-                        <input type="number" step="any" class="form-control" id="peso" name="peso" placeholder="Peso en kg">
-                    </div>
+                    <div class="card-body">
+                        <form method="POST" action="/calcular" onsubmit="return validarFormulario()">
 
-                    <button type="submit" class="btn btn-primary">GENERAR</button>
-                </form>
+                            <input type="hidden" id="tipo_porton" name="tipo_porton" value="spazi">
+
+                            <div class="form-group">
+                                <label>Ancho:</label>
+                                <input type="number" step="any" class="form-control" id="ancho" name="ancho" placeholder="Ancho (m)">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Alto:</label>
+                                <input type="number" step="any" class="form-control" id="alto" name="alto" placeholder="Alto (m)">
+                            </div>
+
+                            <div class="form-group" id="grupo-peso" style="display: none;">
+                                <label>Peso (kg):</label>
+                                <input type="number" step="any" class="form-control" id="peso" name="peso" placeholder="Peso en kg">
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-block">
+                                GENERAR
+                            </button>
+
+                        </form>
+                    </div>
+                </div>
+
             </div>
-        </div>
-    </div>
 
+            <!-- 🟢 COLUMNA DERECHA hasta aqui estan bien las actualizaciones-->
+            <div class="col-md-6 text-center">
 
-
-    <!-- -------------------------------------------------codigo agregado para colocar la imagen--------------------------------------------- -->
-
-
-    <div class="container mt-2">
-        <div class="row justify-content-center">
-            <div class="col-md-9">
                 <div class="guia-medidas">
 
-                    <p class="texto-ayuda">
-                        Esta ilustración te ayuda a identificar correctamente el ancho y alto de un portón.
-                    </p>
-
-                    <!-- Barra superior (ANCHO) -->
-                    <!-- <div class="barra-ancho">
-                        <span></span>
-                        <label>Ancho</label>
-                        <span></span>
-                    </div> -->
-
-                    <!--<div class="contenedor-porton"> -->
-                        <!-- Barra lateral (ALTO) -->
-                        <!-- <div class="barra-alto">
-                            <span></span>
-                            <label>Alto</label>
-                            <span></span>
-                        </div> -->
-
-                        <!-- Imagen -->
-                        <!-- <img 
-                            src="https://grupospazi.mx/wp-content/uploads/2025/12/porton-ascendente-blaco-marco-blanco-2.png"
-                            alt="Guía visual del portón">
-                    </div> -->
 
                     <div class="contenedor-porton">
 
-                        <!-- Barra superior (ANCHO) -->
-                        <!-- <div class="barra-ancho">
-                            <span></span>
-                            <label>Ancho</label>
-                            <span></span>
-                        </div> -->
+                        <!-- Barra ancho -->
                         <div class="barra-ancho">
                             <label>Ancho</label>
                             <div class="linea-ancho"></div>
                         </div>
 
-                        <!-- Barra lateral -->
-                        <!-- <div class="barra-alto">
-                            <span></span>
-                            <label>Alto</label>
-                            <span></span>
-                        </div> -->
+                        <!-- Barra alto -->
                         <div class="barra-alto">
                             <div class="linea-alto"></div>
                             <label>Alto</label>
-                            
                         </div>
 
                         <img 
@@ -533,12 +577,17 @@
 
                     </div>
 
+                    <p class="texto-ayuda">
+                        Esta ilustración te ayuda a identificar correctamente el ancho y alto de un portón.
+                    </p>
+
 
                 </div>
+
             </div>
+
         </div>
     </div>
-
 
 
 
@@ -647,3 +696,4 @@
 </body>
 
 </html>
+

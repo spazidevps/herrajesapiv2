@@ -1,17 +1,47 @@
 
 /* Establecer una tipografía moderna y colores oscuros */
-body {
+/* body {
     font-family: 'Helvetica Neue', Arial, sans-serif;
     background-color: #1c1c1c; /* Color de fondo oscuro */
-    color: #fff; /* Texto en blanco */
-    text-align: center;
+    /*color: #fff;  Texto en blanco */
+    /*text-align: center;
     margin: 0;
     padding-top: 60px; /* Espacio para el encabezado */
+/*} */
+
+
+/* body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background-color: #1c1c1c;
+    color: #fff;
+    margin: 0;
+} */
+
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+
+    background: url("../img/fondo_spazi.jpg") no-repeat center center fixed;
+    background-size: cover;
+
+    color: #fff;
+    text-align: center;
+    margin: 0;
+    padding-top: 60px;
 }
 
 /* Estilos del encabezado al estilo Apple en oscuro */
-.header {
+/* .header {
     background-color: #292929; /* Color de fondo del encabezado */
+    /*box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    padding: 10px 0;
+} */
+ .header {
+    background-color: #004684;
     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
     position: fixed;
     width: 100%;
@@ -52,43 +82,92 @@ body {
 }
 
 /* Estilos para la calculadora en oscuro */
-.calculadora {
+/* .calculadora {
     background-color: #333; /* Fondo oscuro para la calculadora */
-    max-width: 400px;
+    /*max-width: 400px;
     margin: 20px auto;
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+} */
+
+.calculadora {
+    background-color: rgba(0, 70, 132, 0.9); /* azul corporativo con transparencia */
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
 }
 
 .calculadora h2 {
     margin-top: 0;
     color: #ddd; /* Texto claro para el título */
 }
-
+/* 
 input[type=text] {
     width: calc(100% - 20px);
     padding: 10px;
     margin: 10px 0;
     border: 1px solid #444; /* Borde oscuro para inputs */
-    background-color: #292929; /* Fondo oscuro para inputs */
-    border-radius: 5px;
+    /*background-color: #292929; /* Fondo oscuro para inputs */
+    /*border-radius: 5px;
     color: #fff; /* Texto en blanco para inputs */
+/*} */
+
+input[type=text] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    color: #fff;
+    outline: none;
 }
 
-input[type=submit] {
+input[type=text]:focus {
+    border-color: #007aff;
+    box-shadow: 0 0 5px rgba(0, 122, 255, 0.5);
+}
+
+input[type=text]::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* input[type=submit] {
     width: 100%;
     padding: 10px;
     background-color: #007aff; /* Mantener el color del botón */
-    border: none;
+    /*border: none;
     border-radius: 5px;
     color: white;
     font-weight: bold;
     cursor: pointer;
+} */
+
+
+
+/* input[type=submit]:hover {
+    background-color: #0056b3; /* Oscurecer el botón al pasar el mouse */
+/*} */
+
+input[type=submit] {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(135deg, #004684, #007aff);
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
 input[type=submit]:hover {
-    background-color: #0056b3; /* Oscurecer el botón al pasar el mouse */
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 122, 255, 0.4);
 }
 
 
@@ -184,9 +263,9 @@ button:hover {
 
 }
 
-.checkbox-input {
-	// Code to hide the input
-	clip: rect(0 0 0 0);
+/* .checkbox-input {
+	/* // Code to hide the input */
+	/* clip: rect(0 0 0 0);
 	clip-path: inset(100%);
 	height: 1px;
 	overflow: hidden;
@@ -218,7 +297,15 @@ button:hover {
 			opacity: 1;
 		}
 	}
+} */
+
+.checkbox-input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
 }
+
+
 
 .checkbox-tile {
     width:  80px; /* Ajustar el ancho de checkbox*/
@@ -236,7 +323,7 @@ button:hover {
 	cursor: pointer;
 	position: relative;
 
-	&:before {
+	/* &:before {
 		content: "";
 		position: absolute;
 		display: block;
@@ -254,7 +341,7 @@ button:hover {
 		background-size: 12px;
 		background-repeat: no-repeat;
 		background-position: 50% 50%;
-	}
+	} */
 
 	&:hover {
 		border-color: #2260ff;
@@ -265,13 +352,51 @@ button:hover {
 	}
 }
 
+
+/* 🔹 Hover */
+.checkbox-tile:hover {
+    border-color: #004684;
+}
+
+/* 🔹 Palomita dentro del cuadro */
+.checkbox-tile::before {
+    content: "✔";
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    background: #004684;
+    color: white;
+    font-size: 12px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: 0.2s ease;
+}
+
+/* 🔹 Mostrar palomita cuando está seleccionado */
+.checkbox-input:checked + .checkbox-tile::before {
+    opacity: 1;
+}
+
+/* 🔹 Texto dentro del cuadro */
+.checkbox-label {
+    font-size: 14px;
+    color: #1a1a1a;
+}
+
+
+
 .checkbox-icon {
 	transition: .375s ease;
 	color: #d3d3d3;
-	svg {
+	/* svg {
 		width: 3rem;
 		height: 3rem;
-	}
+	} */
 }
 
 .checkbox-label {
@@ -373,22 +498,44 @@ button:hover {
 .cards {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: center; /*space-around;*/
     gap: 15px; /* Espacio reducido entre tarjetas */
 }
 
 /* Estilo de Tarjetas */
-.card {
+/* .card {
     width: 250px; /* Ancho de tarjeta reducido */
-    background-color: #1c1c1e; /* Fondo de tarjeta oscuro */
-    border: 2px solid #fff; /* Borde blanco */
-    border-radius: 15px;
+    /*background-color: #1c1c1e; /* Fondo de tarjeta oscuro */
+    /*border: 2px solid #fff; /* Borde blanco */
+    /*border-radius: 15px;
     overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     cursor: pointer;
+} */
+
+
+/* .custom-card {
+    background-color: #1c1c1e;
+    border: 2px solid #fff;
+    border-radius: 15px;
+} */
+
+.custom-card {
+    background-color: #004684;
+    border: none;
+    border-radius: 10px;
 }
 
-.card:hover {
+.custom-card h4 {
+    color: #fff;
+}
+
+.custom-card p {
+    color: #e0e0e0;
+}
+
+/* .card:hover { */
+.custom-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 16px rgba(255, 255, 255, 0.2); /* Sombra ajustada para menor elevación */
 }
@@ -397,7 +544,8 @@ button:hover {
     padding: 15px; /* Padding reducido */
 }
 
-.card-header {
+/* .card-header { */
+.custom-card-header {
     font-size: 12px; /* Mantén el tamaño de fuente si ya estaba definido */
     font-weight: bold;
     color: #0a84ff; /* o el color que prefieras */
@@ -407,7 +555,8 @@ button:hover {
 }
 
 
-.card-body p {
+/* .card-body p { */
+.custom-card-body p {
     color: #a2a2a5; /* Texto más claro para contraste */
     margin: 8px 0; /* Margen ajustado */
     font-size: 14px; /* Tamaño de fuente reducido para el cuerpo */
@@ -569,5 +718,92 @@ button:hover {
   .btn-siguiente:hover {
     background-color: #b30000;
   }
+
+
+  /* Cards de resultados (aisladas de Bootstrap) */
+.resorte-card {
+    background-color: #004684;
+    border-radius: 10px;
+    padding: 15px;
+    width: 260px;
+    margin: 10px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+    transition: transform 0.3s ease;
+}
+
+.resorte-card:hover {
+    transform: translateY(-5px);
+}
+
+.resorte-card h4 {
+    color: #fff;
+}
+
+.resorte-card p {
+    color: #e0e0e0;
+}
+
+.resorte-card .card-actions {
+    margin-top: 10px;
+}
   
  /* AQUI TERMINA LO DEL RECORRIDO  */
+
+ /* Cards de resultados */
+.card {
+    background-color: #004684;
+    border-radius: 12px;
+    padding: 15px;
+    backdrop-filter: blur(4px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+.card-body p {
+    color: #e0e0e0;
+}
+
+.card-header {
+    color: #ffffff;
+}
+
+.card-body p:last-child {
+    font-weight: bold;
+    color: #004684;
+}
+
+h3 {
+    font-style: italic;
+    font-weight: bold;
+
+}
+
+.combinations-container h3,
+.checkbox-group-legend,
+.combinations-container p {
+    color: #1a1a1a;
+}
+button, label {
+    color: #ffffff;
+}
+
+.card,
+.card p,
+.card h4,
+.card .card-header {
+    color: #ffffff !important;
+}
+.card,
+.card p,
+.card h4,
+.card .card-header {
+    color: #ffffff !important;
+}
+.checkbox-label {
+    color: #1a1a1a;
+}
+form p {
+    color: #1a1a1a;
+}
+
+.card-box p {
+    color: #1a1a1a !important;
+}

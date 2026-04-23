@@ -23,7 +23,7 @@ resortes = [
     {'tipo': '9X8', 'vueltas': 6, 'peso_por_resorte': 29.8, 'longitud': 0.64},
     {'tipo': '9X8', 'vueltas': 6.5, 'peso_por_resorte': 31.3, 'longitud': 0.64},
     {'tipo': '9X8', 'vueltas': 7, 'peso_por_resorte': 32.9, 'longitud': 0.64},
-    {'tipo': '9X8', 'vueltas': 7.5, 'peso_por_resorte': 34.5, 'longitud': 0.64},
+    {'tipo': '9X8', 'vueltas': 7.5, 'peso_por_resorte': 34.5, 'longitud': 0.64}, #se agrega la longitud de los resortes en metros.
     {'tipo': '9X8', 'vueltas': 8, 'peso_por_resorte': 36.3, 'longitud': 0.64},
     {'tipo': '9X8', 'vueltas': 8.5, 'peso_por_resorte': 38.1, 'longitud': 0.64},
     {'tipo': '9X8', 'vueltas': 9, 'peso_por_resorte': 40, 'longitud': 0.64},
@@ -45,7 +45,7 @@ resortes = [
 
 
 
-    {'tipo': '10X8', 'vueltas': 5.5, 'peso_por_resorte': 31.6, 'longitud': 0.74},
+    {'tipo': '10X8', 'vueltas': 5.5, 'peso_por_resorte': 31.6, 'longitud': 0.74}, #se agrega la longitud de los resortes en metros.
     {'tipo': '10X8', 'vueltas': 6, 'peso_por_resorte': 33.2, 'longitud': 0.74},
     {'tipo': '10X8', 'vueltas': 6.5, 'peso_por_resorte': 34.9, 'longitud': 0.74},
     {'tipo': '10X8', 'vueltas': 7, 'peso_por_resorte': 36.6, 'longitud': 0.74},
@@ -67,7 +67,7 @@ resortes = [
     {'tipo': '12X7', 'vueltas': 8, 'peso_por_resorte': 41.7, 'longitud': 0.69},
     {'tipo': '12X7', 'vueltas': 8.5, 'peso_por_resorte': 43.8, 'longitud': 0.69},
     {'tipo': '12X7', 'vueltas': 9, 'peso_por_resorte': 45.9, 'longitud': 0.69},
-    {'tipo': '12X7', 'vueltas': 9.5, 'peso_por_resorte': 48.2, 'longitud': 0.69},
+    {'tipo': '12X7', 'vueltas': 9.5, 'peso_por_resorte': 48.2, 'longitud': 0.69},#se agrega la longitud de los resortes en metros.
 
 
  
@@ -85,7 +85,7 @@ resortes = [
 
 
 
-    {'tipo': '14X7', 'vueltas': 5.5, 'peso_por_resorte': 38.1, 'longitud': 0.60},
+    {'tipo': '14X7', 'vueltas': 5.5, 'peso_por_resorte': 38.1, 'longitud': 0.60}, #se agrega la longitud de los resortes en metros.
     {'tipo': '14X7', 'vueltas': 6, 'peso_por_resorte': 40, 'longitud': 0.60},
     {'tipo': '14X7', 'vueltas': 6.5, 'peso_por_resorte': 42, 'longitud': 0.60},
     {'tipo': '14X7', 'vueltas': 7, 'peso_por_resorte': 44.1, 'longitud': 0.60},
@@ -606,4 +606,43 @@ def filtrar_resultados():
         tipos_unicos=tipos_unicos,
         tipos_seleccionados=tipos_seleccionados
     )
+
+
+@resortes_blueprint.route('/imprimir_ticket')
+def imprimir_ticket():
+
+    peso = float(request.args.get('peso'))
+    altura = float(request.args.get('altura'))
+    combo_index = int(request.args.get('combo'))
+
+    altura_cm = altura * 100
+    vueltas_reales = calcular_vueltas(altura_cm)
+
+    combinaciones = encontrar_combinaciones_resortes(
+        peso,
+        vueltas_reales,
+        resortes
+    )
+
+    if combo_index >= len(combinaciones):
+        return "Error: combinación no válida", 400
+
+    combo = combinaciones[combo_index]
+
+    # Formatear para el ticket
+    resortes_ticket = []
+    for r in combo["resortes"]:
+        resortes_ticket.append({
+            "tipo": r["tipo"],
+            "vueltas": r["vueltas"],
+            "peso": r["peso_por_resorte"]
+        })
+
+    return render_template(
+        'ticket.html',
+        peso=peso,
+        altura=altura,
+        resortes=resortes_ticket
+    )
+
 

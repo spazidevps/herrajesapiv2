@@ -1,1073 +1,712 @@
 <!DOCTYPE html>
-
 <html>
 
 <head>
     <meta charset="utf-8">
     <title>Resultado de Cálculo de Herrajes</title>
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+
+
     <style>
-        body {
+
+        :root {
+            --color-primario: #004684;
+            --color-header: #004684;
+            --color-fondo: #ffffff;
+            --color-card: #ffffff;
+            --color-borde: #e5e5e5;
+            --color-texto: #1f2a33;
+            --color-texto-secundario: #6c757d;
+        }
+
+        /* body {
             background-color: #343a40;
             color: #fff;
-        }
+        } */
 
-        .card,
-        .navbar {
+        /* body {
+            background-color: var(--color-fondo);
+            color: var(--color-texto);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        } */
+
+        body {
+            background-color: var(--color-fondo);
+            background-image: url("../static/img/fondo_spazi.jpg");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+
+            color: var(--color-texto);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        
+        /* .card, .navbar {
             background-color: #212529;
+        } */
+
+        .card {
+            background-color: var(--color-card);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 14px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
         }
 
-        .form-control,
-        .form-control:focus {
-            background-color: #495057;
-            border-color: #6c757d;
-            color: #fff;
+
+        /* .navbar {
+            background: linear-gradient(90deg, var(--color-secundario), var(--color-primario));
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
         }
 
-        label,
-        .navbar .navbar-brand,
         .navbar .nav-link {
-            color: #fff;
+            color: var(--color-texto-secundario);
         }
 
         .navbar .nav-link:hover {
-            color: #adb5bd;
+            color: #fff;
+        } */
+
+
+        .navbar {
+            /* background-color: var(--color-header); */
+            background-color: #004684 !important;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.15);
         }
 
-        .imagen-centrada {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        .imagen-centrada img {
-            max-width: 200px;
-            height: auto;
-            margin: 0 auto;
-        }
-
-        .titulo-bienvenida {
-            font-size: 24px;
+        .navbar .nav-link {
             color: #ffffff;
-            margin-bottom: 15px;
+            opacity: 0.85;
+        }
+
+        .navbar .nav-link:hover {
+            opacity: 1;
+        }
+
+        .form-control {
+            background-color: #eaedf0; /*Color de la caja Nuevo Item*/
+            color: #fff;
+        }
+
+        /* .card-detalle-calc {
+            border: 1px solid #ffffff;
+            background-color: rgba(255,255,255,0.1);
+        } */
+
+        /* .card-detalle-calc {
+        background: linear-gradient(135deg, var(--color-secundario), var(--color-primario));
+        border: none;
+        border-radius: 16px;
+        padding: 10px;
+        } */
+
+
+        /* .card-detalle-calc {
+            background-color: #ffffff;
+            border-left: 5px solid var(--color-primario);
+            border-radius: 12px;
+        } */
+
+/* 
+        .card-detalle-calc {
+            background-color: #2d93e2;
+            color: #ffffff;
+            border-left: none;
+            border-radius: 12px;
+        } */
+
+
+        .card-detalle-calc {
+            background-color: #0454bf !important;
+            color: #ffffff !important;
+            border-left: 5px solid #0454bf;
+            border-radius: 12px;
+        }
+
+
+        .fondo-oscuro {
+            background-color: #0d4d8b;
+            border-radius: 15px;
+            padding: 20px;
         }
 
         @media print {
-            body {
-                background-color: #fff;
-                color: #000;
+            body * {
+                visibility: hidden;
             }
 
-            .navbar,
-            #printButton,
-            #pdfButton {
-                display: none;
+            #areaImpresion, #areaImpresion * {
+                visibility: visible;
             }
-        }
 
-        .botones-laterales {
-            flex-direction: column;
-            align-self: stretch;
-            /* Esto asegura que los botones ocupen todo el espacio vertical disponible */
-            margin-right: 10px;
-            /* Espacio entre los botones y la tarjeta */
-        }
-
-        @media (max-width: 768px) {
-            .botones-laterales {
-                flex-direction: row;
-                justify-content: space-around;
+            #areaImpresion {
+                position: absolute;
+                top: 0;
+                left: 0;
                 width: 100%;
-                margin-bottom: 10px;
+                background: white;
+                color: black;
             }
-        }
-
-        /* Estilo específico para el contorno blanco y fondo transparente */
-        .card-detalle-calc {
-            border: 1px solid #ffffff;
-            /* Contorno blanco */
-            background-color: rgba(255, 255, 255, 0.1);
-            /* Fondo transparente */
-            color: #ffffff;
-            /* Asegurándonos de que el texto sea blanco para este card específico */
-        }
-
-        .boton-central {
-            margin: 0 10px;
-            /* Espacio horizontal entre los botones */
-            background-color: #007bff;
-            /* Color azul predeterminado de Bootstrap para btn-primary */
-            border-color: #007bff;
-            color: #fff;
-            /* Color del texto en blanco */
-        }
-
-        /* Cambiar el color al pasar el mouse */
-        .boton-central:hover {
-            background-color: #0056b3;
-            border-color: #0056b3;
-            color: #fff;
-            /* Mantener el texto en blanco incluso al pasar el mouse */
-        }
-    </style>
-</head>
-
-<!-- <script>
-document.addEventListener("DOMContentLoaded", function () {
-
-    const destino = document.getElementById("resorteElegido");
-
-    document.addEventListener("change", function (e) {
-        if (e.target.name === "resorteSeleccionado") {
-            destino.textContent = e.target.value;
-        }
-    });
-
-});
-</script> -->
-
-
-<body>
-    <nav class="navbar navbar-expand-lg navbar-dark">
-        <a class="navbar-brand" href="#">
-            <img src="../static/img/Logo_GHerrajes.png" alt="Logo" height="40">
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="/">Kit de Herrajes<span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/resortes/" target="_blank">Calculadora de Resortes</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-
-    <div class="container mt-4">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card card-detalle-calc">
-                    <div class="card-body d-flex flex-column align-items-center justify-content-center">
-                        <h3 class="card-title">Detalles del Cálculo:</h3>
-                        <p class="card-text">Ancho: {{ ancho }} cm | Alto: {{ alto }} cm | Peso: {{ "%.2f"|format(peso_confirmacion) }} kg</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="container text-center my-2">
-        <!-- <button type="button" class="btn boton-central" onclick="abrirChicote()">Generar Chicote</button> -->
-        <!--  <button type="button" class="btn boton-central" onclick="abrirRieles()">Generar Rieles</button> -->
-        <button type="button" class="btn boton-central" onclick="abrirResortes()">Calculadora de Resortes</button>
-        <button id="botonGenerar" type="button" class="btn boton-central">Volver a Generar</button>
-    </div>
-
-    <div class="container">
-        <div class="row justify-content-md-center">
-            <div class="col-md-6">
-<!--------------------------------------------------------------------->
-        <!-- <div class="row justify-content-center">
-            <div class="col-md-10 col-lg-8"> -->
-<!--------------------------------------------------------------------->
-                <div class="card mt-2 fondo-oscuro">
-                    <div class="card-header">
-                        <h2>Resultado del Cálculo de Herrajes</h2>
-                    </div>
-                    <div class="card-body">
-                        {% if resultado %}
-                        {% if resultado == "No se encontró una combinación adecuada para los paneles y herrajes." %}
-                        <p>{{ resultado }}</p>
-                        {% else %}
-                        <div class="card-body d-flex flex-column align-items-center justify-content-center">
-                            <h3 class="card-title">Detalles del Panel:</h3>
-                            <label for="tipoPanel">Seleccione el tipo de panel:</label>
-                            <select id="tipoPanel" class="form-control" onchange="actualizarDetallePanel()">
-                                <option value="paneles">Paneles</option>
-                                <option value="paneles_sug">Paneles Sugeridos</option>
-                            </select>
-                            <!-- Div modificado para mostrar los detalles del panel con marco blanco y fondo transparente -->
-                            <div id="detallesPanel" class="mt-5 card card-detalle-calc">
-                                <!-- Contenido dinámico que se insertará aquí -->
-                            </div>
-                        </div>
-                        <h3>Información de Herraje:</h3>
-
-
-
-
-                    <!--aquí termina el bloque que agrega los rieles -->
-                        <ul id="listaHerrajes">
-                            {% for item in resultado.herraje.split(", ") %}
-                            <!-- Ajusta según cómo estás pasando la información de herraje -->
-                            <li>{{ item }}</li>
-                            {% endfor %}
-                            <!-- -------------------------------------------------------- -->
-                            <!-- Ajusta según cómo estás pasando la información de rieles -->
-                            {% if resultado.rieles %}
-                            <li>{{ resultado.rieles }}</li>
-                            {% endif %}
-                            <!-- -------------------------------------------------------- -->
-   
-                            {% if resultado.chicote %}
-                            <li>{{ resultado.chicote }}</li>
-                            {% endif %}
-                             <!-- -------------------------------------------------------- -->
-
-                            <!-- --------------SE AGREGO EL 06/01/2026-------------------- -->
-                            <!-- {% if resultado.resortes %}
-                            <li>
-                                <strong>Resortes:</strong><br>
-                                {{ resultado.resortes.descripcion }}<br>
-                                Cantidad: {{ resultado.resortes.cantidad }}<br>
-                                Peso total: {{ resultado.resortes.peso_total }} kg
-                            </li>
-                            {% endif %} -->
-
-
-                            <!-- -------------------------------------------------------- -->
-
-                        </ul>
-
-                                                {% if resultado.opciones_resortes %}
-                        <h4 class="mt-4">Opciones de Resortes Recomendados</h4>
-                        <table class="table table-dark table-bordered mt-2">
-                            <!-- <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Configuración</th>
-                                    <th>Cantidad</th>
-                                    <th>Peso que soportan</th>
-                                    <th>Diferencia vs Peso Portón</th>
-                                </tr>
-                            </thead> -->
-                            <thead> <!--se agrega la opción de selección-->
-                                <tr>
-                                    <th>Elegir</th>
-                                    <th>#</th>
-                                    <th>Configuración</th>
-                                    <th>No. de vueltas</th>
-                                    <th>Cantidad de resortes</th>
-                                    <th>Peso que soportan</th>
-                                    <!-- <th>Diferencia vs Peso Portón</th> esta columna se debe quitar de la tabla -->
-                                </tr>
-                            </thead>
-
-                            <tbody>
-                                {% for opcion in resultado.opciones_resortes %}
-                                <!-- <tr>
-                                    <td>{{ loop.index }}</td>
-                                    <td> -->
-                                <tr>
-                                    <td>
-                                        <!-- <input type="radio" name="resorteSeleccionado"
-                                            value="Opción {{ loop.index }}: {% for r in opcion.resortes %}{{ r.tipo }} ({{ r.vueltas }}v){% if not loop.last %} + {% endif %}{% endfor %} | Cant: {{ opcion.cantidad }} | Soporta: {{ opcion.peso_total }}kg">
-                                     -->
-                                        <input type="radio" name="resorteSeleccionado" data-cantidad="{{ opcion.cantidad }}"
-                                            value="Opción {{ loop.index }}: {% for r in opcion.resortes %}{{ r.tipo }}{% if not loop.last %} + {% endif %}{% endfor %} | Cant: {{ opcion.cantidad }} | Soporta: {{ opcion.peso_total }}kg">
-
-                                    </td>
-                                    <td>{{ loop.index }}</td>
-                                    <td>
-                                    <!-- --------------------------- ---------------------- ------------------------ -->
-
-                                        {% for r in opcion.resortes %}
-                                            <!-- {{ r.tipo }} ({{ r.vueltas }} vueltas){% if not loop.last %} + {% endif %} -->
-                                            {{ r.tipo }}{% if not loop.last %} + {% endif %}
-                                        {% endfor %}
-                                    </td>
-                                    <td>{{ opcion.resortes[0].vueltas }} vueltas</td>
-                                    <!-- <td> {% for r in opcion.resortes %} {{ r.vueltas }} vueltas{% if not loop.last %} + {% endif %} {% endfor %} </td> se comenta linea muestra las vueltas x resorte-->
-                                    <td>{{ opcion.cantidad }}</td>
-                                    <td>{{ opcion.peso_total }} kg</td>
-                                    <!-- <td>{{ opcion.diferencia }} kg</td>   se comenta esta columana debido a que no es necesario mostrar la diferencia -->
-                                </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                        {% endif %}
-                        {% endif %}
-                        {% else %}
-                        <p>No se han proporcionado datos para el cálculo.</p>
-                        {% endif %}
-                        <input type="text" id="nuevoItem" placeholder="Añade un nuevo ítem aquí" />
-                        <button type="button" class="btn boton-central" onclick="agregarItem()">+ Agregar Item</button>
-                        <button id="printButton" class="btn btn-success" onclick="imprimirContenido()">Imprimir</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</body>
-
-
-<script>
-    function abrirResortes() {
-        window.open('/resortes/', 'Calculadora de Resortes', 'width=800,height=600');
-    }
-
-
-</script>
-
-<!-- INICIA IMPRESION DE DOCUMENTO -->
-<!-- INICIA IMPRESION DE DOCUMENTO -->
-<!-- INICIA IMPRESION DE DOCUMENTO -->
-<!-- INICIA IMPRESION DE DOCUMENTO -->
-
-
-<style>
-    .form-control,
-    .form-control:focus {
-        background-color: #495057;
-        border-color: #6c757d;
-        color: #fff;
-    }
-
-    label,
-    .navbar .navbar-brand,
-    .navbar .nav-link {
-        color: #fff;
-    }
-
-    .navbar .nav-link:hover {
-        color: #adb5bd;
-    }
-
-    /* Ocultar #areaImpresion en la vista normal de la página */
-    #areaImpresion {
-        display: none;
-    }
-
-    @media print {
-        body * {
-            visibility: hidden;
-        }
-
-        #areaImpresion,
-        #areaImpresion * {
-            visibility: visible;
         }
 
         #areaImpresion {
-            position: absolute;
-            left: 0;
-            top: 0;
-            background-color: white;
-            color: black;
-            padding: 20px;
-            box-shadow: none;
-            margin: 0;
-            width: 100%;
-            font-family: 'Times New Roman', Times, serif;
+            display: none;
         }
 
-        h3,
+
+
+        .container {
+            max-width: 1200px;
+        }
+
         h4 {
-            color: #000;
-            font-size: 20px;
-            /* Ajusta el tamaño de la fuente de los títulos */
+            font-weight: 600;
         }
 
-        p,
-        li,
-        td {
-            font-size: 14px;
-            /* Ajusta el tamaño de la fuente del texto general */
+        /* .card {
+            border-radius: 12px;
+        } */
+
+
+        .card {
+            background-color: var(--color-card);
+            border: 1px solid var(--color-borde);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
         }
 
-        ul,
-        li {
-            page-break-inside: avoid;
+        /* .table {
+            border-radius: 10px;
+            overflow: hidden;
         }
-        
-        /*---------codigo agregado 06/01/2025-----------------*/
+
+
+        .table thead th {
+            background-color: var(--color-acento);
+            color: #fff;
+            border: none;
+        }
+
+        .table td {
+            vertical-align: middle;
+
+        } */
+
+
+
+        .table {
+            border-radius: 10px;
+            overflow: hidden;
+            background-color: #ffffff;
+        }
+
+        .table thead th {
+            /* background-color: var(--color-primario); */
+            background-color: #0454bf;
+            color: #ffffff;
+            border: none;
+        }
+
+        .table td {
+            vertical-align: middle;
+        }
+
+        .table tbody tr:hover {
+            /* background-color: rgba(4, 84, 191, 0.08); */
+                background-color: #1f7cc4;
+        }
+
         /* #listaHerrajes {
-        width: 100%;
-        margin-top: 15px;
-        padding-left: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 15px;
+            min-height: 320px;
+            font-size: 14px;
         }
 
         #listaHerrajes li {
-        list-style-position: inside;
+            padding: 6px 0;
+            border-bottom: 1px solid #dee2e6;
         } */
-        /*---------------------------------------------------*/
-    }
-</style>
+
+        #listaHerrajes {
+            /* background: #ffffff;
+            border: 1px solid var(--color-borde); */
+            background: #0454bf;
+            color: #ffffff;
+            border: none;
+            border-radius: 10px;
+            padding: 15px;
+            min-height: 300px;
+            list-style-position: inside;
+
+
+            max-height: 550px; /* Alto de la lista de herrajes ajusta a tu gusto */
+            overflow-y: auto;
+        }
+
+        #listaHerrajes li {
+            /*padding: 8px 0;  espacio entre las filas de la lista*/
+            padding: 8px 10px;  /* ← antes era 8px 0 */
+            /* border-bottom: 1px solid #f1f1f1; */
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            font-size: 15px;  /*Tamaño de las letras de la lista de Herrajes*/
+        }
+
+
+        /* .btn-primary {
+            background-color: var(--color-acento);
+            border: none;
+        }
+
+        .btn-success {
+            background-color: #28a745;
+            border: none;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+        } */
+
+        .btn-primary {
+            background-color: var(--color-primario);
+            border: none;
+        }
+
+        .btn-success {
+            background-color: #28a745;
+            border: none;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+        }
+
+
+        h4 {
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+
+        #detallesPanel {
+            line-height: 1.6;
+        }
 
 
 
+        .card-panel {
+            background-color: #0454bf;
+            color: #ffffff;
+        }
 
 
-<div id="areaImpresion">
-    <table align="center" width="600" border="0" cellpadding="0" cellspacing="0" style="background-color: #ffffff;">
-        <!-- Encabezado -->
-        <tr>
-            <td align="center">
-                <img src="https://www.puertasautomaticasenquintanaroo.com.mx/images/grupo-spazi.svg" width="130"
-                    height="82" alt="logo">
-                <p style="font-size: 12px; color: #888888;">Lista de surtido</p>
-            </td>
-        </tr>
-        <!-- Detalles del Panel -->
-        <tr>
-            <td style="padding: 10px; background-color: #fafafa;">
-                <p style="font-size: 11px;">Detalles de panel: 0 paneles de 46cm y 4 paneles de 53cm</p>
-                <p style="font-size: 11px;">Fecha de Captura y Hora: 14 Feb 2024 las 1:00:00 pm</p>
-            </td>
-        </tr>
-        <!-- Caja de Herrajes -->
-        <tr>
-            <td style="padding: 10px;">
-                <p style="font-size: 14px; font-weight: 500;">Caja de herrajes 9x7 con:</p>
-            </td>
-        </tr>
-        <!-- Información de Herraje con formato específico -->
-        {% for item in resultado.herraje.split(", ") %}
-        <tr>
-            <td>
-                <table width="100%" border="0" cellpadding="0" cellspacing="0"
-                    style="padding: 5px; border-top: 1px solid #eeeeee; border-bottom: 1px solid #eeeeee;">
+        .table tbody tr {
+            background-color: #0454bf;
+            color: #ffffff;
+        }
+
+
+        
+    </style>
+</head>
+
+<body>
+
+<!-- NAV cambiar hasta aquí         -->
+<!-- <nav class="navbar navbar-expand-lg navbar-dark">
+    <a class="navbar-brand" href="#">
+        <img src="../static/img/Logo_GHerrajes.png" height="40">
+    </a>
+</nav> -->
+
+
+<!-- <nav class="navbar navbar-expand-lg navbar-dark px-4" style="background: linear-gradient(90deg, #1f2a33, #0d4d8b); box-shadow: 0 2px 10px rgba(0,0,0,0.4);"> -->
+<nav class="navbar navbar-expand-lg navbar-dark px-4" style="background-color: #004684; box-shadow: 0 2px 10px rgba(0,0,0,0.4);">
+
+    <div class="d-flex align-items-center">
+        <img src="../static/img/Logo_GHerrajes.png" height="45" class="mr-2">
+        <div>
+            <!-- <div style="font-weight:600; font-size:16px;">GHerrrajes</div> -->
+            <small style="color:#e5e8eb;">Cálculo de Herrajes</small>
+        </div>
+    </div>
+
+    <div class="ml-auto d-flex align-items-center">
+
+        <a href="/" class="nav-link">Herrajes</a>
+
+        <a href="/resortes/" target="_blank" class="nav-link">Resortes</a>
+
+        <button onclick="location.href='/generar'" 
+            class="btn btn-sm ml-3"
+            style="background:#0d6efd; color:#fff; border-radius:20px;">
+            Nuevo Cálculo
+        </button>
+
+    </div>
+
+</nav>
+
+<div class="container mt-4">
+    <!-- <div class="row align-items-start"> -->
+
+    <!-- DETALLES -->
+    <!-- <div class="card card-detalle-calc mb-3 text-center"> -->
+    <div class="card card-detalle-calc mb-4 text-center shadow">
+        <div class="card-body">
+            <h4>Detalles del Cálculo</h4>
+            <p>
+                Ancho: {{ ancho }} cm |
+                Alto: {{ alto }} cm |
+                Peso: {{ "%.2f"|format(peso_confirmacion) }} kg
+            </p>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <!-- IZQUIERDA -->
+        <div class="col-md-5">
+
+
+            <!-- <div id="detallesPanel"></div> -->
+
+
+            <!-- <div class="card mb-3"> -->
+            <div class="card mb-3 card-panel">
+                <div class="card-body p-3">
+                    <h6 style="font-weight:600; margin-bottom:10px;">Detalle del Panel</h6>
+                    <!-- <div id="detallesPanel" style="font-size:14px; color:#6c757d;"></div> -->
+                     <div id="detallesPanel" style="font-size:14px; color:#ffffff;"></div>
+                </div>
+            </div>
+            <h4>Lista de Herrajes</h4>
+            <ul id="listaHerrajes" class="p-3 rounded"></ul>
+            <!-- <ul id="listaHerrajes" class="bg-light text-dark p-3 rounded"></ul> -->
+        </div>
+
+        <!-- DERECHA -->
+        <div class="col-md-7">
+
+            {% if resultado and resultado.opciones_resortes %}
+
+            <h4>Opciones de Resortes recomendados</h4>
+
+            <!-- <table class="table table-bordered bg-white text-dark">                      dejar de modificar hasta aquí--> 
+            <table class="table table-bordered">
+                <thead>
                     <tr>
-                        <td align="left" style="padding-left: 20px;">
-                            <img src="https://i.postimg.cc/3xj34MPB/FLECHA.png" alt="Producto" width="130">
-                        </td>
-                        <td style="padding-left: 20px;">
-                            <p style="margin: 0; font-size: 12px; font-weight: 600; color: #333333;">{{ item }}</p>
-                        </td>
-                        <td align="right">
-                            <input type="checkbox" style="margin: 5px; transform: scale(1.2);">
-                        </td>
+                        <th>Elegir</th>
+                        <th>#</th>
+                        <th>Tipo de resorte</th>
+                        <th>Vueltas</th>
+                        <th>Cant</th>
+                        <th>Peso</th>
                     </tr>
-                </table>
-            </td>
-        </tr>
-        {% endfor %}
+                </thead>
+                <tbody>
+                    {% for opcion in resultado.opciones_resortes %}
+                    <tr>
+                        <td>
+                            <input type="radio" name="resorteSeleccionado"
+                                data-cantidad="{{ opcion.cantidad }}"
+                                value="Opción {{ loop.index }}:
+                                {% for r in opcion.resortes %}
+                                    {{ r.tipo }}{% if not loop.last %} + {% endif %}
+                                {% endfor %} 
+                                | Cant: {{ opcion.cantidad }} 
+                                | Soporta: {{ opcion.peso_total }}kg">
 
-        <!-- aqui inicia la sección de impresión para rieles -->
-    {% if resultado.rieles %}
-    <tr>
-        <td style="padding: 10px;">
-            <table width="100%" border="0" cellpadding="0" cellspacing="0"
-                style="padding: 5px; border-top: 2px solid #000; border-bottom: 2px solid #000;">
-                <tr>
-                    <td align="left" style="padding-left: 20px;">
-                        <img src="https://i.postimg.cc/nr63qhXw/JUEGO-DE-RIELES.png" alt="Rieles" width="130">
-                    </td>
-                    <td style="padding-left: 20px;">
-                        <p style="margin: 0; font-size: 14px; font-weight: 700; color: #333333;">
-                            {{ resultado.rieles }}
-                        </p>
-                    </td>
-                    <td align="right">
-                        <input type="checkbox" style="margin: 5px; transform: scale(1.3);">
-                    </td>
-                </tr>
+                        </td>
+                        <td>{{ loop.index }}</td>
+                        <td>
+                            {% for r in opcion.resortes %}
+                                {{ r.tipo }}{% if not loop.last %} + {% endif %}
+                            {% endfor %}
+                        </td>
+                        <td>{{ opcion.resortes[0].vueltas }}</td>
+                        <td>{{ opcion.cantidad }}</td>
+                        <td>{{ opcion.peso_total }} kg</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
             </table>
-        </td>
-    </tr>
-    {% endif %}
 
-      <!-- aqui termina la sección de impresión para rieles-->
+            {% endif %}
 
-        <!-- aqui inicia la sección de impresión para chicotes -->
-    {% if resultado.chicote %}
-    <tr>
-        <td>
-            <table width="100%" border="0" cellpadding="0" cellspacing="0"
-                style="padding: 5px; border-top: 1px solid #eeeeee; border-bottom: 1px solid #eeeeee;">
-                <tr>
-                    <td align="left" style="padding-left: 20px;">
-                        <img src="https://i.postimg.cc/m2vNbr1t/CHICOTE.png" alt="Chicote" width="85">          
+            <div class="d-flex mt-3">
+                <input id="nuevoItem" class="form-control mr-2" placeholder="Nuevo item">
+                <button class="btn btn-primary" onclick="agregarItem()">Agregar</button>
+                <button class="btn btn-success ml-2" onclick="imprimirContenido()">Imprimir</button>
+            </div>
 
-                    </td>
-                    <td style="padding-left: 20px;">
-                        <p style="margin: 0; font-size: 14px; font-weight: 600; color: #333333;">
-                            {{ resultado.chicote }}
-                        </p>
-                    </td>
-                    <td align="right">
-                        <input type="checkbox" style="margin: 5px; transform: scale(1.3);">
-                    </td>
-                </tr>
-            </table>
-        </td>
-    </tr>
-    {% endif %}
-  <!-- aqui termina la sección de impresión para chicotes-->
+        </div>
 
-  <!-- aqui inicia la sección de impresión para resortes-------------------------CODIGO AGREGADO EL 07/01/2026 -->
-    <!-- {% if resultado.resortes %}
-    <tr>
-        <td>
-            <table width="100%" border="0" cellpadding="0" cellspacing="0"
-                style="padding: 5px; border-top: 1px solid #eeeeee; border-bottom: 1px solid #eeeeee;">
-                <tr>
-                    <td align="left" style="padding-left: 20px;">
-                        <img src="https://i.postimg.cc/m2vNbr1t/CHICOTE.png" alt="Resortes" width="90">
-                    </td>
-
-                    <td style="padding-left: 20px;">
-                        <p style="margin: 0; font-size: 14px; font-weight: 600; color: #333333;">
-                            <strong>Resortes:</strong><br>
-                            {{ resultado.resortes.descripcion }}<br>
-                            Cantidad: {{ resultado.resortes.cantidad }}<br>
-                            Peso total: {{ resultado.resortes.peso_total }} kg
-                        </p>
-                    </td>
-
-                    <td align="right">
-                        <input type="checkbox" style="margin: 5px; transform: scale(1.3);">
-                    </td>
-                </tr>
-            </table>
-        </td>
-    </tr>
-    {% endif %} -->
-
-
-
-    <!-- aqui termina la sección de impresión para resortes -->
-
-
-
-        <!-- Pie de página -->
-        <tr>
-            <td align="center" style="padding: 20px;">
-                <p style="font-size: 10px; color: #666666;">
-                    Es responsabilidad del cliente revisar meticulosamente la lista de surtido de herraje al momento de
-                    la entrega del material...
-                    <!-- Continúa tu texto -->
-                </p>
-            </td>
-        </tr>
-    </table>
+    </div>
 </div>
 
-
-<!-- TERMINA IMPRESION DE DOCUMENTO -->
-<!-- TERMINA IMPRESION DE DOCUMENTO -->
-<!-- TERMINA IMPRESION DE DOCUMENTO -->
-<!-- TERMINA IMPRESION DE DOCUMENTO -->
-
-
+<!-- IMPRESIÓN -->
+<div id="areaImpresion"></div> <!--Aquí se trabajara el formato pdf a imprimir -->
 
 <script>
 
-    function agregarItem() {
-        // Obtén el valor del elemento de entrada, suponiendo que haya un input con ID 'nuevoItem'
-        var nuevoItem = document.getElementById("nuevoItem").value;
+let itemsAgregados = [];
+let resorteElegido = null;
 
-        // Verifica si el valor ingresado es no vacío
-        if (nuevoItem && nuevoItem.trim() !== '') {
-            // Agrega el nuevo ítem a la lista de ítems agregados
-            itemsAgregados.push(nuevoItem);
+document.addEventListener("DOMContentLoaded", actualizar);
 
-            // Actualiza la vista para incluir el nuevo ítem
-            actualizarDetallePanel();
+// function actualizar() {
 
-            // Opcional: cierra un modal si estás usando uno, indicado por $('#myModal').modal('hide');
-        } else {
-            // Alerta al usuario que el valor ingresado no es válido
-            alert("No se ingresó un ítem válido.");
-        }
-    }
+//     let lista = document.getElementById("listaHerrajes");
+//     lista.innerHTML = "";
 
-    var itemsAgregados = []; // Lista para almacenar los ítems agregados dinámicamente
-    var resorteElegido = null; // 
+//     let base = "{{ resultado.herraje }}".split(", ");
 
-    document.addEventListener('DOMContentLoaded', function () {
-        actualizarDetallePanel(); // Inicializa la vista al cargar la página.
+//     base.forEach(item => {
+//         let li = document.createElement("li");
+//         li.textContent = item;
+//         lista.appendChild(li);
+//     });
+
+//     itemsAgregados.forEach(item => {
+//         let li = document.createElement("li");
+//         li.textContent = item;
+//         lista.appendChild(li);
+//     });
+
+//     if (resorteElegido) {
+//         let li = document.createElement("li");
+//         li.textContent = resorteElegido;
+//         lista.appendChild(li);
+//     }
+// }
+
+
+function actualizar() {
+
+
+    let detalles = document.getElementById("detallesPanel");
+    let lista = document.getElementById("listaHerrajes");
+
+
+    lista.innerHTML = "";
+
+    // 👉 PANEL (esto faltaba)
+    detalles.innerHTML = "{{ resultado.paneles }}";
+
+    let base = "{{ resultado.herraje }}".split(", ");
+
+    base.forEach(item => {
+        let li = document.createElement("li");
+        li.textContent = item;
+        lista.appendChild(li);
     });
 
-    function obtenerHerrajes() {
-        var seleccion = document.getElementById("tipoPanel").value;
-        return seleccion === "paneles" ? "{{ resultado.herraje }}" : "{{ resultado.herraje_2 }}";
+
+        // 👉 AGREGAR RIELES
+    {% if resultado.rieles %}
+    let liRiel = document.createElement("li");
+    liRiel.textContent = "{{ resultado.rieles }}";
+    lista.appendChild(liRiel);
+    {% endif %}
+
+    // 👉 AGREGAR CHICOTES
+    {% if resultado.chicote %}
+    let liChicote = document.createElement("li");
+    liChicote.textContent = "{{ resultado.chicote }}";
+    lista.appendChild(liChicote);
+    {% endif %}
+
+    itemsAgregados.forEach(item => {
+        let li = document.createElement("li");
+        li.textContent = item;
+        lista.appendChild(li);
+    });
+
+    if (resorteElegido) {
+        let li = document.createElement("li");
+        li.textContent = resorteElegido;
+        lista.appendChild(li);
     }
+}
 
-    function actualizarDetallePanel() {
-        var herrajes = obtenerHerrajes();
-        var panelesInfo = document.getElementById("tipoPanel").value === "paneles" ? "{{ resultado.paneles }}" : "{{ resultado.paneles_sug }}";
-        actualizarVistaNormal(panelesInfo, herrajes);
+
+function agregarItem() {
+    let val = document.getElementById("nuevoItem").value;
+    if (val.trim() !== "") {
+        itemsAgregados.push(val);
+        actualizar();
     }
+}
 
-    function actualizarVistaNormal(panelesInfo, herrajes) {
-        var detallesPanel = document.getElementById("detallesPanel");
-        var listaHerrajes = document.getElementById("listaHerrajes");
-
-        detallesPanel.innerHTML = panelesInfo;
-        listaHerrajes.innerHTML = ''; // Limpia la lista antes de actualizar
-        herrajes.split(", ").forEach(item => {
-            var li = document.createElement("li");
-            li.textContent = item;
-            listaHerrajes.appendChild(li);
-            
-        });
-
-
-        // Agrega como ítems el resultado de los rieles a la lista
-        {% if resultado.rieles %}
-        var liRiel = document.createElement("li");
-        liRiel.textContent = "{{ resultado.rieles }}";
-        listaHerrajes.appendChild(liRiel);
-        {% endif %}
-
-       // Agrega como ítems el resultado de los chicotes a la lista principal sin necesidad de calcularlos por aparte.
-
-        {% if resultado.chicote %}
-        var liChicote = document.createElement("li");
-        liChicote.textContent = "{{ resultado.chicote }}";
-        listaHerrajes.appendChild(liChicote);
-        {% endif %}
-
-
-        // Agrega también los ítems agregados dinámicamente
-        itemsAgregados.forEach((item, index) => {
-            var li = document.createElement("li");
-            li.textContent = item;
-
-            var botonEliminar = document.createElement("button");
-            botonEliminar.textContent = "Eliminar";
-            botonEliminar.onclick = function () { eliminarItem(index); };
-            li.appendChild(botonEliminar);
-
-            listaHerrajes.appendChild(li);
-        });
-
-                // ------------------------------------------------------------------------
-        // Eliminar cualquier resorte previo
-        var existentes = document.querySelectorAll(".resorte-item");
-        existentes.forEach(e => e.remove());
-
-        // Agregar el nuevo resorte seleccionado
-        if (resorteElegido) {
-            var liResorte = document.createElement("li");
-            liResorte.textContent = resorteElegido;
-            liResorte.classList.add("resorte-item"); // 👈 marca especial
-            listaHerrajes.appendChild(liResorte);
-        }
-
-        // ------------------------------------------------------------------------
-
+document.addEventListener("change", function(e) {
+    if (e.target.name === "resorteSeleccionado") {
+        resorteElegido = e.target.value;
+        actualizar();
     }
-    function actualizarSoportesFlecha(nuevaCantidad) {
+});
 
-        let lista = document.getElementById("listaHerrajes");
-        let items = lista.querySelectorAll("li");
+// function imprimirContenido() {
+//     let area = document.getElementById("areaImpresion");
+//     let lista = document.querySelectorAll("#listaHerrajes li");
 
-        items.forEach(function(item) {
-            if (item.textContent.includes("Soportes para flechas")) {
-                item.textContent = "Soportes para flechas: " + nuevaCantidad + "pz";
-            }
-        });
-    }
+//     //area.innerHTML = "<h3>Lista de surtido</h3>";
 
+//     lista.forEach(li => {
+//         area.innerHTML += "<p>" + li.textContent + "</p>";
+//     });
 
-    //--------------------------------------------------------------------------
-    // var lista = document.getElementById("listaHerrajesImpresion");
-    // lista.innerHTML = ""; // 🔥 LIMPIAR antes de volver a generar
-    //--------------------------------------------------------------------------
-    function actualizarVistaImpresion() {
-        var areaImpresion = document.getElementById('areaImpresion');
-        var detallesPanelContenido = document.getElementById("detallesPanel").innerHTML; // Captura el contenido HTML actualizado de detallesPanel
+//     window.print();
+// }
 
+// function imprimirContenido() {
 
-        // Obtén la fecha y hora actuales
-        var ahora = new Date();
-        // var opcionesFecha = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
-        // var fechaHoraActual = ahora.toLocaleDateString("es-MX", opcionesFecha) + " " + ahora.toLocaleTimeString("es-MX");
-        var fechaHoraActual = ahora.toLocaleString("es-MX", { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit'});
+//     actualizarVistaImpresion(); // 👈 usa TU lógica avanzada
 
+//     document.body.style.visibility = 'hidden';
+//     var area = document.getElementById('areaImpresion');
+//     area.style.display = 'block';
 
+//     setTimeout(() => {
+//         window.print();
 
-        areaImpresion.innerHTML = ''; // Limpia el área de impresión antes de agregar el contenido actualizado
-
-        // Asegúrate de reconstruir el encabezado y el contenido para el área de impresión
-        var encabezadoHtml = `
-        <table class="container" width="600px" align="center" border="0" cellpadding="0" cellspacing="0"  style="font-family: Helvetica Neue, Helvetica, Arial, sans-serif;"
-                    style="background-color: #ffffff;">
-                    <tr>
-                        <td>
-                            <table width="100%" align="center" border="0" cellpadding="0" cellspacing="0"
-                                style="background-color: #ffffff;">
-                                <tr>
-                                    <td>
-                                        <img src="https://www.puertasautomaticasenquintanaroo.com.mx/images/grupo-spazi.svg"
-                                            width="130" height="82" alt="logo" border="0" alt="Apple Logo">
-                                    </td>
-                                    <td align="left">
-                                        <p style="font-size: 20px; color: #888888;">Lista de surtido</p>
-                                    </td>
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <table width="100%" border="0" cellpadding="0" cellspacing="0" style="background-color: #fafafa;">
-                                <tr>
-                                    <td>
-                                        <table class="invoice-left" width="50%" align="left" border="0" cellpadding="0" cellspacing="0" style="padding-top: 5px; padding-left: 10px;">
-                                            <tr>
-                                                <td>
-                                                    <p style="margin: 0; font-size: 15px; color: #333333; font-weight: 500; white-space: nowrap;"><strong>DETALLES DE PANEL:</strong> ${detallesPanelContenido}</p>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td style="border: 1px #ffffff solid">
-                                                    <p style=" margin: 0; font-size: 15px; color: #333333; font-weight: 500; white-space: nowrap;"><strong>FECHA DE CAPTURA Y HORA:</strong> ${fechaHoraActual}</p>  <!-- Aquí se inserta la fecha y hora actuales -->
-                                                </td>
-                                            </tr>
-                                        </table>
-                                        <table class="invoice-right" width="50%" align="right" border="0" cellpadding="0" cellspacing="0" style="padding-left: 10px;">
-                                            <!-- Contenido de la derecha si es necesario -->
-                                        </table>
-                                    </td>
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>
-                </table>
-        `;
-        areaImpresion.innerHTML = encabezadoHtml;
-
-
-        // Definición del arreglo de imágenes
-        var imagenes = [
-            "https://i.postimg.cc/wMgKHyFt/sin-fondo.png",                     // 1.-sin imagen
-            "https://i.postimg.cc/nrWbMCkD/Tubo_flecha.png",                   // 2.-tubo de flecha
-            "https://i.postimg.cc/Y0YSDW0h/caja.png",                          // 3.-caja de herrajes
-            "https://i.postimg.cc/8ccg1hhM/Soporte_inferior.png",              // 4.-soporte inferior
-            "https://i.postimg.cc/8ccg1hhh/Soporte_superior.png",              // 5.-soporte superior
-            "https://i.postimg.cc/L55FHzzs/Bisagra_lateral_ajustable.png",     // 6.-bisagra lateral ajustable
-            "https://i.postimg.cc/ZnGMBDm6/bisagra-intermedia.png",            // 7.-bisagra spazi intermedia
-            "https://i.postimg.cc/wv2p8zh3/rodaja.png",                        // 8.-rodajas
-            "https://i.postimg.cc/4yyRJzzv/Tambores.png",                      // 9.-tambores 1 izq y 1 der
-            "https://i.postimg.cc/yxxCVFF0/Soporte_para_flecha.png",           // 10.-soporte para flechas
-            "https://i.postimg.cc/NF8TFGwc/BANDERA-CHICA.png",                 // 11.-bandera chica
-            "https://i.postimg.cc/pXDB2dm0/BANDERA-LARGA.png",                 // 12.-bandera grande
-            "https://i.postimg.cc/brrfzQQG/Manija_jaladera.png",               // 13.-manija jaladera
-            "https://i.postimg.cc/zXhj9h2y/PIJA-6-MM.png",                     // 14.-pija de 6 mm
-            "https://i.postimg.cc/N0Sprx5k/TORNILLO-CABEZA-DE-COCHE.png",      // 15.-tornillo cabeza de coche
-            "https://i.postimg.cc/j210CLXf/Tornilo_cabeza_hexagonal.png",     // 16.-tornillo cabeza hexagonal
-            "https://i.postimg.cc/mZQFQSP2/remaches.png",                      // 17.-remaches
-            "https://i.ibb.co/RycQWVf/tornillo-resorte.png",                   // 18.-tornillo 5cm para resorte
-            "https://i.postimg.cc/wMgKHyFt/sin-fondo.png", // agregar imagen   // 19.-angulo 1 pulgada x 100 cm
-            "https://i.postimg.cc/wMgKHyFt/sin-fondo.png", // agregar imagen   // 20.-angulo 1 pulgada x 50 cm
-            "https://i.postimg.cc/tJJGXhhR/Angulo_1_1_2.png",                  // 21.-angulo 1 1/2
-            "https://i.postimg.cc/xCdk3GHc/HULE.png",                          // 22.-hule inferior
-            "https://i.postimg.cc/wMgKHyFt/sin-fondo.png", // agregar imagen   // 23.-soporte para hule
-            "https://i.postimg.cc/wMgKHyFt/sin-fondo.png", // agregar imagen   // 24.-empaque lateral
-            "https://i.postimg.cc/nr63qhXw/JUEGO-DE-RIELES.png",               // 25.-entregar juego de rieles
-            "https://i.postimg.cc/m2vNbr1t/CHICOTE.png",                       // 26.-un par de chicotes
-            "https://i.postimg.cc/vTTwQWWn/Resortes.png",                      // 27.- resortes 18x8
-            // Asegúrate de incluir todas las imágenes que necesitas aquí.     
-
-            // recursos //
-            //"https://i.postimg.cc/YqWWP9WC/soporte-horizontal.png",
-            //"https://i.postimg.cc/YqWWP9WC/soporte-horizontal.png",
-            //"https://i.postimg.cc/d07kVWWq/SOPORTE-VERTICAL.png",
-            //"https://i.postimg.cc/8zMxgDGD/SOPORTE-DE-ALUMINIO.png",
-            //"https://i.ibb.co/RycQWVf/tornillo-resorte.png",
-            //"https://i.postimg.cc/3xj34MPB/FLECHA.png",
-            //"https://i.postimg.cc/xTydjrnG/Soporte-superior.png"
-            //"https://i.postimg.cc/B69BnV12/SOPORTE-INFERIOR.png"
-            //"https://i.postimg.cc/Th87M3Jv/BISAGRA-LATERAL-AJUSTABLE.png"
-            //"https://i.postimg.cc/ZqP4Tprf/Soporte-par-flecha.png"
-        ];
-
-
-        // var seleccion = obtenerHerrajes();
-        // var items = seleccion.split(", ").concat(itemsAgregados);
-        var listaVisible = document.querySelectorAll("#listaHerrajes li");
-        var items = [];
-
-        listaVisible.forEach(function(li) {
-            items.push(li.textContent);
-        });
+//         document.body.style.visibility = 'visible';
+//         area.style.display = 'none';
+//     }, 1000);
+// }
 
 
 
-        {% if resultado.rieles %}
-        items.push("{{ resultado.rieles }}");
-        {% endif %}
+// function imprimirContenido() {  //aquí vamos a trabajar el area de impresión
 
-        {% if resultado.chicote %}
-        items.push("{{ resultado.chicote }}");
-        {% endif %}
+//     let area = document.getElementById("areaImpresion");
+//     let lista = document.querySelectorAll("#listaHerrajes li");
+
+//     area.innerHTML = ""; // 🔥 limpiar siempre
+
+//     lista.forEach(li => {
+//         area.innerHTML += "<p>" + li.textContent + "</p>";
+//     });
+
+//     area.style.display = "block";
+
+//     window.print();
+
+//     area.style.display = "none";
+// }
 
 
-        if (resorteElegido) {
-        items.push("RESORTES SELECCIONADOS:");
-        items.push(resorteElegido);
-        }
+function imprimirContenido() {
+
+    let area = document.getElementById("areaImpresion");
+    let lista = document.querySelectorAll("#listaHerrajes li");
+
+    let detallePanel = "{{ resultado.paneles }}";
+    let fecha = new Date().toLocaleString();
+
+    let listaHTML = "";
+    lista.forEach(li => {
+        listaHTML += `<li>${li.textContent}</li>`;
+    });
+
+    let resorte = resorteElegido ? resorteElegido : "No seleccionado";
+
+    area.innerHTML = `
+        <div style="font-family: Arial; padding:40px;">
+
+            <!-- HEADER -->
+            <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:3px solid #004684; padding-bottom:10px;">
+                <img src="/static/img/Logo_Spazi_Azul.png" height="60"> 
+                <h1 style="color:#004684;">Resultado de Cálculo de Herrajes</h1>
+            </div>
+
+            <!-- DATOS -->
+            <div style="margin-top:20px;">
+                <p><strong>DETALLE DE PANEL:</strong> ${detallePanel}</p>
+                <p><strong>FECHA:</strong> ${fecha}</p>
+                <p><strong>Altura del Portón:</strong> {{ alto }} cm</p>
+                 <p><strong>Ancho del Portón:</strong> {{ ancho }} cm</p>
+            </div>
+
+            <!-- LISTA -->
+            <div style="margin-top:25px;">
+                <h2 style="color:#2d93e2;">Lista de surtido</h2>
+                <ul style="line-height:1.8;">
+                    ${listaHTML}
+                </ul>
+            </div>   
+
+
+            <!-- TERMINOS -->
+            <div style="margin-top:40px; font-size:12px; color:#555;">
+                Es responsabilidad del cliente revisar la lista de surtido al momento de la entrega.
+            </div>
+
+
+            <!-- FIRMAS -->
+            <div style="margin-top:50px; display:flex; justify-content:space-between;">
+                <div>
+                    ___________________________<br>
+                     Nombre y firma de quien entrega
+                </div>
+                <div>
+                    ___________________________<br>
+                      Nombre y firma del cliente
+                </div>
+            </div>
+
+
+            <!-- TERMINOS 2 -->
+            <div style="margin-top:40px; font-size:12px; color:#555;">
+                Una vez entregado el pedido y firmada la lista de surtido de entrega por el cliente, se conciderá que la entrega es conforme y completa.
+                La firma del cliente en la nota de entrega constituye una aceptación de que todos los materiales listados han sido recibidos y están en el estado acordado.
+                Grupo Spazi no se hará responsable ni podrá validar reclamaciones de falla de material una vez que el cliente haya firmado la nota de entrega aceptando la recepción completa y conforme de los materiales
+            </div>
 
 
 
-        items.forEach((item, index) => {
-            var imagenUrl = imagenes[index % imagenes.length]; // Cicla las imágenes si hay más ítems que imágenes
-
-            var tr = document.createElement("tr");
-            tr.innerHTML = `
-    <td>
-        <table width="100%" border="0" cellpadding="0" cellspacing="0" style="padding: 5px; border-top: 1px solid #eeeeee; border-bottom: 1px solid #eeeeee;">
-            <tr>
-                <td align="left" style="padding-left: 20px;">
-                    <img src="${imagenUrl}" alt="Producto" width="76">
-                </td>
-                <td style="padding-left: 20px;">
-                    <p style="margin: 0; font-size: 20px; font-weight: 600; color: #333333; font-family: Helvetica Neue, Helvetica, Arial, sans-serif;">${item}</p>
-                </td>
-                <td align="right">
-                    <input type="checkbox" style="margin: 5px; transform: scale(1.2);">
-                </td>
-            </tr>
-        </table>
-    </td>
-    
+        </div>
     `;
-            areaImpresion.appendChild(tr);
-        });
+
+    // area.style.display = "block";
+    // window.print();
+    // area.style.display = "none";
 
 
+    area.style.display = "block";
 
-        // Pie de página
-        var pieDePaginaHtml = `
+    let img = area.querySelector("img");
 
+    if (img) {
+        img.onload = function () {
+            window.print();
+            area.style.display = "none";
+        };
 
-
-
-
-
-
-  
-  <tr>
-      <td>
-          <table width="100%" border="0" cellpadding="0" cellspacing="0"  style="font-family: Helvetica Neue, Helvetica, Arial, sans-serif;">
-              <tr>
-                  <td align="center">
-                      <p style="margin: 5px; font-size: 16px; color: #666666;">Es responsabilidad del cliente revisar meticulosamente la lista de surtido de herraje al momento de la entrega del material.  La empresa proveerá un inventario detallado de los materiales incluidos
-                          <a href="#" style="text-decoration: none; color: #007eff;">en su pedido</a>.
-                      </p>
-
-
-                      <div id="firma" style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; margin-top: 50px;">
-                        <table width="100%" border="0">
-                            <tr>
-                                <td style="text-align: center;">
-                                    <div style="display: flex; justify-content: space-between;">
-                                        <div style="align-items: center; display: flex; flex-direction: column; width: 50%;">
-                                            <div style="border-top: 1px solid #000; width: 80%; margin-bottom: 20px;"></div>
-                                            <p>Nombre y firma de quien entrega</p>
-                                        </div>
-                                        <div style="align-items: center; display: flex; flex-direction: column; width: 50%;">
-                                            <div style="border-top: 1px solid #000; width: 80%; margin-bottom: 20px;"></div>
-                                            <p>Nombre y firma del cliente</p>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                    
-                    
-                    
-                    
-
-
-                      <p style="margin: 5px; font-size: 16px; color: #666666;">Una vez entregado el pedido y firmada la lista de surtido de entrega por el cliente, se considerará que la entrega es conforme y completa. La firma del cliente en la nota de entrega constituye una aceptación de que todos los materiales listados han sido recibidos y están en el estado acordado.</p>
-                      <p style="margin: 5px; font-size: 16px; color: #666666;"><a href="#" style="text-decoration: none; color: #007eff;">Grupo Spazi</a> no se hará responsable ni podrá validar reclamaciones de falta de material una vez que el cliente haya firmado la nota de entrega aceptando la recepción completa y conforme de los materiales. Es imperativo que los clientes y trabajadores
-                          <a href="#" style="text-decoration: none; color: #007eff;">revisen detalladamente su lista de surtido antes de firmar cualquier documento de aceptación</a>.
-                      </p>
-                  </td>
-              </tr>
-              <tr>
-                  <td align="center" style="margin-top: -10px;"  style="font-family: Helvetica Neue, Helvetica, Arial, sans-serif;">
-                      <img src="https://www.puertasautomaticasenquintanaroo.com.mx/images/grupo-spazi.svg" width="190" height="30" alt="logo" border="0">
-                  </td>
-              </tr>
-          </table>
-      </td>
-  </tr>
-
-
-
-
-
-
-
-
-
-
-
-  
-  <tr>
-    <td>
-        <table align="center">
-            <tr>
-                <td>
-                    <p style="font-size: 16px; color: #666666;"><a href="#"
-                            style="text-decoration: none; color: #007eff;">Grupo Spazi </a></p>
-                </td>
-                <td>
-                    <p style="font-size: 16px; color: #666666;"><a href="#"
-                            style="text-decoration: none; color: #007eff;">Terminos y condiciones</a></p>
-                </td>
-                <td>
-                    <p style="font-size: 16px; color: #666666;"><a href="#"
-                            style="text-decoration: none; color: #007eff;">Politica de privacidad</a></p>
-                </td>
-            </tr>
-        </table>
-    </td>
-</tr>
-<tr>
-    <td>
-        <table width="100%" border="0" cellpadding="0" cellspacing="0">
-            <tr>
-                <td align="center">
-                    <p style="margin-bottom: 0; font-size: 16px; color: #666666;">
-                        Copyright © 2024 Grupo Spazi
-                        <br> <a href="#"
-                            style="text-decoration: none; color: #007eff;">Todos los derechos reservados</a>
-                    </p>
-                    
-                </td>
-            </tr>
-        </table>
-    </td>
-</tr>
-`;
-        areaImpresion.innerHTML += pieDePaginaHtml; // Asegura agregar el pie de página HTML
-
-
-    }
-
-    function cargarImagenesYImprimir(areaImpresion) {
-        const imagenes = areaImpresion.querySelectorAll('img'); // Asume que quieres imprimir todas las imágenes dentro de un área específica
-        const promesasDeCarga = Array.from(imagenes).map(img => {
-            return new Promise((resolve) => img.onload = resolve);
-        });
-
-        // Espera a que todas las imágenes se carguen
-        Promise.all(promesasDeCarga).then(() => {
-            window.print(); // Imprime solo cuando todas las imágenes estén cargadas
-            // Restablece la visibilidad y cualquier otra limpieza necesaria aquí
-        });
-    }
-
-    function imprimirContenido() {
-        actualizarVistaImpresion(); // Asegúrate de que esta función ya no haga la llamada a window.print().
-
-        document.body.style.visibility = 'hidden';
-        var areaImpresion = document.getElementById('areaImpresion');
-        areaImpresion.style.display = 'block';
-
-        cargarImagenesYImprimir(areaImpresion); // Nueva función que maneja la carga de imágenes y la impresión
-
-        // Restablecer la visibilidad después de un retraso, si es necesario
-        window.setTimeout(function () {
-            document.body.style.visibility = 'visible';
-            areaImpresion.style.display = 'none';
-        }, 9000); // Ajusta este tiempo según sea necesario
+        img.onerror = function () {
+            console.warn("La imagen no cargó, imprimiendo de todas formas...");
+            window.print();
+            area.style.display = "none";
+        };
+    } else {
+        window.print();
+        area.style.display = "none";
     }
 
 
-    // Modifica la función agregarItem() para que obtenga el valor del input
-    function agregarItem() {
-        var nuevoItem = document.getElementById("nuevoItem").value;
-        if (nuevoItem && nuevoItem.trim() !== '') {
-            itemsAgregados.push(nuevoItem); // Almacena el ítem agregado
-            actualizarDetallePanel(); // Actualiza la vista con los nuevos ítems
-            $('#myModal').modal('hide'); // Cierra el modal después de agregar el ítem
-        } else {
-            alert("No se ingresó un ítem válido.");
-        }
-    }
 
-
-    // Esta función ahora maneja correctamente la eliminación de un ítem agregado
-    function eliminarItem(index) {
-        itemsAgregados.splice(index, 1); // Elimina el ítem en el índice especificado
-        actualizarDetallePanel(); // Actualiza la vista para reflejar la lista modificada
-    }
-
-
-    //-----------------------------
-    // document.addEventListener('change', function(e) {
-    //     if (e.target.name === 'resorteSeleccionado') {
-    //         resorteElegido = e.target.value;
-    //         actualizarDetallePanel(); // refresca la lista
-    //     }
-    // });
-
-    document.addEventListener('change', function(e) {
-        if (e.target.name === 'resorteSeleccionado') {
-
-            resorteElegido = e.target.value;
-
-            let cantidadResortes = parseInt(e.target.dataset.cantidad);
-            // let soportes = cantidadResortes + 1; // se cambia la logica despues de 2 resortes aumentan las pz
-            let soportes;
-
-            if (cantidadResortes <= 2) {
-                soportes = 3;
-            } else {
-                soportes = cantidadResortes + 1;
-            }
-
-            actualizarDetallePanel();
-            actualizarSoportesFlecha(soportes);
-        }
-    });
+}
 
 
 
 </script>
-
-
-
-<script>
-    document.getElementById('botonGenerar').addEventListener('click', function () {
-        window.location.href = '/generar';
-    });
-</script>
-
-
-
-
-
-<script>
-    function abrirChicote() {
-        // Abrir una nueva ventana y cargar la URL
-        window.open('/chicote', 'Chicote', 'width=800,height=600,resizable=yes,scrollbars=yes');
-    }
-</script>
-
-<script>
-    function abrirRieles() {
-        // Abrir una nueva ventana y cargar la URL
-        window.open('/rieles', 'Rieles', 'width=800,height=600,resizable=yes,scrollbars=yes');
-    }
-</script>
-
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
 
 </body>
-
 </html>

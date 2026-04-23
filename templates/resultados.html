@@ -21,12 +21,12 @@
 
     <div class="cards-container">
         <div class="card-box" id="pesoCapturado">
-            <img src="https://i.ibb.co/HLSW0Mt/negocio.png" alt="Peso" class="icono">
+            <img src="https://i.ibb.co/JF0yxXWC/Recurso-1.png" alt="Peso" class="icono">  <!-- https://i.ibb.co/HLSW0Mt/negocio.png img anterior-->
             <p>Peso capturado: {{ peso }} kg</p>
         </div>
         
         <div class="card-box" id="alturaCapturada">
-            <img src="https://i.ibb.co/0J5SyL7/altura.png" alt="Altura" class="icono">
+            <img src="https://i.ibb.co/spT8wRKH/Recurso-2.png" alt="Altura" class="icono"> <!-- https://i.ibb.co/0J5SyL7/altura.png-->
             <p>Altura capturada: {{ altura }} m</p>
         </div>
 
@@ -48,7 +48,7 @@
                             {% if tipo in tipos_seleccionados %} checked {% endif %}>
                             <span class="checkbox-tile">
                                 <span class="checkbox-icon">
-                                    <img src="https://i.ibb.co/zJWfLy3/resorte-de-acero.png" alt="Icono de automotor" class="small-icon">
+                                    <img src="https://i.ibb.co/S4hWGRfw/SPRING87-h.webp" alt="Icono de automotor" class="small-icon">  <!-- https://i.ibb.co/zJWfLy3/resorte-de-acero.png -->
                                 </span>
                                 <span class="checkbox-label">{{ tipo }}</span>
                             </span>
@@ -73,8 +73,7 @@
             <p>
             <button type="button" class="btn-marcar2" id="btnSinIntercalar">Sin intercalar 🔗</button>
             <button type="button" class="btn-marcar2" id="btnIntercalar">Intercalar resultados ⛓️</button>
-
-      
+        </p>
 
     </form>
  <!-- ... contenido previo ... -->
@@ -87,7 +86,8 @@
             <h3>{{ num_resortes }} Resorte(s):</h3>
             <div class="cards">
                 {% for combo in combinaciones %}
-                    <div class="card">
+                    <!-- <div class="card"> -->
+                    <div class="card" data-index="{{ loop.index0 }}">
                         <div class="card-content">
                             <h4 class="card-header">Combinación {{ loop.index }}</h4>
                             <div class="card-body">
@@ -98,7 +98,8 @@
                             </div>
                             <div class="card-actions">
                                 <button  id="copiaresorte"   class="btn-marcar1" onclick="copiarInformacion(this)">Copiar📄</button>
-                                <button  id="imprimirreporte"   class="btn-marcar1" onclick="imprimirInformacion(this)">Imprimir🖨️</button>
+                                <!-- <button  id="imprimirreporte"   class="btn-marcar1" onclick="imprimirInformacion(this)">Imprimir🖨️</button> -->
+                                <button class="btn-marcar1" onclick="imprimirInformacion(this)">Imprimir🖨️</button>
                             </div>
                         </div>
                     </div>
@@ -161,14 +162,32 @@
             });
         }
 
+        // function imprimirInformacion(buttonElement) {
+        //     var cardContent = buttonElement.closest('.card').querySelector('.card-body');
+        //     var resortes = Array.from(cardContent.querySelectorAll('p')).map(p => `resortes=${encodeURIComponent(p.textContent)}`).join('&');
+
+        //     var peso = document.querySelector('.card-box img[alt="Peso"] + p').textContent.split(': ')[1].trim();
+        //     var altura = document.querySelector('.card-box img[alt="Altura"] + p').textContent.split(': ')[1].trim();
+
+        //     var url = `/resortes/imprimir_ticket?peso=${peso}&altura=${altura}&${resortes}`;
+        //     window.open(url, '_blank');
+        // }
+
+
         function imprimirInformacion(buttonElement) {
-            var cardContent = buttonElement.closest('.card').querySelector('.card-body');
-            var resortes = Array.from(cardContent.querySelectorAll('p')).map(p => `resortes=${encodeURIComponent(p.textContent)}`).join('&');
 
-            var peso = document.querySelector('.card-box img[alt="Peso"] + p').textContent.split(': ')[1].trim();
-            var altura = document.querySelector('.card-box img[alt="Altura"] + p').textContent.split(': ')[1].trim();
+            var card = buttonElement.closest('.card');
+            var comboIndex = card.getAttribute('data-index');
 
-            var url = `/resortes/imprimir_ticket?peso=${peso}&altura=${altura}&${resortes}`;
+            // var peso = document.querySelector('#pesoCapturado p').textContent.split(': ')[1].trim();
+            var pesoTexto = document.querySelector('#pesoCapturado p').textContent.split(': ')[1].trim();
+            var peso = pesoTexto.replace(' kg', '');
+            // var altura = document.querySelector('#alturaCapturada p').textContent.split(': ')[1].trim();
+            var alturaTexto = document.querySelector('#alturaCapturada p').textContent.split(': ')[1].trim();
+            var altura = alturaTexto.replace(' m', '');
+
+            var url = `/resortes/imprimir_ticket?peso=${peso}&altura=${altura}&combo=${comboIndex}`;
+
             window.open(url, '_blank');
         }
     </script>
@@ -252,6 +271,13 @@
         
       </script>
       
+
+
+
+    
+</body>
+</html>
+
 
 
 

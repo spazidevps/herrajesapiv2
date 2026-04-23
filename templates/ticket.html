@@ -34,7 +34,7 @@
             <div>
                 <div class="label">DATOS SOLICITADOS PARA RESORTE</div>
                 <div>PESO: {{ peso }}</div>
-                <div>ANCHO: {{ ancho }}</div>
+                <!-- <div>ANCHO: {{ ancho }}</div> -->
                 <div>ALTO: {{ altura }}</div>
             </div>
         </div>
@@ -76,7 +76,7 @@
             <div>
                 <div class="label">DATOS SOLICITADOS PARA RESORTE</div>
                 <div>PESO: {{ peso }}</div>
-                <div>ANCHO: {{ ancho }}</div>
+                <!-- <div>ANCHO: {{ ancho }}</div> -->
                 <div>ALTO: {{ altura }}</div>
             </div>
         </div>
@@ -103,10 +103,23 @@
         </div>
     </div>
 
-    <script>
+    <!-- <script>
         window.onload = function() {
           window.print();
         };
+    </script> -->
+
+    <script>
+        window.onload = function() {
+            window.print();
+
+            window.onafterprint = function() {
+                window.close();
+            };
+        };
     </script>
+
+
 </body>
 </html>
+

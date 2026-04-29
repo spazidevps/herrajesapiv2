@@ -2254,6 +2254,12 @@ def calcular_herrajes(ancho, alto, peso_objetivo, tipo_porton):
             peso_herrajes = calcular_peso_herrajes(ancho, alto, paneles)# Agregado el 23/04/2026
             peso_total = round(peso_paneles + peso_herrajes, 2) # Agregado el 23/04/2026
             #------------------------------------------------------------------------------------------
+            # 🔥 DEFINIR PESO FINAL SEGÚN TIPO
+            if tipo_porton and tipo_porton.lower() == "generico":
+                peso_final = peso_objetivo
+            else:
+                peso_final = peso_total
+
             paneles_sug = rango['resultado'].get('paneles_sug', {})  # Uso de .get() para evitar KeyError
             herraje = rango['resultado']['herraje']
 
@@ -2278,7 +2284,9 @@ def calcular_herrajes(ancho, alto, peso_objetivo, tipo_porton):
                 'herraje': herraje,
                 'peso_paneles': peso_paneles,
                 'peso_herrajes': peso_herrajes,
-                'peso_total': peso_total
+                # 'peso_total': peso_total
+                'peso_total': peso_final,
+                'peso_calculado': peso_total  # 👈 opcional, por si lo quieres mostrar después
             }
             #----------------------------------------------------------------------
 
@@ -2338,7 +2346,8 @@ def calcular_herrajes(ancho, alto, peso_objetivo, tipo_porton):
             
 
             opciones_resortes = seleccionar_top_resortes(
-                peso_total,
+                #peso_total,
+                peso_final,
                 vueltas,
                 resortes,
                 limite=4,

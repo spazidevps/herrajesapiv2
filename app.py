@@ -57,7 +57,11 @@ def calcular():
     resultado = calcular_herrajes(ancho, alto, peso_objetivo, tipo_porton)
 
     # 🔥 NUEVO: obtener peso real desde herrajes
-    peso_real = resultado.get('peso_total', peso_objetivo)
+    # peso_real = resultado.get('peso_total', peso_objetivo)
+    if tipo_porton == 'generico':
+        peso_real = peso_objetivo
+    else:
+        peso_real = resultado.get('peso_total', peso_objetivo)
 
     # ================= RIELES =================
     texto_paneles = resultado['paneles']

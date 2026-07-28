@@ -5,7 +5,6 @@
 {% block content %}
 
 
-
     <!-- 🔵 LOGO PRINCIPAL -->
     <div style="text-align: center; margin-bottom: 20px;">
         <img src="{{ url_for('static', filename='img/logo_calculadora_resortes.png') }}" 
@@ -33,15 +32,6 @@
         </p>
 
 
-
-
-
-
-    <!-- <div class="calculadora">
-        <h2>Bienvenido a la Calculadora de Resortes</h2>
-        <h3>Ingresa el peso en Kilogramos</h3>
-        <h3>Ingresa la Altura en metros lineales</h3> -->
-        <!-- <form action="/resortes/" method="post"> -->
         <form action="/resortes/" method="post" onsubmit="return validarResortes()">
             <div>
                 <!-- <input type="text" name="peso" placeholder="Peso (kg)"> -->
@@ -59,13 +49,6 @@
             </div>
         </form>
     <!-- </div> -->
-
-
-
-
-
-
-
 
 
 
@@ -110,6 +93,3 @@
     }
     </script>
 {% endblock %}
-
-
-

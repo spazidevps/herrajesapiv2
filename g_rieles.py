@@ -8,10 +8,10 @@ def calcular_rieles(cantidad_paneles_46cm, cantidad_paneles_53cm):
 
     # Determina el juego de rieles necesario
     if altura_total <= 2.24:
-        return "Entregar juego de rieles de 2.14m"
+        return "Entregar juego de guías de 2.14m"
     elif altura_total <= 2.56:
-        return "Entregar juego de rieles de 2.44m"
+        return "Entregar juego de guías de 2.44m"
     elif altura_total <= 3.08:
-        return "Entregar juego de rieles de 3m o juego de rieles de 2.44m + 1 riel completo adicional (vertical u/o horizontal izquierdo o derecho)"
+        return "Entregar juego de guías de 3m o juego de guías de 2.44m + 1 guía completo adicional (vertical u/o horizontal izquierdo o derecho)"
     else:
-        return "La altura total excede el límite máximo para los rieles disponibles"  
+        return "La altura total excede el límite máximo para las guías disponibles"  

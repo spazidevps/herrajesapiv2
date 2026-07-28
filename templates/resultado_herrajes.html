@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resultado de Cálculo de Herrajes</title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-
-
 
     <style>
 
@@ -21,17 +20,6 @@
             --color-texto-secundario: #6c757d;
         }
 
-        /* body {
-            background-color: #343a40;
-            color: #fff;
-        } */
-
-        /* body {
-            background-color: var(--color-fondo);
-            color: var(--color-texto);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        } */
-
         body {
             background-color: var(--color-fondo);
             background-image: url("../static/img/fondo_spazi.jpg");
@@ -44,9 +32,6 @@
         }
         
         
-        /* .card, .navbar {
-            background-color: #212529;
-        } */
 
         .card {
             background-color: var(--color-card);
@@ -54,20 +39,6 @@
             border-radius: 14px;
             box-shadow: 0 6px 20px rgba(0,0,0,0.3);
         }
-
-
-        /* .navbar {
-            background: linear-gradient(90deg, var(--color-secundario), var(--color-primario));
-            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
-        }
-
-        .navbar .nav-link {
-            color: var(--color-texto-secundario);
-        }
-
-        .navbar .nav-link:hover {
-            color: #fff;
-        } */
 
 
         .navbar {
@@ -89,33 +60,6 @@
             background-color: #eaedf0; /*Color de la caja Nuevo Item*/
             color: #fff;
         }
-
-        /* .card-detalle-calc {
-            border: 1px solid #ffffff;
-            background-color: rgba(255,255,255,0.1);
-        } */
-
-        /* .card-detalle-calc {
-        background: linear-gradient(135deg, var(--color-secundario), var(--color-primario));
-        border: none;
-        border-radius: 16px;
-        padding: 10px;
-        } */
-
-
-        /* .card-detalle-calc {
-            background-color: #ffffff;
-            border-left: 5px solid var(--color-primario);
-            border-radius: 12px;
-        } */
-
-/* 
-        .card-detalle-calc {
-            background-color: #2d93e2;
-            color: #ffffff;
-            border-left: none;
-            border-radius: 12px;
-        } */
 
 
         .card-detalle-calc {
@@ -165,10 +109,6 @@
             font-weight: 600;
         }
 
-        /* .card {
-            border-radius: 12px;
-        } */
-
 
         .card {
             background-color: var(--color-card);
@@ -177,22 +117,6 @@
             box-shadow: 0 4px 12px rgba(0,0,0,0.08);
         }
 
-        /* .table {
-            border-radius: 10px;
-            overflow: hidden;
-        }
-
-
-        .table thead th {
-            background-color: var(--color-acento);
-            color: #fff;
-            border: none;
-        }
-
-        .table td {
-            vertical-align: middle;
-
-        } */
 
 
 
@@ -218,22 +142,9 @@
                 background-color: #1f7cc4;
         }
 
-        /* #listaHerrajes {
-            background: #f8f9fa;
-            border-radius: 10px;
-            padding: 15px;
-            min-height: 320px;
-            font-size: 14px;
-        }
-
-        #listaHerrajes li {
-            padding: 6px 0;
-            border-bottom: 1px solid #dee2e6;
-        } */
 
         #listaHerrajes {
-            /* background: #ffffff;
-            border: 1px solid var(--color-borde); */
+
             background: #0454bf;
             color: #ffffff;
             border: none;
@@ -250,25 +161,9 @@
         #listaHerrajes li {
             /*padding: 8px 0;  espacio entre las filas de la lista*/
             padding: 8px 10px;  /* ← antes era 8px 0 */
-            /* border-bottom: 1px solid #f1f1f1; */
             border-bottom: 1px solid rgba(255,255,255,0.2);
             font-size: 15px;  /*Tamaño de las letras de la lista de Herrajes*/
         }
-
-
-        /* .btn-primary {
-            background-color: var(--color-acento);
-            border: none;
-        }
-
-        .btn-success {
-            background-color: #28a745;
-            border: none;
-        }
-
-        .btn:hover {
-            opacity: 0.9;
-        } */
 
         .btn-primary {
             background-color: var(--color-primario);
@@ -315,19 +210,12 @@
 
 <body>
 
-<!-- NAV cambiar hasta aquí         -->
-<!-- <nav class="navbar navbar-expand-lg navbar-dark">
-    <a class="navbar-brand" href="#">
-        <img src="../static/img/Logo_GHerrajes.png" height="40">
-    </a>
-</nav> -->
 
 
-<!-- <nav class="navbar navbar-expand-lg navbar-dark px-4" style="background: linear-gradient(90deg, #1f2a33, #0d4d8b); box-shadow: 0 2px 10px rgba(0,0,0,0.4);"> -->
 <nav class="navbar navbar-expand-lg navbar-dark px-4" style="background-color: #004684; box-shadow: 0 2px 10px rgba(0,0,0,0.4);">
 
     <div class="d-flex align-items-center">
-        <img src="../static/img/Logo_GHerrajes.png" height="45" class="mr-2">
+        <img src="../static/img/Logo_GHerrajes.png" height="45" class="mr-2" alt="GHerrrajesSpazi">
         <div>
             <!-- <div style="font-weight:600; font-size:16px;">GHerrrajes</div> -->
             <small style="color:#e5e8eb;">Cálculo de Herrajes</small>
@@ -455,34 +343,10 @@
 
 let itemsAgregados = [];
 let resorteElegido = null;
+let cantidadResortesElegida = null;
 
 document.addEventListener("DOMContentLoaded", actualizar);
 
-// function actualizar() {
-
-//     let lista = document.getElementById("listaHerrajes");
-//     lista.innerHTML = "";
-
-//     let base = "{{ resultado.herraje }}".split(", ");
-
-//     base.forEach(item => {
-//         let li = document.createElement("li");
-//         li.textContent = item;
-//         lista.appendChild(li);
-//     });
-
-//     itemsAgregados.forEach(item => {
-//         let li = document.createElement("li");
-//         li.textContent = item;
-//         lista.appendChild(li);
-//     });
-
-//     if (resorteElegido) {
-//         let li = document.createElement("li");
-//         li.textContent = resorteElegido;
-//         lista.appendChild(li);
-//     }
-// }
 
 
 function actualizar() {
@@ -499,12 +363,24 @@ function actualizar() {
 
     let base = "{{ resultado.herraje }}".split(", ");
 
+    // base.forEach(item => {
+    //     let li = document.createElement("li");
+    //     li.textContent = item;
+    //     lista.appendChild(li);
+    // });
+
     base.forEach(item => {
         let li = document.createElement("li");
-        li.textContent = item;
+
+        // NUEVO: si ya se seleccionó una opción de resorte, recalcular soportes de flecha = cantidad + 1
+        if (item.startsWith("Soportes para flechas") && cantidadResortesElegida !== null) {
+            li.textContent = `Soportes para flechas: ${cantidadResortesElegida + 1} pzas`;
+        } else {
+            li.textContent = item;
+        }
+
         lista.appendChild(li);
     });
-
 
         // 👉 AGREGAR RIELES
     {% if resultado.rieles %}
@@ -545,58 +421,10 @@ function agregarItem() {
 document.addEventListener("change", function(e) {
     if (e.target.name === "resorteSeleccionado") {
         resorteElegido = e.target.value;
+        cantidadResortesElegida = parseInt(e.target.dataset.cantidad, 10);   // NUEVO
         actualizar();
     }
 });
-
-// function imprimirContenido() {
-//     let area = document.getElementById("areaImpresion");
-//     let lista = document.querySelectorAll("#listaHerrajes li");
-
-//     //area.innerHTML = "<h3>Lista de surtido</h3>";
-
-//     lista.forEach(li => {
-//         area.innerHTML += "<p>" + li.textContent + "</p>";
-//     });
-
-//     window.print();
-// }
-
-// function imprimirContenido() {
-
-//     actualizarVistaImpresion(); // 👈 usa TU lógica avanzada
-
-//     document.body.style.visibility = 'hidden';
-//     var area = document.getElementById('areaImpresion');
-//     area.style.display = 'block';
-
-//     setTimeout(() => {
-//         window.print();
-
-//         document.body.style.visibility = 'visible';
-//         area.style.display = 'none';
-//     }, 1000);
-// }
-
-
-
-// function imprimirContenido() {  //aquí vamos a trabajar el area de impresión
-
-//     let area = document.getElementById("areaImpresion");
-//     let lista = document.querySelectorAll("#listaHerrajes li");
-
-//     area.innerHTML = ""; // 🔥 limpiar siempre
-
-//     lista.forEach(li => {
-//         area.innerHTML += "<p>" + li.textContent + "</p>";
-//     });
-
-//     area.style.display = "block";
-
-//     window.print();
-
-//     area.style.display = "none";
-// }
 
 
 function imprimirContenido() {
@@ -671,9 +499,6 @@ function imprimirContenido() {
         </div>
     `;
 
-    // area.style.display = "block";
-    // window.print();
-    // area.style.display = "none";
 
 
     area.style.display = "block";

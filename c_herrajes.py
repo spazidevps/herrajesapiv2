@@ -25,6 +25,7 @@ def obtener_ancho_base(ancho):
             return ancho_base
     return max(PESO_POR_PANEL.keys())
 
+#------------------------------Agregado el 28/08/2026---------------------------------
 def calcular_peso_paneles(paneles, ancho):
     ancho_base = obtener_ancho_base(ancho)
     pesos = PESO_POR_PANEL[ancho_base]
@@ -34,6 +35,23 @@ def calcular_peso_paneles(paneles, ancho):
         total += cantidad * pesos.get(tipo, 0)
 
     return round(total, 2)
+
+
+
+DENSIDAD_PANEL_KG_M2 = 10.5  # kg/m2, densidad de campo
+
+def calcular_peso_paneles_real(ancho, alto):
+    return round(ancho * alto * DENSIDAD_PANEL_KG_M2, 2)
+#-----------------------------------------------------------------------
+#def calcular_peso_paneles(paneles, ancho):
+#    ancho_base = obtener_ancho_base(ancho)
+#    pesos = PESO_POR_PANEL[ancho_base]
+
+#    total = 0
+#    for tipo, cantidad in paneles.items():
+#        total += cantidad * pesos.get(tipo, 0)
+
+#    return round(total, 2)
 
 
 #------------------------------Agregado el 23/04/2026---------------------------------
@@ -2245,13 +2263,25 @@ def calcular_herrajes(ancho, alto, peso_objetivo, tipo_porton):
 
     for rango in rangos:
         print(f"Evaluando rango: ancho_max={rango['ancho_max']}, alto_max={rango['alto_max']}")  # Para depuración
-
+           
+        
         if ancho <= rango['ancho_max'] and alto <= rango['alto_max']:
             paneles = rango['resultado']['paneles']
             #------------------------------------------------------------------------------------------
-            peso_paneles = calcular_peso_paneles(paneles, ancho) # Agregado el 23/04/2026
+            # Modificado 28/08/2026: el rango sigue eligiendo la caja de herrajes,
+            # pero el peso del panel ahora es ancho x alto reales x densidad de campo
+            # (antes: calcular_peso_paneles(paneles, ancho), peso de catálogo).
+            peso_paneles = calcular_peso_paneles_real(ancho, alto) # Modificado 28/08/2026
             peso_herrajes = calcular_peso_herrajes(ancho, alto, paneles)# Agregado el 23/04/2026
             peso_total = round(peso_paneles + peso_herrajes, 2) # Agregado el 23/04/2026
+            #------------------------------------------------------------------------------------------
+
+ #       if ancho <= rango['ancho_max'] and alto <= rango['alto_max']:
+  #          paneles = rango['resultado']['paneles']
+            #------------------------------------------------------------------------------------------
+   #         peso_paneles = calcular_peso_paneles(paneles, ancho) # Agregado el 23/04/2026
+   #         peso_herrajes = calcular_peso_herrajes(ancho, alto, paneles)# Agregado el 23/04/2026
+    #        peso_total = round(peso_paneles + peso_herrajes, 2) # Agregado el 23/04/2026
             #------------------------------------------------------------------------------------------
             # 🔥 DEFINIR PESO FINAL SEGÚN TIPO
             if tipo_porton and tipo_porton.lower() == "generico":

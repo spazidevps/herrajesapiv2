@@ -8,7 +8,7 @@ resortes_blueprint = Blueprint('resortes', __name__, template_folder='templates'
 
 # Datos de los resortes proporcionados
 resortes = [
-    {'tipo': '9X7', 'vueltas': 5.5, 'peso_por_resorte': 24.4, 'longitud': 0.80}, #se agrega la longitud de los resortes en metros.
+    {'tipo': '9X7', 'vueltas': 5.5, 'peso_por_resorte': 24.4, 'longitud': 0.80}, #se agrega la longitud de los resortes en centimetros.
     {'tipo': '9X7', 'vueltas': 6, 'peso_por_resorte': 25.7, 'longitud': 0.80},
     {'tipo': '9X7', 'vueltas': 6.5, 'peso_por_resorte': 26.9, 'longitud': 0.80},
     {'tipo': '9X7', 'vueltas': 7, 'peso_por_resorte': 28.3, 'longitud': 0.80},
@@ -23,7 +23,7 @@ resortes = [
     {'tipo': '9X8', 'vueltas': 6, 'peso_por_resorte': 29.8, 'longitud': 0.64},
     {'tipo': '9X8', 'vueltas': 6.5, 'peso_por_resorte': 31.3, 'longitud': 0.64},
     {'tipo': '9X8', 'vueltas': 7, 'peso_por_resorte': 32.9, 'longitud': 0.64},
-    {'tipo': '9X8', 'vueltas': 7.5, 'peso_por_resorte': 34.5, 'longitud': 0.64}, #se agrega la longitud de los resortes en metros.
+    {'tipo': '9X8', 'vueltas': 7.5, 'peso_por_resorte': 34.5, 'longitud': 0.64}, #se agrega la longitud de los resortes en centimetros.
     {'tipo': '9X8', 'vueltas': 8, 'peso_por_resorte': 36.3, 'longitud': 0.64},
     {'tipo': '9X8', 'vueltas': 8.5, 'peso_por_resorte': 38.1, 'longitud': 0.64},
     {'tipo': '9X8', 'vueltas': 9, 'peso_por_resorte': 40, 'longitud': 0.64},
@@ -34,7 +34,7 @@ resortes = [
 
 
     {'tipo': '10X7', 'vueltas': 5.5, 'peso_por_resorte': 27.2, 'longitud': 1.02},
-    {'tipo': '10X7', 'vueltas': 6, 'peso_por_resorte': 28.6, 'longitud': 1.02},
+    {'tipo': '10X7', 'vueltas': 6, 'peso_por_resorte': 28.6, 'longitud': 1.02}, #se agrega la longitud de los resortes en metros.
     {'tipo': '10X7', 'vueltas': 6.5, 'peso_por_resorte': 30, 'longitud': 1.02},
     {'tipo': '10X7', 'vueltas': 7, 'peso_por_resorte': 31.5, 'longitud': 1.02},
     {'tipo': '10X7', 'vueltas': 7.5, 'peso_por_resorte': 33.1, 'longitud': 1.02},
@@ -45,7 +45,7 @@ resortes = [
 
 
 
-    {'tipo': '10X8', 'vueltas': 5.5, 'peso_por_resorte': 31.6, 'longitud': 0.74}, #se agrega la longitud de los resortes en metros.
+    {'tipo': '10X8', 'vueltas': 5.5, 'peso_por_resorte': 31.6, 'longitud': 0.74}, #se agrega la longitud de los resortes en centimetros.
     {'tipo': '10X8', 'vueltas': 6, 'peso_por_resorte': 33.2, 'longitud': 0.74},
     {'tipo': '10X8', 'vueltas': 6.5, 'peso_por_resorte': 34.9, 'longitud': 0.74},
     {'tipo': '10X8', 'vueltas': 7, 'peso_por_resorte': 36.6, 'longitud': 0.74},
@@ -67,7 +67,7 @@ resortes = [
     {'tipo': '12X7', 'vueltas': 8, 'peso_por_resorte': 41.7, 'longitud': 0.69},
     {'tipo': '12X7', 'vueltas': 8.5, 'peso_por_resorte': 43.8, 'longitud': 0.69},
     {'tipo': '12X7', 'vueltas': 9, 'peso_por_resorte': 45.9, 'longitud': 0.69},
-    {'tipo': '12X7', 'vueltas': 9.5, 'peso_por_resorte': 48.2, 'longitud': 0.69},#se agrega la longitud de los resortes en metros.
+    {'tipo': '12X7', 'vueltas': 9.5, 'peso_por_resorte': 48.2, 'longitud': 0.69},#se agrega la longitud de los resortes en centimetros.
 
 
  
@@ -85,7 +85,7 @@ resortes = [
 
 
 
-    {'tipo': '14X7', 'vueltas': 5.5, 'peso_por_resorte': 38.1, 'longitud': 0.60}, #se agrega la longitud de los resortes en metros.
+    {'tipo': '14X7', 'vueltas': 5.5, 'peso_por_resorte': 38.1, 'longitud': 0.60}, #se agrega la longitud de los resortes en centimetrosb.
     {'tipo': '14X7', 'vueltas': 6, 'peso_por_resorte': 40, 'longitud': 0.60},
     {'tipo': '14X7', 'vueltas': 6.5, 'peso_por_resorte': 42, 'longitud': 0.60},
     {'tipo': '14X7', 'vueltas': 7, 'peso_por_resorte': 44.1, 'longitud': 0.60},
@@ -253,11 +253,7 @@ resortes = [
 
 ]
 
-# CÁLCULO DE VUELTAS
-# ======================================================
-# def calcular_vueltas(altura_cm):
-#     PIE = 30.5
-#     return altura_cm / PIE
+
 
 def calcular_vueltas(altura_cm):
     """
@@ -357,19 +353,8 @@ def encontrar_combinaciones_resortes(peso_objetivo, vueltas_objetivo, resortes, 
                 "peso_total": round(peso_total, 2),
                 "diferencia": round(diferencia, 2)
             })
-    #-----------------------------------------------------------------------------
-    # # 2 resortes
-    # for r in resortes_vuelta:
-    #     peso_total = r['peso_por_resorte'] * 2
-    #     diferencia = abs(peso_total - peso_objetivo)
-    #     if diferencia <= tolerancia:
-    #         resultados.append({
-    #             "resortes": [r, r],
-    #             "cantidad": 2,
-    #             "peso_total": round(peso_total, 2),
-    #             "diferencia": round(diferencia, 2)
-    #         })
-    #-----------------------------------------------------------------------------
+
+
     # 2 resortes (permitir iguales y diferentes)
     for r1, r2 in itertools.combinations_with_replacement(resortes_vuelta, 2):
         peso_total = r1['peso_por_resorte'] + r2['peso_por_resorte']

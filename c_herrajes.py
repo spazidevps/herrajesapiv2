@@ -1,7 +1,5 @@
 from g_rieles import calcular_rieles #se importa la funcion de calculo de Rieles
 from g_chicote import asignar_chicote #se importa la funcion de calculo de chicotes
-# from resortes import calcular_vueltas #se importa la funcion de calculo de vueltas
-# from resortes import seleccionar_resorte_automatico, resortes
 from resortes import calcular_vueltas
 from resortes import seleccionar_top_resortes, resortes
 
@@ -11,7 +9,7 @@ from resortes import seleccionar_top_resortes, resortes
 PESO_POR_PANEL = {
     2.74: {'46cm': 13.40, '53cm': 14.62},
     3.05: {'46cm': 14.91, '53cm': 16.27},
-    3.66: {'46cm': 17.30, '53cm': 19.53},
+    3.66: {'46cm': 17.90, '53cm': 19.53},
     4.27: {'46cm': 20.88, '53cm': 22.78},
     4.88: {'46cm': 23.86, '53cm': 26.03},
     5.48: {'46cm': 26.80, '53cm': 29.23},
@@ -25,7 +23,14 @@ def obtener_ancho_base(ancho):
             return ancho_base
     return max(PESO_POR_PANEL.keys())
 
-#------------------------------Agregado el 28/08/2026---------------------------------
+# def calcular_peso_paneles(paneles, ancho):
+#     ancho_base = obtener_ancho_base(ancho)
+#     pesos = PESO_POR_PANEL[ancho_base]
+
+#     total = 0
+#     for tipo, cantidad in paneles.items():
+#         total += cantidad * pesos.get(tipo, 0)
+#     return round(total, 2)
 def calcular_peso_paneles(paneles, ancho):
     ancho_base = obtener_ancho_base(ancho)
     pesos = PESO_POR_PANEL[ancho_base]
@@ -36,22 +41,44 @@ def calcular_peso_paneles(paneles, ancho):
 
     return round(total, 2)
 
+#------------------------------Agregado el 28/08/2026---------------------------------
+# Peso del panel con el ancho real (no ancho_base) y el peso lineal fijo de cada
+# tipo de panel, confirmado en campo. El rango de `rangos` se sigue usando para
+# saber cuántos paneles de cada tipo lleva el portón (paneles) y para elegir el
+# kit de herraje (peso_herrajes) — solo cambia cómo se pesa el panel en sí.
+PESO_LINEAL_PANEL = {
+    '46cm': 4.8,     # kg por metro lineal de ancho
+    '53cm': 5.225,   # kg por metro lineal de ancho
+}
 
+def calcular_peso_paneles_real(paneles, ancho):
+    total = 0
+    for tipo, cantidad in paneles.items():
+        total += cantidad * PESO_LINEAL_PANEL.get(tipo, 0)
+    return round(ancho * total, 2)
 
-DENSIDAD_PANEL_KG_M2 = 10.5  # kg/m2, densidad de campo
+#---------------------------------------------------------------
 
-def calcular_peso_paneles_real(ancho, alto):
-    return round(ancho * alto * DENSIDAD_PANEL_KG_M2, 2)
-#-----------------------------------------------------------------------
-#def calcular_peso_paneles(paneles, ancho):
-#    ancho_base = obtener_ancho_base(ancho)
-#    pesos = PESO_POR_PANEL[ancho_base]
+# #------------------------------Agregado el 28/08/2026---------------------------------
+# # Peso del panel con las medidas reales (ancho x alto que pidió el cliente),
+# # en vez del peso de catálogo (ancho_base + paneles fijos de 46/53cm). El rango
+# # de `rangos` se sigue usando para elegir el kit de herraje (peso_herrajes),
+# # pero el peso del panel ya no depende del sobrante de catálogo del bloque
+# # en el que "cae" la medida.
+# DENSIDAD_PANEL_KG_M2 = 10.5  # kg/m2, densidad de campo
+# def calcular_peso_paneles_real(ancho, alto):
+#     return round(ancho * alto * DENSIDAD_PANEL_KG_M2, 2)
 
-#    total = 0
-#    for tipo, cantidad in paneles.items():
-#        total += cantidad * pesos.get(tipo, 0)
+# #----------------------comentado el 28/08/2026-----------------------------------------
+# # def calcular_peso_paneles(paneles, ancho):
+# #     ancho_base = obtener_ancho_base(ancho)
+# #     pesos = PESO_POR_PANEL[ancho_base]
+# #     total = 0
+# #     for tipo, cantidad in paneles.items():
+# #         total += cantidad * pesos.get(tipo, 0)
 
-#    return round(total, 2)
+# #     return round(total, 2)
+
 
 
 #------------------------------Agregado el 23/04/2026---------------------------------
@@ -141,7 +168,7 @@ def calcular_herrajes(ancho, alto, peso_objetivo, tipo_porton):
                 'paneles_sug': {'46cm': 4, '53cm': 0},
                 # 'herraje': "Altura total del portón = 194.5cm, Tubo o Flecha: 1pza de 2.29 - 2.94m, Caja de herrajes 9X7 con:,  Soporte inferior de aluminio para hule.: 1 izquierdo y 1 derecho, Soporte superior: 2pzas, Bisagra Spazi Lateral Ajustable: 8pzas, Bisagra Spazi Intermedia: 4pzas, Rodajas (Ruedas): 12pzas, Tambores: 1 izquierdo 1 derecho de 3.7cm de ancho por 11 cm de radio, Soportes para flechas: 3pzas, Bandera Chica: 6pzas, Ángulo de 1″ X 100 cm: 2pzas, Bandera Grande: 1 izquierdo + 1 derecho , Ángulo de 1″ X 50 cm: 2pzas, Ángulo de 1½″ : 2pzas, Manija Jaladera: 1pza, Hule Inferior: 1pza de 2.74m, Soporte para Hule: 1pza de 2.74m, Empaque Lateral: 1pza de 2.74m, Pija de 6 mm: 70pzas, Tornillo cabeza coche de 6X19mm: 20pzas, Tornillo cabeza coche 9X24mm: 4pzas, Tornillo hexagonal a 8X25mm: 8pzas, Remaches 5X13mm : 9pzas, Tornillos 5cm para resorte: 2pzas",
                 # 'herraje_2': "Altura total del portón = 187.3cm, Caja de herrajes 9X7 con:, Tubo o Flecha: 1pza de 2.29 - 2.94m, Soporte inferior de aluminio para hule.: 1 izquierdo y 1 derecho, Soporte superior: 2pzas, Bisagra Spazi Lateral Ajustable: 8pzas, Bisagra Spazi Intermedia: 4pzas, Rodajas (Ruedas): 12pzas, Tambores: 1 izquierdo 1 derecho de 3.7cm de ancho por 11 cm de radio, Soportes para flechas: 3pzas, Bandera Chica: 6pzas, Ángulo de 1″ X 100 cm: 2pzas, Bandera Grande: 1 izquierdo + 1 derecho , Ángulo de 1″ X 50 cm: 2pzas, Ángulo de 1½″ : 2pzas, Manija Jaladera: 1pza, Hule Inferior: 1pza de 2.74m, Soporte para Hule: 1pza de 2.74m, Empaque Lateral: 1pza de 2.74m, Pija de 6 mm: 70pzas, Tornillo cabeza coche de 6X19mm: 20pzas, Tornillo cabeza coche 9X24mm: 4pzas, Tornillo hexagonal a 8X25mm: 8pzas, Remaches 5X13mm : 9pzas, Tornillos 5cm para resorte: 2pzas"
-                'herraje': "Altura total del portón = 159cm, Tubo o Flecha: 1pza de 2.29 - 2.94m, Caja de herrajes 9X7 con:,  Soporte inferior de aluminio para hule.: 1 izquierdo y 1 derecho, Soporte superior: 2pzas, Bisagra Spazi Lateral Ajustable: 4pzas, Bisagra Spazi Intermedia: 2pzas, Rodajas (Ruedas): 8pzas, Tambores: 1 izquierdo 1 derecho de 3.7cm de ancho por 11 cm de radio, Soportes para flechas: 3pzas, Bandera Chica: 4pzas,  Bandera Grande: 1 izquierdo + 1 derecho ,  Manija Jaladera: 1pza, Pija de 6 mm: 54pzas, Tornillo cabeza coche de 6X19mm: 16pzas, Tornillo cabeza coche 9X24mm: 4pzas, Tornillo hexagonal a 8X25mm: 8pzas, Remaches 5X13mm : 9pzas, Tornillos 5cm para resorte: 2pzas, Ángulo 1\" pulgada X100cm: 2pzas,  Ángulo de 1″ X 50 cm: 2pzas: 2pzas, Ángulo de 1½″ : 2pzas, Hule Inferior: 1pza de 2.74m, Soporte para Hule: 1pza de 2.74m, Empaque Lateral: 1pza de 2.74m,",
+                'herraje': "Altura total del portón = 159cm, Tubo o Flecha: 1pza de 2.29 - 2.94m, Caja de herrajes 9X7 con:,  Soporte inferior de aluminio para hule.: 1 izquierdo y 1 derecho, Soporte superior: 2pzas, Bisagra Spazi Lateral Ajustable: 4pzas, Bisagra Spazi Intermedia: 2pzas, Rodajas (Ruedas): 8pzas, Tambores: 1 izquierdo 1 derecho de 3.7cm de ancho por 11 cm de radio, Soportes para flechas: 3pzas, Bandera Chica: 4pzas,  Bandera Grande: 1 izquierdo + 1 derecho ,  Manija Jaladera: 1pza, Pija de 6 mm: 54pzas, Tornillo cabeza coche de 6X19mm: 16pzas, Tornillo cabeza coche 9X24mm: 4pzas, Tornillo hexagonal a 8X25mm: 8pzas, Remaches 5X13mm : 9pzas, Tornillos 5cm para resorte: 2pzas, Ángulo 1″ pulgada X100cm: 2pzas,  Ángulo de 1″ X 50 cm: 2pzas: 2pzas, Ángulo de 1½″ pulgada : 2pzas, Hule Inferior: 1pza de 2.74m, Soporte para Hule: 1pza de 2.74m, Empaque Lateral: 1pza de 2.74m,",
                 'herraje': "Altura total del portón = 159cm, Tubo o Flecha: 1pza de 2.29 - 2.94m, Caja de herrajes 9X7 con:,  Soporte inferior de aluminio para hule.: 1 izquierdo y 1 derecho, Soporte superior: 2pzas, Bisagra Spazi Lateral Ajustable: 4pzas, Bisagra Spazi Intermedia: 2pzas, Rodajas (Ruedas): 8pzas, Tambores: 1 izquierdo 1 derecho de 3.7cm de ancho por 11 cm de radio, Soportes para flechas: 3pzas, Bandera Chica: 4pzas,  Bandera Grande: 1 izquierdo + 1 derecho ,  Manija Jaladera: 1pza, Pija de 6 mm: 54pzas, Tornillo cabeza coche de 6X19mm: 16pzas, Tornillo cabeza coche 9X24mm: 4pzas, Tornillo hexagonal a 8X25mm: 8pzas, Remaches 5X13mm : 9pzas, Tornillos 5cm para resorte: 2pzas, Ángulo de 1″ X 100 cm: 2pzas,  Ángulo de 1″ X 50 cm: 2pzas: 2pzas, Ángulo de 1½″ : 2pzas, Hule Inferior: 1pza de 2.74m, Soporte para Hule: 1pza de 2.74m, Empaque Lateral: 1pza de 2.74m,",
                 'peso_total': None
             }
@@ -2263,25 +2290,34 @@ def calcular_herrajes(ancho, alto, peso_objetivo, tipo_porton):
 
     for rango in rangos:
         print(f"Evaluando rango: ancho_max={rango['ancho_max']}, alto_max={rango['alto_max']}")  # Para depuración
-           
-        
+
+        # if ancho <= rango['ancho_max'] and alto <= rango['alto_max']:
+        #     paneles = rango['resultado']['paneles']
+        #     #------------------------------------------------------------------------------------------
+        #     peso_paneles = calcular_peso_paneles(paneles, ancho) # Agregado el 23/04/2026
+        #     peso_herrajes = calcular_peso_herrajes(ancho, alto, paneles)# Agregado el 23/04/2026
+        #     peso_total = round(peso_paneles + peso_herrajes, 2) # Agregado el 23/04/2026
+        # if ancho <= rango['ancho_max'] and alto <= rango['alto_max']:
+        #     paneles = rango['resultado']['paneles']
+        #     #------------------------------------------------------------------------------------------
+        #     # Modificado 28/08/2026: el rango sigue eligiendo la caja de herrajes,
+        #     # pero el peso del panel ahora es ancho x alto reales x densidad de campo
+        #     # (antes: calcular_peso_paneles(paneles, ancho), peso de catálogo).
+        #     peso_paneles = calcular_peso_paneles_real(ancho, alto) # Modificado 28/08/2026
+        #     peso_herrajes = calcular_peso_herrajes(ancho, alto, paneles)# Agregado el 23/04/2026
+        #     peso_total = round(peso_paneles + peso_herrajes, 2) # Agregado el 23/04/2026
+        #     #------------------------------------------------------------------------------------------
         if ancho <= rango['ancho_max'] and alto <= rango['alto_max']:
             paneles = rango['resultado']['paneles']
             #------------------------------------------------------------------------------------------
-            # Modificado 28/08/2026: el rango sigue eligiendo la caja de herrajes,
-            # pero el peso del panel ahora es ancho x alto reales x densidad de campo
-            # (antes: calcular_peso_paneles(paneles, ancho), peso de catálogo).
-            peso_paneles = calcular_peso_paneles_real(ancho, alto) # Modificado 28/08/2026
+            # Modificado 28/08/2026: el rango sigue eligiendo cuántos paneles de cada
+            # tipo lleva el portón y qué kit de herraje aplica; el peso del panel ahora
+            # sale de ancho real x peso lineal fijo por tipo (antes: tabla de catálogo
+            # PESO_POR_PANEL vía calcular_peso_paneles(paneles, ancho)).
+            peso_paneles = calcular_peso_paneles_real(paneles, ancho) # Modificado 28/08/2026
             peso_herrajes = calcular_peso_herrajes(ancho, alto, paneles)# Agregado el 23/04/2026
             peso_total = round(peso_paneles + peso_herrajes, 2) # Agregado el 23/04/2026
             #------------------------------------------------------------------------------------------
-
- #       if ancho <= rango['ancho_max'] and alto <= rango['alto_max']:
-  #          paneles = rango['resultado']['paneles']
-            #------------------------------------------------------------------------------------------
-   #         peso_paneles = calcular_peso_paneles(paneles, ancho) # Agregado el 23/04/2026
-   #         peso_herrajes = calcular_peso_herrajes(ancho, alto, paneles)# Agregado el 23/04/2026
-    #        peso_total = round(peso_paneles + peso_herrajes, 2) # Agregado el 23/04/2026
             #------------------------------------------------------------------------------------------
             # 🔥 DEFINIR PESO FINAL SEGÚN TIPO
             if tipo_porton and tipo_porton.lower() == "generico":

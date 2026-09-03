@@ -143,7 +143,7 @@
         }
 
 
-        #listaHerrajes {
+        /* #listaHerrajes {
 
             background: #0454bf;
             color: #ffffff;
@@ -155,14 +155,45 @@
 
 
             max-height: 550px; /* Alto de la lista de herrajes ajusta a tu gusto */
-            overflow-y: auto;
+            /* overflow-y: auto;
         }
 
         #listaHerrajes li {
             /*padding: 8px 0;  espacio entre las filas de la lista*/
-            padding: 8px 10px;  /* ← antes era 8px 0 */
-            border-bottom: 1px solid rgba(255,255,255,0.2);
+            /* padding: 8px 10px;  /* ← antes era 8px 0 */
+            /* border-bottom: 1px solid rgba(255,255,255,0.2);
             font-size: 15px;  /*Tamaño de las letras de la lista de Herrajes*/
+        /* } */ 
+        .lista-herrajes-box {
+            background: #0454bf;
+            color: #ffffff;
+            border: none;
+            border-radius: 10px;
+            padding: 15px;
+            min-height: 140px;
+            list-style-position: inside;
+
+            max-height: 300px; /* Alto de cada lista (caja / complementos), ajusta a tu gusto */
+            overflow-y: auto;
+            margin-bottom: 18px;
+        }
+
+        .lista-herrajes-box li {
+            padding: 8px 10px;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            font-size: 15px;
+        }
+
+        .titulo-seccion-herrajes {
+            font-weight: 700;
+            color: #ffffff;
+            background: #033a99;
+            padding: 6px 12px;
+            border-radius: 8px 8px 0 0;
+            margin-bottom: 0;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: .03em;
         }
 
         .btn-primary {
@@ -202,6 +233,97 @@
             background-color: #0454bf;
             color: #ffffff;
         }
+/* ----------------------------------------------------------------------------------------------------------- */
+/* ===================== GALERÍA DE PRODUCTOS ===================== */
+        .galeria-wrap { margin-top: 10px; }
+        /* .galeria-header {
+            display: flex; align-items: center; justify-content: space-between;
+            flex-wrap: wrap; gap: 10px; margin-bottom: 14px;
+        } */
+        .galeria-header {
+            margin-bottom: 10px;
+        }
+        .galeria-header-top {
+            display: flex; align-items: center; justify-content: space-between;
+            flex-wrap: wrap; gap: 10px; margin-bottom: 4px;
+        }
+
+        .galeria-header p { color: #6c757d; font-size: 13px; margin-bottom: 0; }
+        .galeria-tabs { display: flex; gap: 6px; }
+        .galeria-tab {
+            border: 1px solid #d7dde3; background: #fff; color: #33475b;
+            font-size: 12px; font-weight: 600; padding: 6px 14px; border-radius: 20px;
+            cursor: pointer; transition: all .15s ease;
+        }
+        .galeria-tab.activa { background: #004684; color: #fff; border-color: #004684; }
+
+        /* .titulo-seccion-galeria {
+            font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .04em;
+            color: #fff; display: inline-block; padding: 4px 12px; border-radius: 20px;
+            margin: 18px 0 10px 0;
+        } */
+
+        .titulo-seccion-galeria {
+            font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .04em;
+            color: #fff; display: inline-block; padding: 3px 10px; border-radius: 20px;
+            margin: 8px 0 8px 0;
+        }
+        .titulo-seccion-galeria.caja { background: #033a99; }
+        .titulo-seccion-galeria.complemento { background: #155a9c; }
+        .titulo-seccion-galeria.resorte { background: #0d8a5f; }
+
+        .product-grid {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 14px;
+        }
+        .product-card {
+            background: #fff; border: 1px solid #e5e9ee; border-radius: 12px; padding: 10px;
+            text-align: center; position: relative; cursor: default;
+            transition: box-shadow .18s ease, transform .18s ease, border-color .18s ease;
+        }
+        .product-card:hover { box-shadow: 0 8px 18px rgba(0,70,132,.18); transform: translateY(-3px); }
+        /* .product-card.activo {
+            border-color: #004684; box-shadow: 0 0 0 3px rgba(4,84,191,.35), 0 8px 18px rgba(0,70,132,.25);
+            transform: translateY(-3px);
+        } */
+        /* .galeria-contenido {
+            max-height: 480px;
+            overflow-y: auto;
+            padding-right: 6px;
+            scroll-behavior: smooth;
+        } */
+        .galeria-contenido {
+            overflow-y: auto;
+            padding: 16px;
+            scroll-behavior: smooth;
+            background: #f7f9fb;
+            border: 1px solid #e5e9ee;
+            border-radius: 12px;
+        }
+            .product-card.activo {
+            border-color: #ff8800; box-shadow: 0 0 0 4px rgba(255,136,0,.5), 0 10px 22px rgba(255,136,0,.35);
+            transform: translateY(-4px) scale(1.04);
+            z-index: 2;
+        }
+        /*------------------------------------------------------------------------------------*/
+        .product-img {
+            height: 84px; display: flex; align-items: center; justify-content: center; margin-bottom: 6px;
+            background: #f7f9fb; border-radius: 8px; overflow: hidden;
+        }
+        .product-img img { max-height: 100%; max-width: 100%; object-fit: contain; }
+        .product-name { font-size: 12px; font-weight: 600; color: #1f2a33; line-height: 1.25; min-height: 30px; }
+        .badge-cat {
+            position: absolute; top: 6px; right: 6px; font-size: 9px; font-weight: 700; padding: 2px 7px;
+            border-radius: 20px; color: #fff; text-transform: uppercase; letter-spacing: .02em;
+        }
+        .badge-caja { background: #0454bf; }
+        .badge-complemento { background: #1f7cc4; }
+        .badge-resorte { background: #0d8a5f; }
+
+        /* items de la lista de herrajes que sí tienen foto vinculada en la galería */
+        .item-vinculable { cursor: pointer; }
+        .item-vinculable::after { content: " \1F517"; opacity: .55; font-size: 11px; }
+        /* .item-vinculable.activo { background: rgba(255,255,255,0.28); } */
+        .item-vinculable.activo { background: rgba(255,178,54,.4); box-shadow: inset 3px 0 0 #ff8800; }
 
 
         
@@ -271,9 +393,16 @@
                      <div id="detallesPanel" style="font-size:14px; color:#ffffff;"></div>
                 </div>
             </div>
-            <h4>Lista de Herrajes</h4>
-            <ul id="listaHerrajes" class="p-3 rounded"></ul>
+            <!-- <h4>Lista de Herrajes</h4>
+            <ul id="listaHerrajes" class="p-3 rounded"></ul> -->
             <!-- <ul id="listaHerrajes" class="bg-light text-dark p-3 rounded"></ul> -->
+             <h4>Lista de Herrajes</h4>
+
+            <h6 class="titulo-seccion-herrajes" id="tituloCaja">Caja de herrajes</h6>
+            <ul id="listaCaja" class="lista-herrajes-box p-3"></ul>
+
+            <h6 class="titulo-seccion-herrajes">Complementos</h6>
+            <ul id="listaComplementos" class="lista-herrajes-box p-3"></ul>
         </div>
 
         <!-- DERECHA -->
@@ -330,7 +459,206 @@
                 <button class="btn btn-primary" onclick="agregarItem()">Agregar</button>
                 <button class="btn btn-success ml-2" onclick="imprimirContenido()">Imprimir</button>
             </div>
+<!-- ----------------------------------------------------------------------------------------------------------- -->
+<hr>
 
+            <!-- ===================== GALERÍA DE PRODUCTOS ===================== -->
+            <div class="galeria-wrap">
+                <!-- <div class="galeria-header">
+                    <div>
+                        <h4 style="margin-bottom:2px;">Catálogo visual de herrajes</h4>
+                        <p>Pasa el mouse sobre una tarjeta o sobre un item de la lista (los que tienen 🔗) para ver la relación entre ambos.</p>
+                    </div>
+                    <div class="galeria-tabs">
+                        <div class="galeria-tab activa" data-filtro="todos">Todos</div>
+                        <div class="galeria-tab" data-filtro="caja">Caja</div>
+                        <div class="galeria-tab" data-filtro="complemento">Complementos</div>
+                    </div>
+                </div> -->
+                <div class="galeria-header">
+                    <div class="galeria-header-top">
+                        <h4 style="margin-bottom:0;">Catálogo visual de herrajes</h4>
+                        <div class="galeria-tabs">
+                            <div class="galeria-tab activa" data-filtro="todos">Todos</div>
+                            <div class="galeria-tab" data-filtro="caja">Caja</div>
+                            <div class="galeria-tab" data-filtro="complemento">Complementos</div>
+                        </div>
+                    </div>
+                    <p>Pasa el mouse sobre una tarjeta o sobre un item de la lista (los que tienen 🔗) para ver la relación entre ambos.</p>
+                </div>
+
+                <!-- <div id="grupoGaleriaCaja"> -->
+                <div class="galeria-contenido" id="galeriaContenido">
+                <div id="grupoGaleriaCaja">
+                    <span class="titulo-seccion-galeria caja">Caja de herrajes</span>
+                    <div class="product-grid">
+                        <div class="product-card" data-tags="soporte_inferior">
+                            <span class="badge-cat badge-caja">Caja</span>
+                            <div class="product-img"><img src="../static/img/catalogo/soporte_inferior.png" alt="Soporte inferior de aluminio"></div>
+                            <div class="product-name">Soporte inferior de aluminio</div>
+                        </div>
+                        <div class="product-card" data-tags="soporte_superior">
+                            <span class="badge-cat badge-caja">Caja</span>
+                            <div class="product-img"><img src="../static/img/catalogo/soporte_superior.png" alt="Soporte superior"></div>
+                            <div class="product-name">Soporte superior</div>
+                        </div>
+                        <div class="product-card" data-tags="bisagra_lateral">
+                            <span class="badge-cat badge-caja">Caja</span>
+                            <div class="product-img"><img src="../static/img/catalogo/bisagra_lateral.png" alt="Bisagra lateral ajustable"></div>
+                            <div class="product-name">Bisagra lateral ajustable</div>
+                        </div>
+                        <div class="product-card" data-tags="bisagra_intermedia">
+                            <span class="badge-cat badge-caja">Caja</span>
+                            <div class="product-img"><img src="../static/img/catalogo/bisagra_intermedia.png" alt="Bisagra intermedia"></div>
+                            <div class="product-name">Bisagra intermedia</div>
+                        </div>
+                        <div class="product-card" data-tags="bisagra_plana_lateral">
+                            <span class="badge-cat badge-caja">Caja</span>
+                            <div class="product-img"><img src="../static/img/catalogo/bisagra_plana_lateral.png" alt="Bisagra lateral ajustable genérica"></div>
+                            <div class="product-name">Bisagra Lateral Ajustable<br><span style="font-weight:400; font-size:10px; color:#6c757d;">Línea genérica</span></div>
+                        </div>
+                        <div class="product-card" data-tags="bisagra_plana_intermedia">
+                            <span class="badge-cat badge-caja">Caja</span>
+                            <div class="product-img"><img src="../static/img/catalogo/bisagra_plana_intermedia.png" alt="Bisagra intermedia genérica"></div>
+                            <div class="product-name">Bisagra Intermedia<br><span style="font-weight:400; font-size:10px; color:#6c757d;">Línea genérica</span></div>
+                        </div>
+
+                        <div class="product-card" data-tags="rodajas">
+                            <span class="badge-cat badge-caja">Caja</span>
+                            <div class="product-img"><img src="../static/img/catalogo/rodajas.png" alt="Rodajas (Ruedas)"></div>
+                            <div class="product-name">Rodajas (Ruedas)</div>
+                        </div>
+                        <div class="product-card" data-tags="tambores">
+                            <span class="badge-cat badge-caja">Caja</span>
+                            <div class="product-img"><img src="../static/img/catalogo/tambores.png" alt="Tambores"></div>
+                            <div class="product-name">Tambores</div>
+                        </div>
+                        <div class="product-card" data-tags="soporte_flecha">
+                            <span class="badge-cat badge-caja">Caja</span>
+                            <div class="product-img"><img src="../static/img/catalogo/soporte_flecha.png" alt="Soporte para flecha"></div>
+                            <div class="product-name">Soporte para flecha</div>
+                        </div>
+                        <div class="product-card" data-tags="bandera_chica">
+                            <span class="badge-cat badge-caja">Caja</span>
+                            <div class="product-img"><img src="../static/img/catalogo/bandera_chica.png" alt="Bandera chica"></div>
+                            <div class="product-name">Bandera chica</div>
+                        </div>
+                        <div class="product-card" data-tags="bandera_grande">
+                            <span class="badge-cat badge-caja">Caja</span>
+                            <div class="product-img"><img src="../static/img/catalogo/bandera_grande.jpg" alt="Bandera grande"></div>
+                            <div class="product-name">Bandera grande</div>
+                        </div>
+                        <div class="product-card" data-tags="manija">
+                            <span class="badge-cat badge-caja">Caja</span>
+                            <div class="product-img"><img src="../static/img/catalogo/manija.jpg" alt="Manija jaladera"></div>
+                            <div class="product-name">Manija jaladera</div>
+                        </div>
+                        <div class="product-card" data-tags="tornilleria">
+                            <span class="badge-cat badge-caja">Caja</span>
+                            <div class="product-img"><img src="../static/img/catalogo/tornilleria.png" alt="Tornillería"></div>
+                            <div class="product-name">Tornillería (pijas, coche, hex., remaches, resorte)</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- <div id="grupoGaleriaComplemento">
+                    <span class="titulo-seccion-galeria complemento">Complementos</span>
+                    <div class="product-grid">
+                        <div class="product-card" data-tags="tubo_flecha">
+                            <span class="badge-cat badge-complemento">Complemento</span>
+                            <div class="product-img"><img src="../static/img/catalogo/tubo_flecha.png" alt="Tubo o flecha"></div>
+                            <div class="product-name">Tubo o flecha</div>
+                        </div>
+                        <div class="product-card" data-tags="rieles_guias_laterales">
+                            <span class="badge-cat badge-complemento">Complemento</span>
+                            <div class="product-img"><img src="../static/img/catalogo/rieles_guias_laterales.png" alt="Guías laterales (rieles)"></div>
+                            <div class="product-name">Guías laterales (rieles)</div>
+                        </div>
+                        <div class="product-card" data-tags="chicote">
+                            <span class="badge-cat badge-complemento">Complemento</span>
+                            <div class="product-img"><img src="../static/img/catalogo/chicote.png" alt="Chicote"></div>
+                            <div class="product-name">Chicote</div>
+                        </div>
+                        <div class="product-card" data-tags="soporte_aluminio">
+                            <span class="badge-cat badge-complemento">Complemento</span>
+                            <div class="product-img"><img src="../static/img/catalogo/soporte_aluminio.png" alt="Soporte para hule"></div>
+                            <div class="product-name">Soporte para hule (aluminio)</div>
+                        </div>
+                        <div class="product-card" data-tags="hule_inferior">
+                            <span class="badge-cat badge-complemento">Complemento</span>
+                            <div class="product-img"><img src="../static/img/catalogo/hule_inferior.png" alt="Hule / Empaque inferior"></div>
+                            <div class="product-name">Hule / Empaque inferior</div>
+                        </div>
+                    </div>
+                </div> -->
+
+                              
+                <div id="grupoGaleriaComplemento">
+                    <span class="titulo-seccion-galeria complemento">Complementos</span>
+                    <div class="product-grid">
+                        <div class="product-card" data-tags="tubo_flecha">
+                            <span class="badge-cat badge-complemento">Complemento</span>
+                            <div class="product-img"><img src="../static/img/catalogo/tubo_flecha.jpg" alt="Tubo o flecha"></div>
+                            <div class="product-name">Tubo o flecha</div>
+                        </div>
+                        <div class="product-card" data-tags="angulo_1_pulg">
+                            <span class="badge-cat badge-complemento">Complemento</span>
+                            <div class="product-img"><img src="../static/img/catalogo/angulo_1_pulg.jpg" alt="ángulo de 1″ x 100 cm"></div>
+                            <div class="product-name">Ángulo de 1″ X 100 cm</div>
+                        </div>
+                        <div class="product-card" data-tags="angulo_1_pulg-50cm">
+                            <span class="badge-cat badge-complemento">Complemento</span>
+                            <div class="product-img"><img src="../static/img/catalogo/angulo_1_pulg-50cm.jpg" alt="ángulo de 1″ x 50 cm"></div>
+                            <div class="product-name">Ángulo de 1″ X 50 cm</div>
+                        </div>
+                        <div class="product-card" data-tags="angulo_1_1-2">
+                            <span class="badge-cat badge-complemento">Complemento</span>
+                            <div class="product-img"><img src="../static/img/catalogo/angulo_1_1-2.jpeg" alt="ángulo de 1½″"></div>
+                            <div class="product-name">Ángulo de 1½″ pulgada</div>
+                        </div>
+                        <div class="product-card" data-tags="hule_inferior">
+                            <span class="badge-cat badge-complemento">Complemento</span>
+                            <div class="product-img"><img src="../static/img/catalogo/hule.jpg" alt="Hule / Empaque inferior"></div>
+                            <div class="product-name">Hule / Empaque inferior</div>
+                        </div>
+                        <div class="product-card" data-tags="soporte_aluminio">
+                            <span class="badge-cat badge-complemento">Complemento</span>
+                            <div class="product-img"><img src="../static/img/catalogo/soporte_aluminio.png" alt="Soporte para hule"></div>
+                            <div class="product-name">Soporte para hule (aluminio)</div>
+                        </div>
+                        <div class="product-card" data-tags="empaque_lateral">
+                            <span class="badge-cat badge-complemento">Complemento</span>
+                            <div class="product-img"><img src="../static/img/catalogo/empaque_lateral.jpg" alt="Empaque lateral"></div>
+                            <div class="product-name">Empaque lateral</div>
+                        </div>
+                        <div class="product-card" data-tags="rieles_guias_laterales">
+                            <span class="badge-cat badge-complemento">Complemento</span>
+                            <div class="product-img"><img src="../static/img/catalogo/guias(riel).jpg" alt="Guías (rieles)"></div>
+                            <div class="product-name">Guías(rieles)</div>
+                        </div>
+                        <div class="product-card" data-tags="chicote">
+                            <span class="badge-cat badge-complemento">Complemento</span>
+                            <div class="product-img"><img src="../static/img/catalogo/chicote.jpg" alt="Chicote"></div>
+                            <div class="product-name">Chicote</div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div id="grupoGaleriaResorte">
+                    <span class="titulo-seccion-galeria resorte">Resortes (ver tabla arriba)</span>
+                    <div class="product-grid">
+                        <div class="product-card" data-tags="">
+                            <span class="badge-cat badge-resorte">Resorte</span>
+                            <!-- <div class="product-img" style="font-size:38px;">🌀</div> -->
+                            <div class="product-img"><img src="../static/img/catalogo/resortes.png" alt="resortes"></div>
+                            <div class="product-name">Resorte — elige tu combinación en la tabla de arriba</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+<!-- ----------------------------------------------------------------------------------------------------------- -->
         </div>
 
     </div>
@@ -349,27 +677,117 @@ document.addEventListener("DOMContentLoaded", actualizar);
 
 
 
+// function actualizar() {
+
+
+//     let detalles = document.getElementById("detallesPanel");
+//     let lista = document.getElementById("listaHerrajes");
+
+
+//     lista.innerHTML = "";
+
+//     // 👉 PANEL (esto faltaba)
+//     detalles.innerHTML = "{{ resultado.paneles }}";
+
+//     let base = "{{ resultado.herraje }}".split(", ");
+
+//     // base.forEach(item => {
+//     //     let li = document.createElement("li");
+//     //     li.textContent = item;
+//     //     lista.appendChild(li);
+//     // });
+
+//     base.forEach(item => {
+//         let li = document.createElement("li");
+
+//         // NUEVO: si ya se seleccionó una opción de resorte, recalcular soportes de flecha = cantidad + 1
+//         if (item.startsWith("Soportes para flechas") && cantidadResortesElegida !== null) {
+//             li.textContent = `Soportes para flechas: ${cantidadResortesElegida + 1} pzas`;
+//         } else {
+//             li.textContent = item;
+//         }
+
+//         lista.appendChild(li);
+//     });
+
+//         // 👉 AGREGAR RIELES
+//     {% if resultado.rieles %}
+//     let liRiel = document.createElement("li");
+//     liRiel.textContent = "{{ resultado.rieles }}";
+//     lista.appendChild(liRiel);
+//     {% endif %}
+
+//     // 👉 AGREGAR CHICOTES
+//     {% if resultado.chicote %}
+//     let liChicote = document.createElement("li");
+//     liChicote.textContent = "{{ resultado.chicote }}";
+//     lista.appendChild(liChicote);
+//     {% endif %}
+
+//     itemsAgregados.forEach(item => {
+//         let li = document.createElement("li");
+//         li.textContent = item;
+//         lista.appendChild(li);
+//     });
+
+//     if (resorteElegido) {
+//         let li = document.createElement("li");
+//         li.textContent = resorteElegido;
+//         lista.appendChild(li);
+//     }
+// }
+// 👉 Clasifica cada renglón de "resultado.herraje" en CAJA o COMPLEMENTO,
+//    o lo detecta como la etiqueta de la caja ("Caja de herrajes NxN con:")
+function clasificarItemHerraje(texto) {
+    const t = texto.toLowerCase();
+
+    if (t.startsWith("caja de herrajes")) return "LABEL";
+
+    const esCaja = [
+        t.includes("soporte inferior"),
+        t.includes("soporte superior"),
+        t.includes("bisagra") && t.includes("lateral"),
+        t.includes("bisagra") && t.includes("intermedia"),
+        t.includes("rodajas"),
+        t.includes("tambores"),
+        t.includes("soporte") && t.includes("flecha"),
+        t.includes("bandera chica"),
+        t.includes("bandera grande"),
+        t.includes("manija"),
+        t.includes("pija"),
+        t.includes("tornillo cabeza coche"),
+        t.includes("tornillo hexagonal"),
+        t.includes("remaches"),
+        (t.includes("5cm") || t.includes("5 cm")) && t.includes("resorte"),
+    ].some(Boolean);
+
+    return esCaja ? "CAJA" : "COMPLEMENTO";
+}
+
 function actualizar() {
 
-
     let detalles = document.getElementById("detallesPanel");
-    let lista = document.getElementById("listaHerrajes");
+    let listaCaja = document.getElementById("listaCaja");
+    let listaComplementos = document.getElementById("listaComplementos");
+    let tituloCaja = document.getElementById("tituloCaja");
 
-
-    lista.innerHTML = "";
+    listaCaja.innerHTML = "";
+    listaComplementos.innerHTML = "";
 
     // 👉 PANEL (esto faltaba)
     detalles.innerHTML = "{{ resultado.paneles }}";
 
     let base = "{{ resultado.herraje }}".split(", ");
 
-    // base.forEach(item => {
-    //     let li = document.createElement("li");
-    //     li.textContent = item;
-    //     lista.appendChild(li);
-    // });
-
     base.forEach(item => {
+        let categoria = clasificarItemHerraje(item);
+
+        if (categoria === "LABEL") {
+            // "Caja de herrajes 20X8 con:" -> se usa como título de la sección, no como renglón
+            tituloCaja.textContent = item.replace(/\s*con:?\s*$/i, "");
+            return;
+        }
+
         let li = document.createElement("li");
 
         // NUEVO: si ya se seleccionó una opción de resorte, recalcular soportes de flecha = cantidad + 1
@@ -379,36 +797,39 @@ function actualizar() {
             li.textContent = item;
         }
 
-        lista.appendChild(li);
+        if (categoria === "CAJA") {
+            listaCaja.appendChild(li);
+        } else {
+            listaComplementos.appendChild(li);
+        }
     });
 
-        // 👉 AGREGAR RIELES
+        // 👉 AGREGAR RIELES (Complementos)
     {% if resultado.rieles %}
     let liRiel = document.createElement("li");
     liRiel.textContent = "{{ resultado.rieles }}";
-    lista.appendChild(liRiel);
+    listaComplementos.appendChild(liRiel);
     {% endif %}
 
-    // 👉 AGREGAR CHICOTES
+    // 👉 AGREGAR CHICOTES (Complementos)
     {% if resultado.chicote %}
     let liChicote = document.createElement("li");
     liChicote.textContent = "{{ resultado.chicote }}";
-    lista.appendChild(liChicote);
+    listaComplementos.appendChild(liChicote);
     {% endif %}
 
     itemsAgregados.forEach(item => {
         let li = document.createElement("li");
         li.textContent = item;
-        lista.appendChild(li);
+        listaComplementos.appendChild(li);
     });
 
     if (resorteElegido) {
         let li = document.createElement("li");
         li.textContent = resorteElegido;
-        lista.appendChild(li);
+        listaComplementos.appendChild(li);
     }
 }
-
 
 function agregarItem() {
     let val = document.getElementById("nuevoItem").value;
@@ -429,14 +850,31 @@ document.addEventListener("change", function(e) {
 
 function imprimirContenido() {
 
+    // let area = document.getElementById("areaImpresion");
+    // let lista = document.querySelectorAll("#listaHerrajes li");
+
+    // let detallePanel = "{{ resultado.paneles }}";
+    // let fecha = new Date().toLocaleString();
+
+    // let listaHTML = "";
+    // lista.forEach(li => {
+    //     listaHTML += `<li>${li.textContent}</li>`;
+    // });
+
+
     let area = document.getElementById("areaImpresion");
-    let lista = document.querySelectorAll("#listaHerrajes li");
+    let itemsCaja = document.querySelectorAll("#listaCaja li");
+    let itemsComplementos = document.querySelectorAll("#listaComplementos li");
 
     let detallePanel = "{{ resultado.paneles }}";
     let fecha = new Date().toLocaleString();
 
-    let listaHTML = "";
-    lista.forEach(li => {
+    let listaHTML = "<li style='font-weight:bold; list-style:none; margin-top:8px;'>Caja de herrajes</li>";
+    itemsCaja.forEach(li => {
+        listaHTML += `<li>${li.textContent}</li>`;
+    });
+    listaHTML += "<li style='font-weight:bold; list-style:none; margin-top:8px;'>Complementos</li>";
+    itemsComplementos.forEach(li => {
         listaHTML += `<li>${li.textContent}</li>`;
     });
 
@@ -529,9 +967,210 @@ function imprimirContenido() {
 
 </script>
 
+<!-- ----------------------------------------------------------------------------------------------------------- -->
+
+<script>
+// ===================== GALERÍA DE PRODUCTOS — vinculación + filtros =====================
+// Este bloque es independiente de actualizar()/agregarItem(): no las edita, solo observa
+// las listas de herrajes (#listaCaja/#listaComplementos si existen, o #listaHerrajes si no)
+// y etiqueta cada <li> con la(s) tarjeta(s) de producto que le corresponden.
+
+function obtenerTagsGaleria(texto) {
+    const t = (texto || "").toLowerCase();
+    const tags = [];
+    if (t.includes("soporte inferior de aluminio")) tags.push("soporte_inferior");
+    if (t.includes("soporte superior")) tags.push("soporte_superior");
+    // if (t.includes("bisagra") && t.includes("lateral")) tags.push("bisagra_lateral");
+    // if (t.includes("bisagra") && t.includes("intermedia")) tags.push("bisagra_intermedia");
+    if (t.includes("bisagra") && t.includes("spazi") && t.includes("lateral")) tags.push("bisagra_lateral");
+    if (t.includes("bisagra") && t.includes("spazi") && t.includes("intermedia")) tags.push("bisagra_intermedia");
+    if (t.includes("bisagra") && t.includes("plana") && t.includes("lateral")) tags.push("bisagra_plana_lateral");
+    if (t.includes("bisagra") && t.includes("plana") && t.includes("intermedia")) tags.push("bisagra_plana_intermedia");
+
+    if (t.includes("rodajas")) tags.push("rodajas");
+    if (t.includes("tambores")) tags.push("tambores");
+    if (t.includes("soporte") && t.includes("flecha")) tags.push("soporte_flecha");
+    if (t.includes("bandera chica")) tags.push("bandera_chica");
+    if (t.includes("bandera grande")) tags.push("bandera_grande");
+    if (t.includes("manija jaladera")) tags.push("manija");
+    // if (
+    //     t.includes("pija") ||
+    //     (t.includes("tornillo cabeza coche") && t.includes("6x19")) ||
+    //     t.includes("tornillo hexagonal") ||
+    //     t.includes("remaches") ||
+    //     ((t.includes("5cm") || t.includes("5 cm")) && t.includes("resorte"))
+    // ) tags.push("tornilleria");
+    if (
+        t.includes("pija") ||
+        t.includes("tornillo cabeza coche") ||
+        t.includes("tornillo hexagonal") ||
+        t.includes("remaches") ||
+        ((t.includes("5cm") || t.includes("5 cm")) && t.includes("resorte"))
+    ) tags.push("tornilleria");
+    if (t.startsWith("tubo o flecha")) tags.push("tubo_flecha");
+    if (
+        t.includes("guía") || 
+        t.includes("riel") ||
+        t.includes("guia")
+    ) tags.push("rieles_guias_laterales");
+    if (t.includes("chicote")) tags.push("chicote");
+    // if (t.includes("soporte") && t.includes("hule")) tags.push("soporte_aluminio");
+    if (t.includes("soporte para hule")) tags.push("soporte_aluminio");
+    // if (t.includes("hule inferior") || t.includes("empaque lateral")) tags.push("hule_inferior");
+    if (t.includes("hule inferior")) tags.push("hule_inferior");
+    if (t.includes("empaque lateral")) tags.push("empaque_lateral");
+    if (t.includes("guias")) tags.push("guias(riel)");    
+    if (t.includes("ángulo de 1″ x 100 cm")) tags.push("angulo_1_pulg");
+    if (t.includes("ángulo de 1½″")) tags.push("angulo_1_1-2");
+    if (t.includes("ángulo de 1″ x 50 cm")) tags.push("angulo_1_pulg-50cm")
+    return tags;
+}
+
+function etiquetarItemsGaleria() {
+    document.querySelectorAll("#listaCaja li, #listaComplementos li, #listaHerrajes li").forEach(li => {
+        if (li.dataset.galeriaLista) return; // ya procesado, evita re-trabajo
+        const tags = obtenerTagsGaleria(li.textContent);
+        if (tags.length) {
+            li.dataset.tagsGaleria = tags.join(" ");
+            li.classList.add("item-vinculable");
+        }
+//         li.dataset.galeriaLista = "1";
+//     });
+// }
+        li.dataset.galeriaLista = "1";
+            });
+            ajustarVisibilidadTarjetasVariante();
+        }
+
+        // Bisagra Spazi (anti pellizcos) y Bisagra plana (genérica) ocupan el mismo lugar en la lista,
+        // pero nunca aparecen juntas en un mismo cálculo. Se oculta la tarjeta que no tenga ningún
+        // item vinculado en la lista actual, para no confundir con la variante que no aplica.
+        function ajustarVisibilidadTarjetasVariante() {
+            ["bisagra_lateral", "bisagra_intermedia", "bisagra_plana_lateral", "bisagra_plana_intermedia"].forEach(tag => {
+                const hayEnLista = document.querySelector(`li[data-tags-galeria~="${tag}"]`) !== null;
+                document.querySelectorAll(`.product-card[data-tags~="${tag}"]`).forEach(card => {
+                    card.style.display = hayEnLista ? "" : "none";
+                });
+            });
+        }
+
+// Observa las listas que existan (una o dos, según si tienes aplicado el otro patch)
+["listaCaja", "listaComplementos", "listaHerrajes"].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) new MutationObserver(etiquetarItemsGaleria).observe(el, { childList: true });
+});
+document.addEventListener("DOMContentLoaded", etiquetarItemsGaleria);
+etiquetarItemsGaleria(); // por si el script carga después de que la lista ya se llenó
+
+// ---- Vinculación por hover (tarjeta <-> renglón de la lista) ----
+function limpiarActivosGaleria() {
+    document.querySelectorAll(".product-card.activo, li.activo").forEach(el => el.classList.remove("activo"));
+}
+
+function activarTagsGaleria(tagsStr) {
+    limpiarActivosGaleria();
+    if (!tagsStr) return;
+    const tags = tagsStr.split(" ").filter(Boolean);
+    // tags.forEach(tag => {
+    //     document.querySelectorAll(`.product-card[data-tags~="${tag}"]`).forEach(c => c.classList.add("activo"));
+    // });
+    tags.forEach(tag => {
+        document.querySelectorAll(`.product-card[data-tags~="${tag}"]`).forEach(c => {
+            c.classList.add("activo");
+            c.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "nearest" });
+        });
+    });
+
+    // document.querySelectorAll("li[data-tags-galeria]").forEach(li => {
+    //     const liTags = (li.dataset.tagsGaleria || "").split(" ");
+    //     if (tags.some(t => liTags.includes(t))) li.classList.add("activo");
+    // });
+
+    document.querySelectorAll("li[data-tags-galeria]").forEach(li => {
+        const liTags = (li.dataset.tagsGaleria || "").split(" ");
+        if (tags.some(t => liTags.includes(t))) {
+            li.classList.add("activo");
+            li.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "nearest" });
+        }
+    });
+}
+
+document.addEventListener("mouseover", e => {
+    const li = e.target.closest(".item-vinculable");
+    if (li) activarTagsGaleria(li.dataset.tagsGaleria);
+});
+document.addEventListener("mouseout", e => {
+    const li = e.target.closest(".item-vinculable");
+    if (li) limpiarActivosGaleria();
+});
+document.querySelectorAll(".product-card").forEach(card => {
+    card.addEventListener("mouseenter", () => activarTagsGaleria(card.dataset.tags));
+    card.addEventListener("mouseleave", limpiarActivosGaleria);
+});
+
+// ---- Tabs de filtro (Todos / Caja / Complementos) ----
+document.querySelectorAll(".galeria-tab").forEach(tab => {
+    tab.addEventListener("click", () => {
+        document.querySelectorAll(".galeria-tab").forEach(t => t.classList.remove("activa"));
+        tab.classList.add("activa");
+        const f = tab.dataset.filtro;
+        document.getElementById("grupoGaleriaCaja").style.display = (f === "todos" || f === "caja") ? "" : "none";
+        document.getElementById("grupoGaleriaComplemento").style.display = (f === "todos" || f === "complemento") ? "" : "none";
+        document.getElementById("grupoGaleriaResorte").style.display = (f === "todos") ? "" : "none";
+    });
+});
+</script>
+
+
+
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+
+<script>
+// ===================== GALERÍA — igualar altura al final de "Lista de Herrajes" =====================
+// La caja de la galería nunca debe agregar scroll extra a la página completa.
+// Se calcula cuánto espacio libre queda hasta donde termina la lista de herrajes (columna izquierda)
+// y se usa ese valor como max-height de la galería, en vez de un número fijo.
+
+function referenciaAlturaGaleria() {
+    // si más adelante aplicas el patch de Caja/Complementos, usa la lista más baja (Complementos);
+    // mientras tanto, usa la lista única #listaHerrajes.
+    return document.getElementById('listaComplementos') || document.getElementById('listaHerrajes');
+}
+
+function ajustarAlturaGaleria() {
+    const galeria = document.getElementById('galeriaContenido');
+    const referencia = referenciaAlturaGaleria();
+    if (!galeria || !referencia) return;
+
+    // Con columnas apiladas (celular/pantallas angostas) no tiene sentido igualar alturas
+    // entre columnas que ya no están una junto a otra: se deja un alto fijo razonable.
+    const columnasLadoALado = window.innerWidth >= 768;
+    if (!columnasLadoALado) {
+        galeria.style.maxHeight = '480px';
+        return;
+    }
+
+    const finLista = referencia.getBoundingClientRect().bottom;
+    const inicioGaleria = galeria.getBoundingClientRect().top;
+    const alturaDisponible = finLista - inicioGaleria;
+
+    galeria.style.maxHeight = Math.max(alturaDisponible, 200) + 'px';
+}
+
+window.addEventListener('load', ajustarAlturaGaleria);
+window.addEventListener('resize', ajustarAlturaGaleria);
+
+// recalcular también si la lista de herrajes cambia de tamaño (item agregado, resorte elegido, etc.)
+["listaCaja", "listaComplementos", "listaHerrajes"].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) new MutationObserver(ajustarAlturaGaleria).observe(el, { childList: true });
+});
+</script>
+
 
 </body>
 </html>

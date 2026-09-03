@@ -1,22 +1,3 @@
-
-/* Establecer una tipografía moderna y colores oscuros */
-/* body {
-    font-family: 'Helvetica Neue', Arial, sans-serif;
-    background-color: #1c1c1c; /* Color de fondo oscuro */
-    /*color: #fff;  Texto en blanco */
-    /*text-align: center;
-    margin: 0;
-    padding-top: 60px; /* Espacio para el encabezado */
-/*} */
-
-
-/* body {
-    font-family: 'Helvetica Neue', Arial, sans-serif;
-    background-color: #1c1c1c;
-    color: #fff;
-    margin: 0;
-} */
-
 body {
     font-family: 'Helvetica Neue', Arial, sans-serif;
 
@@ -29,17 +10,6 @@ body {
     padding-top: 60px;
 }
 
-/* Estilos del encabezado al estilo Apple en oscuro */
-/* .header {
-    background-color: #292929; /* Color de fondo del encabezado */
-    /*box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
-    position: fixed;
-    width: 100%;
-    top: 0;
-    left: 0;
-    z-index: 1000;
-    padding: 10px 0;
-} */
  .header {
     background-color: #004684;
     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
@@ -64,6 +34,7 @@ body {
     height: 40px;
 }
 
+
 .nav {
     list-style: none;
     margin: 0;
@@ -81,16 +52,6 @@ body {
     font-weight: bold;
 }
 
-/* Estilos para la calculadora en oscuro */
-/* .calculadora {
-    background-color: #333; /* Fondo oscuro para la calculadora */
-    /*max-width: 400px;
-    margin: 20px auto;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
-} */
-
 .calculadora {
     background-color: rgba(0, 70, 132, 0.9); /* azul corporativo con transparencia */
     max-width: 500px;
@@ -105,16 +66,6 @@ body {
     margin-top: 0;
     color: #ddd; /* Texto claro para el título */
 }
-/* 
-input[type=text] {
-    width: calc(100% - 20px);
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #444; /* Borde oscuro para inputs */
-    /*background-color: #292929; /* Fondo oscuro para inputs */
-    /*border-radius: 5px;
-    color: #fff; /* Texto en blanco para inputs */
-/*} */
 
 input[type=text] {
     width: calc(100% - 20px);
@@ -136,22 +87,7 @@ input[type=text]::placeholder {
     color: rgba(255, 255, 255, 0.6);
 }
 
-/* input[type=submit] {
-    width: 100%;
-    padding: 10px;
-    background-color: #007aff; /* Mantener el color del botón */
-    /*border: none;
-    border-radius: 5px;
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
-} */
 
-
-
-/* input[type=submit]:hover {
-    background-color: #0056b3; /* Oscurecer el botón al pasar el mouse */
-/*} */
 
 input[type=submit] {
     width: 100%;
@@ -169,8 +105,6 @@ input[type=submit]:hover {
     transform: translateY(-2px);
     box-shadow: 0 6px 15px rgba(0, 122, 255, 0.4);
 }
-
-
 
 
 
@@ -228,11 +162,6 @@ button:hover {
 }
 
 
-
-
-
-
-
  /* Estilo para los checkboxes */
  /* Estilo para los checkboxes */
  
@@ -263,42 +192,6 @@ button:hover {
 
 }
 
-/* .checkbox-input {
-	/* // Code to hide the input */
-	/* clip: rect(0 0 0 0);
-	clip-path: inset(100%);
-	height: 1px;
-	overflow: hidden;
-	position: absolute;
-	white-space: nowrap;
-	width: 1px;
-
-	&:checked + .checkbox-tile {
-		border-color: #2260ff;
-		box-shadow: 0 5px 10px rgba(#000, 0.1);
-		color: #2260ff;
-		&:before {
-			transform: scale(1);
-			opacity: 1;
-			background-color: #2260ff;
-			border-color: #2260ff;
-		}
-		
-		.checkbox-icon, .checkbox-label {
-			color: #2260ff;
-		}
-	}
-	
-	&:focus + .checkbox-tile {
-		border-color: #2260ff;
-		box-shadow: 0 5px 10px rgba(#000, 0.1), 0 0 0 4px #b5c9fc;
-		&:before {
-			transform: scale(1);
-			opacity: 1;
-		}
-	}
-} */
-
 .checkbox-input {
     position: absolute;
     opacity: 0;
@@ -322,26 +215,6 @@ button:hover {
 	transition: 0.15s ease;
 	cursor: pointer;
 	position: relative;
-
-	/* &:before {
-		content: "";
-		position: absolute;
-		display: block;
-		width:  1.0rem;
-		height: 1.0rem;
-		border: 2px solid #b5bfd9;
-		background-color: #fff;
-		border-radius: 50%;
-		top: 0.25rem;
-		left: 0.25rem;
-		opacity: 0;
-		transform: scale(0);
-		transition: 0.25s ease;
-		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='192' height='192' fill='%23FFFFFF' viewBox='0 0 256 256'%3E%3Crect width='256' height='256' fill='none'%3E%3C/rect%3E%3Cpolyline points='216 72.005 104 184 48 128.005' fill='none' stroke='%23FFFFFF' stroke-linecap='round' stroke-linejoin='round' stroke-width='32'%3E%3C/polyline%3E%3C/svg%3E");
-		background-size: 12px;
-		background-repeat: no-repeat;
-		background-position: 50% 50%;
-	} */
 
 	&:hover {
 		border-color: #2260ff;
@@ -412,18 +285,10 @@ button:hover {
     height: 35px; /* Nueva altura más pequeña */
 }
 
-
-
-
-
 .small-icon {
     width: 54px; /* Ancho deseado para el icono de resorte */
     height: 54px; /* Altura deseada para el icono de resorte */
 }
-
-
-
-
 
 
 .checkbox-container {
@@ -436,8 +301,6 @@ button:hover {
     margin-top: 20px; /* Añade espacio arriba del botón para separarlo de los checkboxes */
     width: 100%; /* Asegura que el contenedor ocupe todo el ancho disponible */
 }
-
-
 
 
 .btn-aplicar {
@@ -457,8 +320,6 @@ button:hover {
 .btn-aplicar:hover {
     background-color: #0056b3; /* Cambia el color cuando se pasa el mouse por encima */
 }
-
-
 
 .card-box {
     display: inline-flex; /* Alineación más estrecha */
@@ -489,9 +350,6 @@ button:hover {
 
 }
 
-
-
-
  /* cards de resortes */
  
 /* Contenedor de Tarjetas */
@@ -501,24 +359,6 @@ button:hover {
     justify-content: center; /*space-around;*/
     gap: 15px; /* Espacio reducido entre tarjetas */
 }
-
-/* Estilo de Tarjetas */
-/* .card {
-    width: 250px; /* Ancho de tarjeta reducido */
-    /*background-color: #1c1c1e; /* Fondo de tarjeta oscuro */
-    /*border: 2px solid #fff; /* Borde blanco */
-    /*border-radius: 15px;
-    overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    cursor: pointer;
-} */
-
-
-/* .custom-card {
-    background-color: #1c1c1e;
-    border: 2px solid #fff;
-    border-radius: 15px;
-} */
 
 .custom-card {
     background-color: #004684;
@@ -594,7 +434,6 @@ button:hover {
     background-color: #e6e6e609;
 }
 
-
 .btn-marcar1 {
     background-color: #007eecdc;
     color: #ffffff;
@@ -613,8 +452,6 @@ button:hover {
     transform: scale(1.05);
 }
 
-
-
 .btn-marcar2 {
     background-color: #007eecdc;
     color: #ffffff;
@@ -632,13 +469,6 @@ button:hover {
     background-color: #007eecdc;
     transform: scale(1.05);
 }
-
-
-
-
-
-
-
 
 
 /* AQUI INICIA LO DEL RECORRIDO  */
